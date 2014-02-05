@@ -2,19 +2,19 @@
 /*
 Copyright 2011 da UFRGS - Universidade Federal do Rio Grande do Sul
 
-Este arquivo é parte do programa SAELE - Sistema Aberto de Eleições Eletrônicas.
+Este arquivo Ã© parte do programa SAELE - Sistema Aberto de EleiÃ§Ãµes EletrÃ´nicas.
 
-O SAELE é um software livre; você pode redistribuí-lo e/ou modificá-lo dentro dos
-termos da Licença Pública Geral GNU como publicada pela Fundação do Software Livre
-(FSF); na versão 2 da Licença.
+O SAELE Ã© um software livre; vocÃª pode redistribuÃ­-lo e/ou modificÃ¡-lo dentro dos
+termos da LicenÃ§a PÃºblica Geral GNU como publicada pela FundaÃ§Ã£o do Software Livre
+(FSF); na versÃ£o 2 da LicenÃ§a.
 
-Este programa é distribuído na esperança que possa ser útil, mas SEM NENHUMA GARANTIA;
-sem uma garantia implícita de ADEQUAÇÃO a qualquer MERCADO ou APLICAÇÃO EM PARTICULAR.
-Veja a Licença Pública Geral GNU/GPL em português para maiores detalhes.
+Este programa Ã© distribuÃ­do na esperanÃ§a que possa ser Ãºtil, mas SEM NENHUMA GARANTIA;
+sem uma garantia implÃ­cita de ADEQUAÃ‡ÃƒO a qualquer MERCADO ou APLICAÃ‡ÃƒO EM PARTICULAR.
+Veja a LicenÃ§a PÃºblica Geral GNU/GPL em portuguÃªs para maiores detalhes.
 
-Você deve ter recebido uma cópia da Licença Pública Geral GNU, sob o título "LICENCA.txt",
-junto com este programa, se não, acesse o Portal do Software Público Brasileiro no
-endereço www.softwarepublico.gov.br ou escreva para a Fundação do Software Livre(FSF)
+VocÃª deve ter recebido uma cÃ³pia da LicenÃ§a PÃºblica Geral GNU, sob o tÃ­tulo "LICENCA.txt",
+junto com este programa, se nÃ£o, acesse o Portal do Software PÃºblico Brasileiro no
+endereÃ§o www.softwarepublico.gov.br ou escreva para a FundaÃ§Ã£o do Software Livre(FSF)
 Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
 */
 
@@ -26,8 +26,10 @@ require_once("../PUBLIC/ConcursoEleitoral.class.php");
 require("../xajax/xajax_core/xajax.inc.php");
 
 $xajax = new xajax('Votacao_Common.php');
-//$xajax->setFlag('debug', true);
-$xajax->setCharEncoding("iso-8859-1");
+$xajax->configure('javascript URI', '../xajax/');
+$xajax->configure('responseType', 'XML');
+$xajax->configure('characterEncoding', 'UTF-8');
+$xajax->configure("decodeUTF8Input", true);
 
 $xajax->register(XAJAX_FUNCTION, "VerificaVoto"); 
 $xajax->register(XAJAX_FUNCTION, "Acao"); 
@@ -171,7 +173,7 @@ function VerificaVoto($Form) {
         $objResponse->assign("Lotacao", "style.visibility", "hidden")
                     ->assign("ItensLotacao", "innerHTML", NULL);
     else
-        $objResponse->loadCommands(DefineLotacao($PessoaCand));
+        $objResponse->appendResponse(DefineLotacao($PessoaCand));
 
     $objResponse->assign('DivChapa', 'innerHTML', $Str);
     return $objResponse;
@@ -199,7 +201,7 @@ function Acao($Form, $Acao) {
                 else {
                     $PosicaoVoto = array_search($Voto, $Controlador->devolveVetorCedula());
                     if(($PosicaoVoto !== false) && ($PosicaoVoto != $VotoAtual)) {
-                        return $objResponse->alert("Atenção! Os votos não podem ser repetidos.");
+                        return $objResponse->alert("AtenÃ§Ã£o! Os votos nÃ£o podem ser repetidos.");
                     }
                     $Voto = $Chapa->get("nrchapa");
                 }
@@ -224,7 +226,7 @@ function Acao($Form, $Acao) {
                         ->assign("campoCedula", "value", $Controlador->devolveVoto($NovoVoto));
             if($NovoVoto == 1)
                 $objResponse->assign("BotaoVotoAnterior", "innerHTML", 'PRIMEIRO VOTO');
-            $objResponse->assign("BotaoVotoPosterior", "innerHTML", '<input type="button" name="botao" value="PRÓXIMO VOTO &gt;&gt; (ENTER)" onclick="javascript: xajax_Acao(xajax.getFormValues(\'FormCedula\'), \'P\');" />');
+            $objResponse->assign("BotaoVotoPosterior", "innerHTML", '<input type="button" name="botao" value="PRÃ“XIMO VOTO &gt;&gt; (ENTER)" onclick="javascript: xajax_Acao(xajax.getFormValues(\'FormCedula\'), \'P\');" />');
             $objResponse->script("xajax_VerificaVoto(xajax.getFormValues('FormCedula'));");
         }
         elseif(($Acao == "P") && ($VotoAtual < $Eleicao->get("nrpossibilidades"))) { // VOTO POSTERIOR
@@ -236,11 +238,11 @@ function Acao($Form, $Acao) {
                         ->assign("botao_voto_".$NovoVoto, "style.backgroundColor", "ffb5a5")
                         ->assign("campoCedula", "value", $Controlador->devolveVoto($NovoVoto));
             if($NovoVoto == $Eleicao->get("nrpossibilidades"))
-                $objResponse->assign("BotaoVotoPosterior", "innerHTML", 'ÚLTIMO VOTO');
+                $objResponse->assign("BotaoVotoPosterior", "innerHTML", 'ÃšLTIMO VOTO');
             $objResponse->assign("BotaoVotoAnterior", "innerHTML", '<input type="button" name="botao" value="&lt;&lt; VOTO ANTERIOR (ESC)" onclick="javascript: xajax_Acao(xajax.getFormValues(\'FormCedula\'), \'A\');" />');
             $objResponse->script("xajax_VerificaVoto(xajax.getFormValues('FormCedula'));");
         }
-        elseif(is_numeric($Acao) && ($Acao >= 1) && ($Acao <= $Eleicao->get("nrpossibilidades"))) { // VOTO ALEATÓRIO
+        elseif(is_numeric($Acao) && ($Acao >= 1) && ($Acao <= $Eleicao->get("nrpossibilidades"))) { // VOTO ALEATÃ“RIO
             $NovoVoto = $Acao;
             $Controlador->registraVoto($Voto);
             $Controlador->registraNrVotoAtual($NovoVoto);
@@ -255,9 +257,9 @@ function Acao($Form, $Acao) {
                 $objResponse->assign("BotaoVotoAnterior", "innerHTML", '<input type="button" name="botao" value="&lt;&lt; VOTO ANTERIOR (ESC)" onclick="javascript: xajax_Acao(xajax.getFormValues(\'FormCedula\'), \'A\');" />');
 
             if($NovoVoto == $Form['NrVotos'])
-                $objResponse->assign("BotaoVotoPosterior", "innerHTML", 'ÚLTIMO VOTO');
+                $objResponse->assign("BotaoVotoPosterior", "innerHTML", 'ÃšLTIMO VOTO');
             else
-                $objResponse->assign("BotaoVotoPosterior", "innerHTML", '<input type="button" name="botao" value="PR&Oacute;XIMO VOTO &gt;&gt; (ENTER)" onclick="javascript: xajax_Acao(xajax.getFormValues(\'FormCedula\'), \'P\');" />');
+                $objResponse->assign("BotaoVotoPosterior", "innerHTML", '<input type="button" name="botao" value="PRÃ“XIMO VOTO &gt;&gt; (ENTER)" onclick="javascript: xajax_Acao(xajax.getFormValues(\'FormCedula\'), \'P\');" />');
             $objResponse->script("xajax_VerificaVoto(xajax.getFormValues('FormCedula'));");
 		}
 	}
@@ -274,7 +276,7 @@ function DefineLotacao($Pessoa = null) {
     if(!is_null($Pessoa) && is_numeric($Pessoa))
         $Pessoa = new PessoaEleicao($Pessoa);
     elseif(!is_null($Pessoa) && !($Pessoa instanceof PessoaEleicao))
-        throw new Exception("Pessoa inválida", 0);
+        throw new Exception("Pessoa invÃ¡lida", 0);
 
     if(is_null($Pessoa)) {
         $objResponse->assign("Lotacao", "style.visibility", "hidden")

@@ -2,19 +2,19 @@
 /*
 Copyright 2011 da UFRGS - Universidade Federal do Rio Grande do Sul
 
-Este arquivo é parte do programa SAELE - Sistema Aberto de Eleições Eletrônicas.
+Este arquivo Ã© parte do programa SAELE - Sistema Aberto de EleiÃ§Ãµes EletrÃ´nicas.
 
-O SAELE é um software livre; você pode redistribuí-lo e/ou modificá-lo dentro dos
-termos da Licença Pública Geral GNU como publicada pela Fundação do Software Livre
-(FSF); na versão 2 da Licença.
+O SAELE Ã© um software livre; vocÃª pode redistribuÃ­-lo e/ou modificÃ¡-lo dentro dos
+termos da LicenÃ§a PÃºblica Geral GNU como publicada pela FundaÃ§Ã£o do Software Livre
+(FSF); na versÃ£o 2 da LicenÃ§a.
 
-Este programa é distribuído na esperança que possa ser útil, mas SEM NENHUMA GARANTIA;
-sem uma garantia implícita de ADEQUAÇÃO a qualquer MERCADO ou APLICAÇÃO EM PARTICULAR.
-Veja a Licença Pública Geral GNU/GPL em português para maiores detalhes.
+Este programa Ã© distribuÃ­do na esperanÃ§a que possa ser Ãºtil, mas SEM NENHUMA GARANTIA;
+sem uma garantia implÃ­cita de ADEQUAÃ‡ÃƒO a qualquer MERCADO ou APLICAÃ‡ÃƒO EM PARTICULAR.
+Veja a LicenÃ§a PÃºblica Geral GNU/GPL em portuguÃªs para maiores detalhes.
 
-Você deve ter recebido uma cópia da Licença Pública Geral GNU, sob o título "LICENCA.txt",
-junto com este programa, se não, acesse o Portal do Software Público Brasileiro no
-endereço www.softwarepublico.gov.br ou escreva para a Fundação do Software Livre(FSF)
+VocÃª deve ter recebido uma cÃ³pia da LicenÃ§a PÃºblica Geral GNU, sob o tÃ­tulo "LICENCA.txt",
+junto com este programa, se nÃ£o, acesse o Portal do Software PÃºblico Brasileiro no
+endereÃ§o www.softwarepublico.gov.br ou escreva para a FundaÃ§Ã£o do Software Livre(FSF)
 Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
 */
 
@@ -34,11 +34,11 @@ class PessoaEleicao extends Entidade {
       "pessoaautenticada"   => array(Nome => "Autenticada", Tipo => texto, Tamanho => 1, Obrigatorio => false),
       "gerentesistema"      => array(Nome => "Gerente do Sistema", Tipo => texto, Tamanho => 1, Obrigatorio => false),
       "solicitante"         => array(Nome => "Solicitante", Tipo => texto, Tamanho => 1, Obrigatorio => false),
-      "identificacaousuario"=> array(Nome => "Identificação do Usuário", Tipo => texto, Tamanho => 30, Obrigatorio => true),
+      "identificacaousuario"=> array(Nome => "IdentificaÃ§Ã£o do UsuÃ¡rio", Tipo => texto, Tamanho => 30, Obrigatorio => true),
     );
 
 /**
- * Informa se a pessoa já foi homologada.
+ * Informa se a pessoa jÃ¡ foi homologada.
  * @return boolean
  */
     public function homologada() {
@@ -46,7 +46,7 @@ class PessoaEleicao extends Entidade {
     }
 
 /**
- * Informa se a pessoa é gerente do sistema.
+ * Informa se a pessoa Ã© gerente do sistema.
  * @return boolean
  */
     public function eGerenteSistema() {
@@ -62,7 +62,7 @@ class PessoaEleicao extends Entidade {
     }
 
 /**
- * Informa se a pessoa é membro de comissão eleitoral de alguma eleição.
+ * Informa se a pessoa Ã© membro de comissÃ£o eleitoral de alguma eleiÃ§Ã£o.
  * @return boolean
  */
     public function eMembroComissaoEleitoral() {
@@ -74,7 +74,7 @@ class PessoaEleicao extends Entidade {
     }
 
     public static function devolvePessoaPorIdentificador($Identificador) {
-        $SQL = " select * from eleicoes.pessoaeleicao where identificacaousuario = :Identificador[texto] ";
+        $SQL = " select * from eleicoes.pessoaeleicao where upper(identificacaousuario) = upper(:Identificador[texto]) ";
         $Consulta = new consulta($SQL);
         $Consulta->setParametros("Identificador", $Identificador);
         if($Consulta->executa(true))
@@ -83,4 +83,3 @@ class PessoaEleicao extends Entidade {
             return null;
     }
 }
-?>

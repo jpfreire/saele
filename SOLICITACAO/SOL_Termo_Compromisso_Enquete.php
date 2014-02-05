@@ -2,19 +2,19 @@
 /*
 Copyright 2011 da UFRGS - Universidade Federal do Rio Grande do Sul
 
-Este arquivo È parte do programa SAELE - Sistema Aberto de EleiÁıes EletrÙnicas.
+Este arquivo √© parte do programa SAELE - Sistema Aberto de Elei√ß√µes Eletr√¥nicas.
 
-O SAELE È um software livre; vocÍ pode redistribuÌ-lo e/ou modific·-lo dentro dos
-termos da LicenÁa P˙blica Geral GNU como publicada pela FundaÁ„o do Software Livre
-(FSF); na vers„o 2 da LicenÁa.
+O SAELE √© um software livre; voc√™ pode redistribu√≠-lo e/ou modific√°-lo dentro dos
+termos da Licen√ßa P√∫blica Geral GNU como publicada pela Funda√ß√£o do Software Livre
+(FSF); na vers√£o 2 da Licen√ßa.
 
-Este programa È distribuÌdo na esperanÁa que possa ser ˙til, mas SEM NENHUMA GARANTIA;
-sem uma garantia implÌcita de ADEQUA«√O a qualquer MERCADO ou APLICA«√O EM PARTICULAR.
-Veja a LicenÁa P˙blica Geral GNU/GPL em portuguÍs para maiores detalhes.
+Este programa √© distribu√≠do na esperan√ßa que possa ser √∫til, mas SEM NENHUMA GARANTIA;
+sem uma garantia impl√≠cita de ADEQUA√á√ÉO a qualquer MERCADO ou APLICA√á√ÉO EM PARTICULAR.
+Veja a Licen√ßa P√∫blica Geral GNU/GPL em portugu√™s para maiores detalhes.
 
-VocÍ deve ter recebido uma cÛpia da LicenÁa P˙blica Geral GNU, sob o tÌtulo "LICENCA.txt",
-junto com este programa, se n„o, acesse o Portal do Software P˙blico Brasileiro no
-endereÁo www.softwarepublico.gov.br ou escreva para a FundaÁ„o do Software Livre(FSF)
+Voc√™ deve ter recebido uma c√≥pia da Licen√ßa P√∫blica Geral GNU, sob o t√≠tulo "LICENCA.txt",
+junto com este programa, se n√£o, acesse o Portal do Software P√∫blico Brasileiro no
+endere√ßo www.softwarepublico.gov.br ou escreva para a Funda√ß√£o do Software Livre(FSF)
 Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
 */
 
@@ -22,15 +22,15 @@ require_once('../CABECALHO.PHP');
 
 $_SESSION['Campos'] = $_POST;
 
-MostraCabecalho("SolicitaÁ„o de Enquete");
+MostraCabecalho("Solicita√ß√£o de Enquete");
 
 $Erros = array();
 if(trim($_POST['NomeConcurso']) == "")
     $Erros[] = "Nome da Enquete";
 if((trim($_POST['DataInicio']) == "") || (Consulta::formataValidaData($_POST['DataInicio']) === false))
-    $Erros[] = "Data de inÌcio";
+    $Erros[] = "Data de in√≠cio";
 if((trim($_POST['HoraInicio']) == "") || (Consulta::validaHora($_POST['HoraInicio']) === false))
-    $Erros[] = "Hora de inÌcio";
+    $Erros[] = "Hora de in√≠cio";
 if((trim($_POST['DataFim']) == "") || (Consulta::formataValidaData($_POST['DataFim']) === false))
     $Erros[] = "Data de fim";
 if((trim($_POST['HoraFim']) == "") || (Consulta::validaHora($_POST['HoraFim']) === false))
@@ -45,13 +45,13 @@ $TemEleicao = false;
 foreach($_POST['Eleicao'] as $Eleicao)
     $TemEleicao = $TemEleicao || (trim($Eleicao) != "");
 if(!$TemEleicao)
-    $Erros[] = "Questıes da enquete";
+    $Erros[] = "Quest√µes da enquete";
 if(!in_array($_POST['TipoEleicao'], array("S", "E", "N")))
     $Erros[] = "Tipo de enquete";
 
 if(!empty($Erros)) { ?>
     <div class="Erro">
-        <p><strong>AtenÁ„o:</strong> os seguintes campos n„o foram informados ou est„o inv·lidos:</p>
+        <p><strong>Aten√ß√£o:</strong> os seguintes campos n√£o foram informados ou est√£o inv√°lidos:</p>
 
         <ul>
             <?php
@@ -73,19 +73,19 @@ $_SESSION['ModalidadeConcurso'] = "Q";
 
 <div class="molduraExterna">
 <p class="TermoTitulo">
-  ENQUETES ELETR&Ocirc;NICAS
+  ENQUETES ELETR√îNICAS
 </p>
 
 <div class="TermoParagrafo">
-  A partir desta solicita&ccedil;&atilde;o, os respons&aacute;veis (gerentes)
-  ser&atilde;o respons&aacute;veis pela defini&ccedil;&atilde;o do p˙blico-alvo,
-  dos locais de vota&ccedil;&atilde;o e do cronograma eleitoral.
+  A partir desta solicita√ß√£o, os respons√°veis (gerentes)
+  ser√£o respons√°veis pela defini√ß√£o do p√∫blico-alvo,
+  dos locais de vota√ß√£o e do cronograma eleitoral.
 </div>
 <div class="TermoParagrafo">
-  Para configura&ccedil;&atilde;o da Elei&ccedil;&atilde;o, o respons&aacute;vel pelo
-	sistema entrar&aacute; em contato para agendar uma reuni&atilde;o presencial, onde
-	ser&atilde;o estabelecidas as especifica&ccedil;&otilde;es para o arquivo com a
-	lista de participantes do Concurso e as imagens das op&ccedil;&otilde;es.
+  Para configura√ß√£o da Elei√ß√£o, o respons√°vel pelo
+	sistema entrar√° em contato para agendar uma reuni√£o presencial, onde
+	ser√£o estabelecidas as especifica√ß√µes para o arquivo com a
+	lista de participantes do Concurso e as imagens das op√ß√µes.
 </div>
 
 <div class="botoes">

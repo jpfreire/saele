@@ -2,22 +2,22 @@
 /*
 Copyright 2011 da UFRGS - Universidade Federal do Rio Grande do Sul
 
-Este arquivo È parte do programa SAELE - Sistema Aberto de EleiÁıes EletrÙnicas.
+Este arquivo √© parte do programa SAELE - Sistema Aberto de Elei√ß√µes Eletr√¥nicas.
 
-O SAELE È um software livre; vocÍ pode redistribuÌ-lo e/ou modific·-lo dentro dos
-termos da LicenÁa P˙blica Geral GNU como publicada pela FundaÁ„o do Software Livre
-(FSF); na vers„o 2 da LicenÁa.
+O SAELE √© um software livre; voc√™ pode redistribu√≠-lo e/ou modific√°-lo dentro dos
+termos da Licen√ßa P√∫blica Geral GNU como publicada pela Funda√ß√£o do Software Livre
+(FSF); na vers√£o 2 da Licen√ßa.
 
-Este programa È distribuÌdo na esperanÁa que possa ser ˙til, mas SEM NENHUMA GARANTIA;
-sem uma garantia implÌcita de ADEQUA«√O a qualquer MERCADO ou APLICA«√O EM PARTICULAR.
-Veja a LicenÁa P˙blica Geral GNU/GPL em portuguÍs para maiores detalhes.
+Este programa √© distribu√≠do na esperan√ßa que possa ser √∫til, mas SEM NENHUMA GARANTIA;
+sem uma garantia impl√≠cita de ADEQUA√á√ÉO a qualquer MERCADO ou APLICA√á√ÉO EM PARTICULAR.
+Veja a Licen√ßa P√∫blica Geral GNU/GPL em portugu√™s para maiores detalhes.
 
-VocÍ deve ter recebido uma cÛpia da LicenÁa P˙blica Geral GNU, sob o tÌtulo "LICENCA.txt",
-junto com este programa, se n„o, acesse o Portal do Software P˙blico Brasileiro no
-endereÁo www.softwarepublico.gov.br ou escreva para a FundaÁ„o do Software Livre(FSF)
+Voc√™ deve ter recebido uma c√≥pia da Licen√ßa P√∫blica Geral GNU, sob o t√≠tulo "LICENCA.txt",
+junto com este programa, se n√£o, acesse o Portal do Software P√∫blico Brasileiro no
+endere√ßo www.softwarepublico.gov.br ou escreva para a Funda√ß√£o do Software Livre(FSF)
 Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
 */
-                       // P·gina para zerar os votos de uma EleiÁ„o ainda n„o iniciada
+                       // P√°gina para zerar os votos de uma Elei√ß√£o ainda n√£o iniciada
 require_once('../cabecalho.php');
 ?>
 
@@ -41,7 +41,7 @@ $SQL = " SELECT * FROM eleicoes.COMISSAOELEITORAL
 $ConsultaComissao = new consulta($db, $SQL);
 $ConsultaComissao->setparametros("Concurso,Eleicao,Pessoa", $campo);
 if (!$ConsultaComissao->executa(true) && !$DireitoMaster) {
-     echo "<br><font class=\"a2\">Erro! O usu&aacute;rio n&atilde;o tem permiss&atilde;o para acessar esta p&aacute;gina.</font><br><br>\n";
+     echo "<br><font class=\"a2\">Erro! O usu√°rio n√£o tem permiss√£o para acessar esta p√°gina.</font><br><br>\n";
      echo "<a href=\"javascript: history.back(-1);\">Voltar</a>\n";
      echo "</body></html>";
      exit;
@@ -51,11 +51,11 @@ $SQL = " SELECT CE.*
          FROM eleicoes.CONCURSOELEITORAL CE
          WHERE CE.CodConcurso = :Concurso[numero]
            AND NOT EXISTS (select * from eleicoes.logoperacao
-                           where codconcurso = CE.codconcurso and descricao = 'ZerÈsima') ";
+                           where codconcurso = CE.codconcurso and descricao = 'Zer√©sima') ";
 $ConsultaConcurso = new consulta($db, $SQL);
 $ConsultaConcurso->setparametros("Concurso",$campo);
 if (!$ConsultaConcurso->executa(true)) {
-   echo "<br><b>Erro!</b> Esta elei&ccedil;&atilde;o ainda est&aacute; ativa, ou j&aacute; acabou.<br />";
+   echo "<br><b>Erro!</b> Esta elei√ß√£o ainda est√° ativa, ou j√° acabou.<br />";
    echo "<a href=\"javascript: history.back(-1);\">Voltar</a>\n";
    echo "</body></html>";
    exit;
@@ -118,16 +118,17 @@ if (($AtualizaEleicao) && ($AtualizaChapas)) {
   $SQL = " INSERT INTO eleicoes.LOGOPERACAO
            (CodPessoaEleicao, CodConcurso, CodEleicao, DataOperacao, NrSeqLogOperacao, IP, Descricao)
            VALUES
-           (:Pessoa[numero], :Concurso[numero], :Eleicao[numero], now(), :NrSeq[numero], :IP[texto], 'ZerÈsima') ";
+           (:Pessoa[numero], :Concurso[numero], :Eleicao[numero], now(), :NrSeq[numero], :IP[texto], 'Zer√©sima') ";
   $InsereLog = new consulta($db, $SQL);
   $InsereLog->setparametros("Pessoa,Concurso,Eleicao,NrSeq,IP", $campo);
   $InsereLog->executa();
 ?>
 
 <html>
+    <head><meta charset="utf-8"></head>
 <body>
 <script>
-     alert('EleiÁ„o zerada com sucesso!');
+     alert('Elei√ß√£o zerada com sucesso!');
      location.href = 'ELC_Apuracao.php?Concurso=<?=$campo['Concurso']?>&Eleicao=<?=$campo['Eleicao']?>&Zeresima';
 </script>
 </body>
@@ -136,9 +137,10 @@ if (($AtualizaEleicao) && ($AtualizaChapas)) {
 }
 else { ?>
 <html>
+    <head><meta charset="utf-8"></head>
 <body>
 <script>
-     alert('Erro ao zerar a eleiÁ„o!');
+     alert('Erro ao zerar a elei√ß√£o!');
      location.href = 'ELC_Apuracao.php?Concurso=<?=$campo['Concurso']?>&Eleicao=<?=$campo['Eleicao']?>';
 </script>
 </body>

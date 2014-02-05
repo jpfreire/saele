@@ -2,19 +2,19 @@
 /*
 Copyright 2011 da UFRGS - Universidade Federal do Rio Grande do Sul
 
-Este arquivo é parte do programa SAELE - Sistema Aberto de Eleições Eletrônicas.
+Este arquivo Ã© parte do programa SAELE - Sistema Aberto de EleiÃ§Ãµes EletrÃ´nicas.
 
-O SAELE é um software livre; você pode redistribuí-lo e/ou modificá-lo dentro dos
-termos da Licença Pública Geral GNU como publicada pela Fundação do Software Livre
-(FSF); na versão 2 da Licença.
+O SAELE Ã© um software livre; vocÃª pode redistribuÃ­-lo e/ou modificÃ¡-lo dentro dos
+termos da LicenÃ§a PÃºblica Geral GNU como publicada pela FundaÃ§Ã£o do Software Livre
+(FSF); na versÃ£o 2 da LicenÃ§a.
 
-Este programa é distribuído na esperança que possa ser útil, mas SEM NENHUMA GARANTIA;
-sem uma garantia implícita de ADEQUAÇÃO a qualquer MERCADO ou APLICAÇÃO EM PARTICULAR.
-Veja a Licença Pública Geral GNU/GPL em português para maiores detalhes.
+Este programa Ã© distribuÃ­do na esperanÃ§a que possa ser Ãºtil, mas SEM NENHUMA GARANTIA;
+sem uma garantia implÃ­cita de ADEQUAÃ‡ÃƒO a qualquer MERCADO ou APLICAÃ‡ÃƒO EM PARTICULAR.
+Veja a LicenÃ§a PÃºblica Geral GNU/GPL em portuguÃªs para maiores detalhes.
 
-Você deve ter recebido uma cópia da Licença Pública Geral GNU, sob o título "LICENCA.txt",
-junto com este programa, se não, acesse o Portal do Software Público Brasileiro no
-endereço www.softwarepublico.gov.br ou escreva para a Fundação do Software Livre(FSF)
+VocÃª deve ter recebido uma cÃ³pia da LicenÃ§a PÃºblica Geral GNU, sob o tÃ­tulo "LICENCA.txt",
+junto com este programa, se nÃ£o, acesse o Portal do Software PÃºblico Brasileiro no
+endereÃ§o www.softwarepublico.gov.br ou escreva para a FundaÃ§Ã£o do Software Livre(FSF)
 Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
 */
 
@@ -26,9 +26,9 @@ final class Chapa extends Entidade {
       "codchapa"    => array(Tipo => numero, Tamanho => 4, Foreign => false)
     );
     protected $VetorCampos = array(
-      "descricao"           => array(Nome => "Descrição", Tipo => texto, Tamanho => 120, Obrigatorio => true),
-      "nrchapa"             => array(Nome => "Número da chapa", Tipo => numero, Tamanho => 2, Obrigatorio => true),
-      "nrvotosrecebidos"    => array(Nome => "Número de votos contados", Tipo => numero, Obrigatorio => false)
+      "descricao"           => array(Nome => "DescriÃ§Ã£o", Tipo => texto, Tamanho => 120, Obrigatorio => true),
+      "nrchapa"             => array(Nome => "NÃºmero da chapa", Tipo => numero, Tamanho => 2, Obrigatorio => true),
+      "nrvotosrecebidos"    => array(Nome => "NÃºmero de votos contados", Tipo => numero, Obrigatorio => false)
     );
     private $Concurso;
     private $Eleicao;
@@ -46,14 +46,14 @@ final class Chapa extends Entidade {
     }
 
 /**
- * Devolve o número de votos recebidos pela Chapa atual. Como este procedimento 
- * informa parte do resultado da eleição, ele só pode ser executado após o
- * término do período de votação.
+ * Devolve o nÃºmero de votos recebidos pela Chapa atual. Como este procedimento 
+ * informa parte do resultado da eleiÃ§Ã£o, ele sÃ³ pode ser executado apÃ³s o
+ * tÃ©rmino do perÃ­odo de votaÃ§Ã£o.
  * @return int
  */
     public function devolveNrVotos() {
         if($this->Concurso->estadoConcurso() != CONCURSO_ENCERRADO)
-            throw new ChapaException("Os votos só podem ser contados após o término do concurso", 1);
+            throw new ChapaException("Os votos sÃ³ podem ser contados apÃ³s o tÃ©rmino do concurso", 1);
 
         $SQL = " select count(*) as Nr from eleicoes.voto
                  where codconcurso = :codconcurso[numero]
@@ -68,14 +68,14 @@ final class Chapa extends Entidade {
     }
 
 /**
- * Devolve o número de votos recebidos pela Chapa atual em uma determinada chapa.
- * Como este procedimento informa parte do resultado da eleição, ele só pode
- * ser executado após o término do período de votação.
+ * Devolve o nÃºmero de votos recebidos pela Chapa atual em uma determinada chapa.
+ * Como este procedimento informa parte do resultado da eleiÃ§Ã£o, ele sÃ³ pode
+ * ser executado apÃ³s o tÃ©rmino do perÃ­odo de votaÃ§Ã£o.
  * @return int
  */
     public function devolveNrVotosPorUrna(UrnaVirtual $Urna) {
         if($this->Concurso->estadoConcurso() != CONCURSO_ENCERRADO)
-            throw new ChapaException("Os votos só podem ser contados após o término do concurso", 1);
+            throw new ChapaException("Os votos sÃ³ podem ser contados apÃ³s o tÃ©rmino do concurso", 1);
 
         if( ($Urna->get("codconcurso") == $this->get("codconcurso"))
          && ($Urna->get("codeleicao") == $this->get("codeleicao"))) {
@@ -92,9 +92,22 @@ final class Chapa extends Entidade {
             $Consulta->executa(true);
             return $Consulta->campo("Nr");
         }
-        else throw new ChapaException("Urna inválida", 0);
+        else throw new ChapaException("Urna invÃ¡lida", 0);
     }
 
+/**
+ * Devolve um candidato da atual chapa. Caso ele nÃ£o exista, devolve NULL.
+ * @param int $CodPessoaEleicao O cÃ³digo do candidato.
+ * @return Candidato
+ */
+    public function devolveCandidato($CodPessoaEleicao) {
+        $Candidato = new Candidato($this->Concurso, $this->Eleicao, $this, $CodPessoaEleicao);
+        if(!$Candidato->novo())
+            return $Candidato;
+        else
+            return null;
+    }
+    
 /**
  * Retorna um Iterador com todos os Candidatos da Chapa atual.
  * @return Iterador
@@ -133,4 +146,3 @@ final class Chapa extends Entidade {
 
 class ChapaException extends Exception {
 }
-?>

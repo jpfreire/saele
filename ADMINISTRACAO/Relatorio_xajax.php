@@ -2,19 +2,19 @@
 /*
 Copyright 2011 da UFRGS - Universidade Federal do Rio Grande do Sul
 
-Este arquivo È parte do programa SAELE - Sistema Aberto de EleiÁıes EletrÙnicas.
+Este arquivo √© parte do programa SAELE - Sistema Aberto de Elei√ß√µes Eletr√¥nicas.
 
-O SAELE È um software livre; vocÍ pode redistribuÌ-lo e/ou modific·-lo dentro dos
-termos da LicenÁa P˙blica Geral GNU como publicada pela FundaÁ„o do Software Livre
-(FSF); na vers„o 2 da LicenÁa.
+O SAELE √© um software livre; voc√™ pode redistribu√≠-lo e/ou modific√°-lo dentro dos
+termos da Licen√ßa P√∫blica Geral GNU como publicada pela Funda√ß√£o do Software Livre
+(FSF); na vers√£o 2 da Licen√ßa.
 
-Este programa È distribuÌdo na esperanÁa que possa ser ˙til, mas SEM NENHUMA GARANTIA;
-sem uma garantia implÌcita de ADEQUA«√O a qualquer MERCADO ou APLICA«√O EM PARTICULAR.
-Veja a LicenÁa P˙blica Geral GNU/GPL em portuguÍs para maiores detalhes.
+Este programa √© distribu√≠do na esperan√ßa que possa ser √∫til, mas SEM NENHUMA GARANTIA;
+sem uma garantia impl√≠cita de ADEQUA√á√ÉO a qualquer MERCADO ou APLICA√á√ÉO EM PARTICULAR.
+Veja a Licen√ßa P√∫blica Geral GNU/GPL em portugu√™s para maiores detalhes.
 
-VocÍ deve ter recebido uma cÛpia da LicenÁa P˙blica Geral GNU, sob o tÌtulo "LICENCA.txt",
-junto com este programa, se n„o, acesse o Portal do Software P˙blico Brasileiro no
-endereÁo www.softwarepublico.gov.br ou escreva para a FundaÁ„o do Software Livre(FSF)
+Voc√™ deve ter recebido uma c√≥pia da Licen√ßa P√∫blica Geral GNU, sob o t√≠tulo "LICENCA.txt",
+junto com este programa, se n√£o, acesse o Portal do Software P√∫blico Brasileiro no
+endere√ßo www.softwarepublico.gov.br ou escreva para a Funda√ß√£o do Software Livre(FSF)
 Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
 */
 
@@ -26,10 +26,12 @@ require_once("../PUBLIC/ConcursoEleitoral.class.php");
 require("../xajax/xajax_core/xajax.inc.php");
 
 $xajax = new xajax('Relatorio_xajax.php');
+$xajax->configure('javascript URI', '../xajax/');
+$xajax->configure('responseType', 'XML');
+$xajax->configure('characterEncoding', 'UTF-8');
+$xajax->configure("decodeUTF8Input", true);
 
 //$xajax->setFlag('debug', true);
-$xajax->setCharEncoding("iso-8859-1");
-$xajax->configure("decodeUTF8Input", true);
 
 $xajax->register(XAJAX_FUNCTION, "CarregaDados");
 
@@ -61,10 +63,10 @@ function CarregaDados() {
     $Concurso = $Controlador->recuperaConcursoEdicao();
     $Eleicao = $Controlador->recuperaEleicaoEdicao();
 
-    $objResponse->loadCommands(CarregaListaGerentes($Concurso, $Eleicao));
+    $objResponse->appendResponse(CarregaListaGerentes($Concurso, $Eleicao));
     if($Concurso->get("modalidadeconcurso") == MODALIDADE_ELEICAO)
-        $objResponse->loadCommands(CarregaListaComissao($Concurso, $Eleicao));
-    $objResponse->loadCommands(CarregaListaChapas($Concurso, $Eleicao));
+        $objResponse->appendResponse(CarregaListaComissao($Concurso, $Eleicao));
+    $objResponse->appendResponse(CarregaListaChapas($Concurso, $Eleicao));
     return $objResponse;
 }
 
@@ -128,7 +130,7 @@ function CarregaListaComissao() {
     <tr bgcolor="#d3d3d3">
         <td align="center" width="12%"><a href="javascript: void(0);" onclick="javascript: xajax_CarregaInclusaoPessoa(\'M\');">[incluir membro]</a></td>
         <td align="center">
-            <font class="a2">Membros da Comiss„o Eleitoral cadastrados:</font>
+            <font class="a2">Membros da Comiss√£o Eleitoral cadastrados:</font>
         </td>
     </tr>
     <tr>
@@ -232,7 +234,7 @@ function CarregaListaChapas() {
                     <td><a href="javascript: void(0);" onclick="javascript: xajax_CarregaPessoa('.$Pessoa->get("codpessoaeleicao").');">'.$Pessoa->get("nomepessoa").' - '.$Participacao->get("descricaoparticipacao").'</a>';
                     if($Concurso->abertoParaAlteracoes())
                         $HTML .= '
-                        <a href="javascript: xajax_CarregaEdicaoParticipacao('.$CodChapa.', '.$Pessoa->get("codpessoaeleicao").');">[Editar Participacao]</a>';
+                        <a href="javascript: void(0);" onclick="javascript: xajax_CarregaEdicaoParticipacao('.$CodChapa.', '.$Pessoa->get("codpessoaeleicao").');">[Editar Participacao]</a>';
                     $HTML .= '
                     </td>
                     <td align="right">';
@@ -270,10 +272,10 @@ function CarregaListaEleitores($ApenasNaoHomologados=false) {
         <td align="center" class="a2">
             Lista de Eleitores cadastrados:
             <a href="javascript: ListaEleitoresImpressao(true);">[Imprimir para banca]</a>
-            <a href="javascript: ListaEleitoresImpressao(false);">[Imprimir para divulga&ccedil;&atilde;o]</a>
+            <a href="javascript: ListaEleitoresImpressao(false);">[Imprimir para divulga√ß√£o]</a>
             <a href="javascript: ListaEleitoresPDF();">[PDF]</a>
         </td>
-        <td align="center" width="12%"><a href="javascript: void(0);" onclick="javascript: if(confirm(\'Tem certeza de que deseja excluir todos os eleitores? (AtenÁ„o: somente ser„o excluÌdos os eleitores que n„o votaram)\')) xajax_ExcluiTodosEleitores(\''.($ApenasNaoHomologados ? 'S' : null).'\');">[excluir todos]</a></td>
+        <td align="center" width="12%"><a href="javascript: void(0);" onclick="javascript: if(confirm(\'Tem certeza de que deseja excluir todos os eleitores? (Aten√ß√£o: somente ser√£o exclu√≠dos os eleitores que n√£o votaram)\')) xajax_ExcluiTodosEleitores(\''.($ApenasNaoHomologados ? 'S' : null).'\');">[excluir todos]</a></td>
     </tr>
     <tr>
         <td colspan="3">
@@ -317,13 +319,13 @@ function CarregaInclusaoPessoa($Acao, $Arg2=null) {
 
     switch($Acao) {
         case "E": $String = "Eleitor"; break;
-        case "M": $String = "Membro de Comiss„o"; break;
+        case "M": $String = "Membro de Comiss√£o"; break;
         case "G": $String = "Gerente"; break;
         case "C": $String = "Candidato"; break;
-        default: throw new Exception("Inclus„o inv·lida", 0);
+        default: throw new Exception("Inclus√£o inv√°lida", 0);
     }
     $HTML = '
-<h1>EdiÁ„o de '.$String.'</h1>
+<h1>Edi√ß√£o de '.$String.'</h1>
 
 <form id="PesquisaPessoa" name="PesquisaPessoa" onsubmit="javascript: xajax_PesquisaPessoas(xajax.getFormValues(\'PesquisaPessoa\')); return false;">
 <input type="hidden" name="Acao" value="'.$Acao.'" />
@@ -351,7 +353,7 @@ function CarregaInclusaoPessoa($Acao, $Arg2=null) {
     <input type="button" value="Cancelar" onclick="javascript: FechaLayer();" />
 </div> ';
     $objResponse->assign("LayerEdicao", "innerHTML", $HTML);
-    $objResponse->assign("LayerEdicao", "style.height", "350px");
+    $objResponse->assign("LayerEdicao", "style.height", "400px");
     $objResponse->script('ExibeLayer()');
     $objResponse->script('document.getElementById(\'TermoPesquisa\').focus();');
     return $objResponse;
@@ -366,7 +368,7 @@ function PesquisaPessoas($Form) {
     $Eleicao = $Controlador->recuperaEleicaoEdicao();
 
     if(strlen($Form['TermoPesquisa']) < 3)
-        return $objResponse->alert("O termo de pesquisa deve ter, no mÌnimo, 3 caracteres.");
+        return $objResponse->alert("O termo de pesquisa deve ter, no m√≠nimo, 3 caracteres.");
     if($Form['TipoPesquisa'] == 'I')
         $Criterio = $Form['TermoPesquisa']."%";
     else
@@ -381,7 +383,7 @@ where not exists
     and E.codeleicao = :CodEleicao[numero]
     and E.codpessoaeleicao = TAB.codpessoaeleicao) ';
             break;
-        case "M": // Membro de comiss„o
+        case "M": // Membro de comiss√£o
         case "G": // Gerente:
             $SQLRestr = '
 where not exists
@@ -422,19 +424,31 @@ where not exists
             </select></td>
     </tr> ';
 
-    if($Form['Acao'] == "C") { // Ao inserir candidato, deve-se selecionar o tipo de participaÁ„o
+    if($Form['Acao'] == "C") { // Ao inserir candidato, deve-se selecionar o tipo de participa√ß√£o
         $HTML .= '
     <tr class="LinhaTitulo">
-        <td>Selecione o tipo de participaÁ„o:</td>
+        <td>Selecione o tipo de participa√ß√£o:</td>
     </tr>
     <tr class="Linha1">
         <td style="text-align: center;">
             <select name="TipoParticipacao" size="1"> ';
-        foreach(ConcursoEleitoral::devolveParticipacoes() as $CodParticipacao => $Descricao)
-            $HTML .= '
+        $Participacoes = ConcursoEleitoral::devolveParticipacoes();
+        if(count($Participacoes) == 0)
+          $HTML .= '
+                <option value=""> -- Nenhuma participa√ß√£o cadastrada. Preencha o campo abaixo -- </option>';
+        else {
+          foreach($Participacoes as $CodParticipacao => $Descricao)
+              $HTML .= '
                 <option value="'.$CodParticipacao.'">'.$Descricao.'</option>';
+        }
         $HTML .= '
             </select>
+        </td>
+    </tr>
+    <tr class="Linha2">
+        <td style="text-align: center; font-size: 12px;">
+          Ou preencha um novo tipo de participa√ß√£o:<br />
+          <input type="text" name="NovoTipoParticipacao" value="" />
         </td>
     </tr> ';
     }
@@ -459,24 +473,35 @@ function InserePessoa($Form) {
                 case "C": //Candidato
                     $Pessoa = new PessoaEleicao($Form['PessoaSelecionada']);
                     $Chapa = $Eleicao->devolveChapa($Form['Arg2']);
-                    $Participacao = new Participacao($Form['TipoParticipacao']);
+                    
+                    if(trim($Form['NovoTipoParticipacao']) != "") {
+                      $Participacao = new Participacao();
+                      $Participacao->set("descricaoparticipacao", $Form['NovoTipoParticipacao']);
+                      $Participacao->set("indvalidocandidato", "S");
+                      $Participacao->salva();
+                    }
+                    elseif(trim($Form['TipoParticipacao']) != "")
+                      $Participacao = new Participacao($Form['TipoParticipacao']);
+                    else
+                      return $objResponse->alert("Selecione a participa√ß√£o, ou informe um novo tipo de participa√ß√£o.");
+                      
                     $Chapa->cadastraCandidato($Pessoa, $Participacao);
-                    $objResponse->loadCommands(CarregaListaChapas());
+                    $objResponse->appendResponse(CarregaListaChapas());
                     break;
-                case "M": //Membro da Comiss„o
+                case "M": //Membro da Comiss√£o
                     $Pessoa = new PessoaEleicao($Form['PessoaSelecionada']);
                     $Eleicao->cadastraMembroComissao($Pessoa);
-                    $objResponse->loadCommands(CarregaListaComissao());
+                    $objResponse->appendResponse(CarregaListaComissao());
                     break;
                 case "G": //Gerente
                     $Pessoa = new PessoaEleicao($Form['PessoaSelecionada']);
                     $Eleicao->cadastraGerente($Pessoa);
-                    $objResponse->loadCommands(CarregaListaGerentes());
+                    $objResponse->appendResponse(CarregaListaGerentes());
                     break;
                 case "E": //Eleitor
                     $Pessoa = new PessoaEleicao($Form['PessoaSelecionada']);
                     $Eleicao->cadastraEleitor($Pessoa);
-                    $objResponse->loadCommands(CarregaListaEleitores($Form['Arg2'] == "S"));
+                    $objResponse->appendResponse(CarregaListaEleitores($Form['Arg2'] == "S"));
                     break;
             }
         }
@@ -495,7 +520,7 @@ function CarregaPessoa($CodPessoaEleicao) {
 	$objResponse = new xajaxResponse();
     $Controlador = Controlador::instancia();
     if(!$Controlador->recuperaPessoaLogada()->eGerenteSistema())
-        throw new Exception("Permiss„o negada", 0);
+        throw new Exception("Permiss√£o negada", 0);
 
     $Pessoa = new PessoaEleicao($CodPessoaEleicao);
     $HTML = '
@@ -546,11 +571,11 @@ function ExcluiGerente($CodPessoaEleicao) {
     $Gerente = $Eleicao->devolveGerente($Pessoa);
     if($Gerente instanceof MembroComissao) {
         $Gerente->exclui();
-        $objResponse->loadCommands(CarregaListaGerentes());
+        $objResponse->appendResponse(CarregaListaGerentes());
         return $objResponse;
     }
     else {
-        return $objResponse->alert("Gerente inv·lido");
+        return $objResponse->alert("Gerente inv√°lido");
     }
 }
 
@@ -565,11 +590,11 @@ function ExcluiMembroComissao($CodPessoaEleicao) {
     $Membro = $Eleicao->devolveMembroComissao($Pessoa);
     if($Membro instanceof MembroComissao) {
         $Membro->exclui();
-        $objResponse->loadCommands(CarregaListaComissao());
+        $objResponse->appendResponse(CarregaListaComissao());
         return $objResponse;
     }
     else {
-        return $objResponse->alert("Membro de comiss„o inv·lido");
+        return $objResponse->alert("Membro de comiss√£o inv√°lido");
     }
 }
 
@@ -582,10 +607,10 @@ function ExcluiChapa($CodChapa) {
     $Chapa = $Eleicao->devolveChapa($CodChapa);
     if($Chapa instanceof Chapa) {
         $Chapa->exclui();
-        $objResponse->loadCommands(CarregaListaChapas());
+        $objResponse->appendResponse(CarregaListaChapas());
     }
     else {
-        $objResponse->alert("Chapa inv·lida");
+        $objResponse->alert("Chapa inv√°lida");
     }
     return $objResponse;
 }
@@ -600,10 +625,10 @@ function ExcluiCandidato($CodPessoaEleicao) {
     $Candidato = $Eleicao->devolveCandidato($Pessoa);
     if($Candidato instanceof Candidato) {
         $Candidato->exclui();
-        $objResponse->loadCommands(CarregaListaChapas());
+        $objResponse->appendResponse(CarregaListaChapas());
     }
     else {
-        $objResponse->alert("Candidato inv·lido");
+        $objResponse->alert("Candidato inv√°lido");
     }
     return $objResponse;
 }
@@ -618,11 +643,11 @@ function ExcluiEleitor($CodPessoaEleicao, $NaoHomologados) {
     $Eleitor = $Eleicao->devolveEleitor($Pessoa);
     if($Eleitor instanceof Eleitor) {
         $Eleitor->exclui();
-        $objResponse->loadCommands(CarregaListaEleitores($NaoHomologados == "S"));
+        $objResponse->appendResponse(CarregaListaEleitores($NaoHomologados == "S"));
         return $objResponse;
     }
     else {
-        return $objResponse->alert("Eleitor inv·lido");
+        return $objResponse->alert("Eleitor inv√°lido");
     }
 }
 
@@ -633,12 +658,12 @@ function ExcluiTodosEleitores($NaoHomologados) {
 
     $Eleicao = $Controlador->recuperaEleicaoEdicao();
     $Eleicao->excluiEleitores(ELEITOR_NAOVOTOU, $NaoHomologados == "S" ? ELEITOR_NAOHOMOLOGADO : null);
-    $objResponse->loadCommands(CarregaListaEleitores($NaoHomologados == "S"));
+    $objResponse->appendResponse(CarregaListaEleitores($NaoHomologados == "S"));
     return $objResponse;
 }
 
 function CarregaEdicaoChapa($CodChapa=NULL) {
-	$objResponse = new xajaxResponse();
+    $objResponse = new xajaxResponse();
     $Controlador = Controlador::instancia();
 
     $Concurso = $Controlador->recuperaConcursoEdicao();
@@ -653,17 +678,17 @@ function CarregaEdicaoChapa($CodChapa=NULL) {
     else $Descricao = $NrChapa = NULL;
 
     $HTML = '
-<h1>EdiÁ„o de '.$Concurso->retornaString(STR_CHAPA).'</h1>
+<h1>Edi√ß√£o de '.$Concurso->retornaString(STR_CHAPA).'</h1>
 
 <form id="EdicaoChapa" name="EdicaoChapa">
 <input type="hidden" name="CodChapa" value="'.$CodChapa.'" />
 <table>
     <tr class="Linha1">
-        <td>DescriÁ„o:</td>
+        <td>Descri√ß√£o:</td>
         <td><input type="text" size="30" name="Descricao" value="'.$Descricao.'" /></td>
     </tr>
     <tr class="Linha2">
-        <td>N˙mero:</td>
+        <td>N√∫mero:</td>
         <td><input type="text" size="5" name="NrChapa" value="'.$NrChapa.'" /></td>
     </tr>
 </table>
@@ -681,40 +706,124 @@ function CarregaEdicaoChapa($CodChapa=NULL) {
 }
 
 function SalvaChapa($Form) {
-	$objResponse = new xajaxResponse();
+    $objResponse = new xajaxResponse();
 
     if(trim($Form['Descricao']) == "")
-        return $objResponse->alert("Preencha a DescriÁ„o");
+        return $objResponse->alert("Preencha a Descri√ß√£o");
     if(trim($Form['NrChapa']) == "" || !is_numeric($Form['NrChapa']) || $Form['NrChapa'] < 1)
-        return $objResponse->alert("N˙mero inv·lido");
+        return $objResponse->alert("N√∫mero inv√°lido");
 
     $Controlador = Controlador::instancia();
 
     $Concurso = $Controlador->recuperaConcursoEdicao();
     $Eleicao = $Controlador->recuperaEleicaoEdicao();
     if(strlen($Form['NrChapa']) != $Eleicao->get("nrdigitoschapa"))
-        return $objResponse->alert("O n˙mero deve ter ".$Eleicao->get("nrdigitoschapa")
-                                  .($Eleicao->get("nrdigitoschapa") > 1 ? ' dÌgitos' : ' dÌgito'));
+        return $objResponse->alert("O n√∫mero deve ter ".$Eleicao->get("nrdigitoschapa")
+                                  .($Eleicao->get("nrdigitoschapa") > 1 ? ' d√≠gitos' : ' d√≠gito'));
 
     if($Form['CodChapa'] != "") {
         $Chapa = $Eleicao->devolveChapa($Form['CodChapa']);
         if($Form['NrChapa'] != $Chapa->get("NrChapa") && !is_null($Eleicao->devolveChapaPorNumero($Form['NrChapa'])))
-            return $objResponse->alert("N˙mero j· usado");
+            return $objResponse->alert("N√∫mero j√° usado");
     }
     else {
         $Chapa = $Eleicao->geraChapa();
         if(!is_null($Eleicao->devolveChapaPorNumero($Form['NrChapa'])))
-            return $objResponse->alert("N˙mero j· usado");
+            return $objResponse->alert("N√∫mero j√° usado");
     }
     $Chapa->set("Descricao", $Form['Descricao']);
     $Chapa->set("NrChapa", $Form['NrChapa']);
     $Chapa->salva();
-    $objResponse->loadCommands(CarregaListaChapas($Concurso, $Eleicao));
+    $objResponse->appendResponse(CarregaListaChapas($Concurso, $Eleicao));
     return $objResponse->script("FechaLayer()");
 }
 
 function CarregaEdicaoParticipacao($CodChapa, $CodPessoaEleicao) {
+    $objResponse = new xajaxResponse();
+    $Controlador = Controlador::instancia();
+
+    $Concurso = $Controlador->recuperaConcursoEdicao();
+    $Eleicao = $Controlador->recuperaEleicaoEdicao();
+
+    $Chapa = $Eleicao->devolveChapa($CodChapa);
+    if($Chapa === null)
+      return $objResponse->alert("Chapa inv√°lida!");
     
+    $Candidato = $Chapa->devolveCandidato($CodPessoaEleicao);
+    if($Candidato === null)
+      return $objResponse->alert("Candidato inv√°lido!");
+    
+    $HTML = '
+<form id="SalvaParticipacao" name="SalvaParticipacao">
+<input type="hidden" name="CodChapa" value="'.$CodChapa.'" />
+<input type="hidden" name="CodPessoaEleicao" value="'.$CodPessoaEleicao.'" />
+<table>
+    <tr class="LinhaTitulo">
+        <td>Selecione o tipo de participa√ß√£o:</td>
+    </tr>
+    <tr class="Linha1">
+        <td style="text-align: center;">
+            <select name="TipoParticipacao" size="1"> ';
+        foreach(ConcursoEleitoral::devolveParticipacoes() as $CodParticipacao => $Descricao)
+            $HTML .= '
+                <option value="'.$CodParticipacao.'"  '.($CodParticipacao == $Candidato->get("codparticipacao") ? 'selected="selected"' : null).'>'.$Descricao.'</option>';
+        $HTML .= '
+            </select>
+        </td>
+    </tr>
+    <tr class="Linha2">
+        <td style="text-align: center; font-size: 12px;">
+          Ou preencha um novo tipo de participa√ß√£o:<br />
+          <input type="text" name="NovoTipoParticipacao" value="" />
+        </td>
+    </tr>
+    
+    <tr class="Linha2" style="text-align: center">
+        <td><input type="button" value="Selecionar" onclick="javascript: xajax_SalvaParticipacao(xajax.getFormValues(\'SalvaParticipacao\'));" />
+    </tr>
+</table>
+</form>';
+    $objResponse->assign("LayerEdicao", "innerHTML", $HTML);
+    $objResponse->assign("LayerEdicao", "style.height", "200px");
+    $objResponse->script('ExibeLayer()');
+    return $objResponse;
+}
+
+function SalvaParticipacao($Form) {
+    $objResponse = new xajaxResponse();
+    $Controlador = Controlador::instancia();
+    
+    if(trim($Form['NovoTipoParticipacao']) == "" && trim($Form['TipoParticipacao']) == "")
+      return $objResponse->alert("Selecione a participa√ß√£o, ou informa um novo tipo de participa√ß√£o.");
+
+    $Concurso = $Controlador->recuperaConcursoEdicao();
+    $Eleicao = $Controlador->recuperaEleicaoEdicao();
+
+    $Chapa = $Eleicao->devolveChapa($Form['CodChapa']);
+    if($Chapa === null)
+      return $objResponse->alert("Chapa inv√°lida!");
+    
+    $Candidato = $Chapa->devolveCandidato($Form['CodPessoaEleicao']);
+    if($Candidato === null)
+      return $objResponse->alert("Candidato inv√°lido!");
+        
+    if(trim($Form['NovoTipoParticipacao']) != "") {
+      $Participacao = new Participacao();
+      $Participacao->set("descricaoparticipacao", $Form['NovoTipoParticipacao']);
+      $Participacao->set("indvalidocandidato", "S");
+      $Participacao->salva();
+    }
+    elseif(trim($Form['TipoParticipacao']) != "") {
+      $Participacao = new Participacao($Form['TipoParticipacao']);
+      if($Participacao->novo())
+        return $objResponse->alert("Participa√ß√£o inv√°lida!");
+    }
+    
+    $Candidato->set("codparticipacao", $Participacao->get("codparticipacao"));
+    $Candidato->salva();
+    
+    $objResponse->appendResponse(CarregaListaChapas($Concurso, $Eleicao));
+    return $objResponse->script("FechaLayer()");
 }
 
 $xajax->processRequest();

@@ -2,19 +2,19 @@
 /*
 Copyright 2011 da UFRGS - Universidade Federal do Rio Grande do Sul
 
-Este arquivo È parte do programa SAELE - Sistema Aberto de EleiÁıes EletrÙnicas.
+Este arquivo √© parte do programa SAELE - Sistema Aberto de Elei√ß√µes Eletr√¥nicas.
 
-O SAELE È um software livre; vocÍ pode redistribuÌ-lo e/ou modific·-lo dentro dos
-termos da LicenÁa P˙blica Geral GNU como publicada pela FundaÁ„o do Software Livre
-(FSF); na vers„o 2 da LicenÁa.
+O SAELE √© um software livre; voc√™ pode redistribu√≠-lo e/ou modific√°-lo dentro dos
+termos da Licen√ßa P√∫blica Geral GNU como publicada pela Funda√ß√£o do Software Livre
+(FSF); na vers√£o 2 da Licen√ßa.
 
-Este programa È distribuÌdo na esperanÁa que possa ser ˙til, mas SEM NENHUMA GARANTIA;
-sem uma garantia implÌcita de ADEQUA«√O a qualquer MERCADO ou APLICA«√O EM PARTICULAR.
-Veja a LicenÁa P˙blica Geral GNU/GPL em portuguÍs para maiores detalhes.
+Este programa √© distribu√≠do na esperan√ßa que possa ser √∫til, mas SEM NENHUMA GARANTIA;
+sem uma garantia impl√≠cita de ADEQUA√á√ÉO a qualquer MERCADO ou APLICA√á√ÉO EM PARTICULAR.
+Veja a Licen√ßa P√∫blica Geral GNU/GPL em portugu√™s para maiores detalhes.
 
-VocÍ deve ter recebido uma cÛpia da LicenÁa P˙blica Geral GNU, sob o tÌtulo "LICENCA.txt",
-junto com este programa, se n„o, acesse o Portal do Software P˙blico Brasileiro no
-endereÁo www.softwarepublico.gov.br ou escreva para a FundaÁ„o do Software Livre(FSF)
+Voc√™ deve ter recebido uma c√≥pia da Licen√ßa P√∫blica Geral GNU, sob o t√≠tulo "LICENCA.txt",
+junto com este programa, se n√£o, acesse o Portal do Software P√∫blico Brasileiro no
+endere√ßo www.softwarepublico.gov.br ou escreva para a Funda√ß√£o do Software Livre(FSF)
 Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
 */
 
@@ -45,11 +45,11 @@ final class Controlador {
                 $_SESSION['Controlador'] = new Controlador($Pessoa);
                 return $_SESSION['Controlador'];
             }
-            else throw new ControladorException("Pessoa inv·lida", 0);
+            else throw new ControladorException("Pessoa inv√°lida", 0);
         }
         else {
             ob_clean();
-            echo "Sess„o expirada";
+            echo "Sess√£o expirada";
             exit;
         }
     }
@@ -68,7 +68,7 @@ final class Controlador {
             $this->EleicaoEdicao = $Eleicao;
             return true;
         }
-        else throw new ControladorException("Permiss„o negada", 0);
+        else throw new ControladorException("Permiss√£o negada", 0);
     }
 
     public function removeEleicaoEdicao() {
@@ -82,9 +82,9 @@ final class Controlador {
     public function registraConcursoVotacao(ConcursoEleitoral $Concurso) {
         if(!$Concurso->abertoParaVotacao()) {
             if($Concurso->estadoConcurso() < CONCURSO_INICIADO)
-                throw new ControladorException("Concurso n„o iniciado", 0);
+                throw new ControladorException("Concurso n√£o iniciado", 0);
             if($Concurso->estadoConcurso() > CONCURSO_INICIADO)
-                throw new ControladorException("Concurso j· encerrado", 0);
+                throw new ControladorException("Concurso j√° encerrado", 0);
         }
         $this->ConcursoVotacao = $Concurso;
         return true;
@@ -92,30 +92,30 @@ final class Controlador {
 
     public function registraEleicaoVotacao(Eleicao $Eleicao) {
         if(!($this->ConcursoVotacao instanceof ConcursoEleitoral))
-            throw new ControladorException("N„o h· concurso registrado", 0);
+            throw new ControladorException("N√£o h√° concurso registrado", 0);
         if($Eleicao->get("codconcurso") != $this->ConcursoVotacao->get("codconcurso"))
-            throw new ControladorException("A EleiÁ„o n„o faz parte do Concurso", 0);
+            throw new ControladorException("A Elei√ß√£o n√£o faz parte do Concurso", 0);
         $Eleitor = $Eleicao->devolveEleitor($this->PessoaLogada);
         if(is_null($Eleitor))
-            throw new ControladorException("VocÍ n„o È eleitor desta eleiÁ„o", 0);
+            throw new ControladorException("Voc√™ n√£o √© eleitor desta elei√ß√£o", 0);
         if(!is_null($Eleitor->get("datahoravoto")))
-            throw new ControladorException("VocÍ j· votou nesta eleiÁ„o", 0);
+            throw new ControladorException("Voc√™ j√° votou nesta elei√ß√£o", 0);
         if($this->ConcursoVotacao->get("indbarradoporip") == "S") {
             $Urna = $Eleicao->devolveUrnaPorIP($_SERVER['REMOTE_ADDR']);
             if(is_null($Urna))
-                throw new ControladorException("M·quina n„o autorizada nesta eleiÁ„o", 0);
+                throw new ControladorException("M√°quina n√£o autorizada nesta elei√ß√£o", 0);
             if($Urna->get("indativa") != "S")
-                throw new ControladorException("M·quina n„o autorizada nesta eleiÁ„o", 0);
+                throw new ControladorException("M√°quina n√£o autorizada nesta elei√ß√£o", 0);
         }
         elseif($this->ConcursoVotacao->get("indbarradoporip") == "E") {
             $Escopo = $Eleicao->devolveEscopoPorPrefixoIP($_SERVER['REMOTE_ADDR']);
             if(is_null($Escopo))
-                throw new ControladorException("M·quina n„o autorizada nesta eleiÁ„o", 0);
+                throw new ControladorException("M√°quina n√£o autorizada nesta elei√ß√£o", 0);
             if($Escopo->get("indativa") != "S")
-                throw new ControladorException("M·quina n„o autorizada nesta eleiÁ„o", 0);
+                throw new ControladorException("M√°quina n√£o autorizada nesta elei√ß√£o", 0);
         }
         if(!$Eleicao->eleicaoZerada())
-            throw new ControladorException("EleiÁ„o n„o iniciada", 0);
+            throw new ControladorException("Elei√ß√£o n√£o iniciada", 0);
         $this->EleicaoVotacao = $Eleicao;
         return true;
     }
@@ -132,7 +132,7 @@ final class Controlador {
         if($this->ConcursoEdicao instanceof ConcursoEleitoral) {
             return $this->ConcursoEdicao;
         }
-        else throw new ControladorException("N„o h· concurso em ediÁ„o", 1);
+        else throw new ControladorException("N√£o h√° concurso em edi√ß√£o", 1);
     }
 
 /**
@@ -141,10 +141,10 @@ final class Controlador {
  */
     public function recuperaConcursoVotacao() {
         if($this->ConcursoVotacao instanceof ConcursoEleitoral) {
-            $this->registraConcursoVotacao($this->ConcursoVotacao); // Refaz o registro para testar novamente as restriÁıes
+            $this->registraConcursoVotacao($this->ConcursoVotacao); // Refaz o registro para testar novamente as restri√ß√µes
             return $this->ConcursoVotacao;
         }
-        else throw new ControladorException("N„o h· concurso para votaÁ„o", 1);
+        else throw new ControladorException("N√£o h√° concurso para vota√ß√£o", 1);
     }
 /**
  *
@@ -154,7 +154,7 @@ final class Controlador {
         if($this->EleicaoEdicao instanceof Eleicao) {
             return $this->EleicaoEdicao;
         }
-        else throw new ControladorException("N„o h· eleiÁ„o em ediÁ„o", 2);
+        else throw new ControladorException("N√£o h√° elei√ß√£o em edi√ß√£o", 2);
     }
 /**
  *
@@ -165,7 +165,7 @@ final class Controlador {
             $this->registraEleicaoVotacao($this->EleicaoVotacao);
             return $this->EleicaoVotacao;
         }
-        else throw new ControladorException("N„o h· eleiÁ„o para votaÁ„o", 2);
+        else throw new ControladorException("N√£o h√° elei√ß√£o para vota√ß√£o", 2);
     }
 
     public function inicializaVetorCedula() {
@@ -176,7 +176,7 @@ final class Controlador {
     public function registraNrVotoAtual($Voto) {
         if($Voto <= $this->EleicaoVotacao->get("nrpossibilidades"))
             $this->NrVotoAtual = $Voto;
-        else throw new ControladorException("Voto alÈm do n˙mero de possibilidades", 3);
+        else throw new ControladorException("Voto al√©m do n√∫mero de possibilidades", 3);
     }
 
     public function registraVoto($Voto) {
@@ -188,7 +188,7 @@ final class Controlador {
             }
             $this->VetorCedula[$this->NrVotoAtual] = $Voto;
         }
-        else throw new ControladorException("Voto inv·lido: ".$Voto, 5);
+        else throw new ControladorException("Voto inv√°lido: ".$Voto, 5);
     }
 
     public function devolveVetorCedula() {

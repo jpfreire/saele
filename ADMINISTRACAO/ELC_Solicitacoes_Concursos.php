@@ -2,31 +2,31 @@
 /*
 Copyright 2011 da UFRGS - Universidade Federal do Rio Grande do Sul
 
-Este arquivo é parte do programa SAELE - Sistema Aberto de Eleições Eletrônicas.
+Este arquivo Ã© parte do programa SAELE - Sistema Aberto de EleiÃ§Ãµes EletrÃ´nicas.
 
-O SAELE é um software livre; você pode redistribuí-lo e/ou modificá-lo dentro dos
-termos da Licença Pública Geral GNU como publicada pela Fundação do Software Livre
-(FSF); na versão 2 da Licença.
+O SAELE Ã© um software livre; vocÃª pode redistribuÃ­-lo e/ou modificÃ¡-lo dentro dos
+termos da LicenÃ§a PÃºblica Geral GNU como publicada pela FundaÃ§Ã£o do Software Livre
+(FSF); na versÃ£o 2 da LicenÃ§a.
 
-Este programa é distribuído na esperança que possa ser útil, mas SEM NENHUMA GARANTIA;
-sem uma garantia implícita de ADEQUAÇÃO a qualquer MERCADO ou APLICAÇÃO EM PARTICULAR.
-Veja a Licença Pública Geral GNU/GPL em português para maiores detalhes.
+Este programa Ã© distribuÃ­do na esperanÃ§a que possa ser Ãºtil, mas SEM NENHUMA GARANTIA;
+sem uma garantia implÃ­cita de ADEQUAÃ‡ÃƒO a qualquer MERCADO ou APLICAÃ‡ÃƒO EM PARTICULAR.
+Veja a LicenÃ§a PÃºblica Geral GNU/GPL em portuguÃªs para maiores detalhes.
 
-Você deve ter recebido uma cópia da Licença Pública Geral GNU, sob o título "LICENCA.txt",
-junto com este programa, se não, acesse o Portal do Software Público Brasileiro no
-endereço www.softwarepublico.gov.br ou escreva para a Fundação do Software Livre(FSF)
+VocÃª deve ter recebido uma cÃ³pia da LicenÃ§a PÃºblica Geral GNU, sob o tÃ­tulo "LICENCA.txt",
+junto com este programa, se nÃ£o, acesse o Portal do Software PÃºblico Brasileiro no
+endereÃ§o www.softwarepublico.gov.br ou escreva para a FundaÃ§Ã£o do Software Livre(FSF)
 Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
 */
-                       // Lista de Solicitações Pendentes
+                       // Lista de SolicitaÃ§Ãµes Pendentes
 require_once('../CABECALHO.PHP');
 
 error_reporting(E_PARSE | E_ERROR);
 
 $Pessoa = Controlador::instancia()->recuperaPessoaLogada();
 if(!$Pessoa->eGerenteSistema()) {
-    echo "<html><body>\n";
+    echo "<html><head><meta charset=\"utf-8\"></head><body>\n";
     echo "<div align=\"center\">\n";
-    echo "<br><font size=\"2\" face=\"verdana\">Erro! O usu&aacute;rio n&atilde;o tem permiss&atilde;o para acessar esta p&aacute;gina.<br><br>\n";
+    echo "<br><font size=\"2\" face=\"verdana\">Erro! O usuÃ¡rio nÃ£o tem permissÃ£o para acessar esta pÃ¡gina.<br><br>\n";
     echo "<a href=\"javascript: history.back();\">Voltar</a></font>\n";
     echo "</div>";
     echo "</body></html>";
@@ -34,7 +34,7 @@ if(!$Pessoa->eGerenteSistema()) {
 }
 $Solicitacoes = new Iterador("SolicitacaoConcurso", "where dataatendimento is null order by datasolicitacao desc");
 
-MostraCabecalho("Solicitação de Concursos Eleitorais");
+MostraCabecalho("SolicitaÃ§Ã£o de Concursos Eleitorais");
 ?>
 
 <br />
@@ -42,7 +42,7 @@ MostraCabecalho("Solicitação de Concursos Eleitorais");
 <table width="85%" border="1" cellspacing="0" cellpadding="0" align="center">
   <tr bgcolor="white">
     <td align="center">
-      <font size="2" face="verdana"><b>Lista de Solicitações Pendentes</b></font>
+      <font size="2" face="verdana"><b>Lista de SolicitaÃ§Ãµes Pendentes</b></font>
     </td>
   </tr>
   <?php if($Solicitacoes->temRegistro()) { ?>
@@ -70,7 +70,7 @@ MostraCabecalho("Solicitação de Concursos Eleitorais");
     <tr bgcolor="white">
       <td align="center">
         <br />
-        <font size="2" face="verdana">Não há solicitações pendentes.</font>
+        <font size="2" face="verdana">NÃ£o hÃ¡ solicitaÃ§Ãµes pendentes.</font>
         <br /><br />
       </td>
     </tr>

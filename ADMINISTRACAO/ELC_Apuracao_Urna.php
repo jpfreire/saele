@@ -2,22 +2,22 @@
 /*
 Copyright 2011 da UFRGS - Universidade Federal do Rio Grande do Sul
 
-Este arquivo È parte do programa SAELE - Sistema Aberto de EleiÁıes EletrÙnicas.
+Este arquivo √© parte do programa SAELE - Sistema Aberto de Elei√ß√µes Eletr√¥nicas.
 
-O SAELE È um software livre; vocÍ pode redistribuÌ-lo e/ou modific·-lo dentro dos
-termos da LicenÁa P˙blica Geral GNU como publicada pela FundaÁ„o do Software Livre
-(FSF); na vers„o 2 da LicenÁa.
+O SAELE √© um software livre; voc√™ pode redistribu√≠-lo e/ou modific√°-lo dentro dos
+termos da Licen√ßa P√∫blica Geral GNU como publicada pela Funda√ß√£o do Software Livre
+(FSF); na vers√£o 2 da Licen√ßa.
 
-Este programa È distribuÌdo na esperanÁa que possa ser ˙til, mas SEM NENHUMA GARANTIA;
-sem uma garantia implÌcita de ADEQUA«√O a qualquer MERCADO ou APLICA«√O EM PARTICULAR.
-Veja a LicenÁa P˙blica Geral GNU/GPL em portuguÍs para maiores detalhes.
+Este programa √© distribu√≠do na esperan√ßa que possa ser √∫til, mas SEM NENHUMA GARANTIA;
+sem uma garantia impl√≠cita de ADEQUA√á√ÉO a qualquer MERCADO ou APLICA√á√ÉO EM PARTICULAR.
+Veja a Licen√ßa P√∫blica Geral GNU/GPL em portugu√™s para maiores detalhes.
 
-VocÍ deve ter recebido uma cÛpia da LicenÁa P˙blica Geral GNU, sob o tÌtulo "LICENCA.txt",
-junto com este programa, se n„o, acesse o Portal do Software P˙blico Brasileiro no
-endereÁo www.softwarepublico.gov.br ou escreva para a FundaÁ„o do Software Livre(FSF)
+Voc√™ deve ter recebido uma c√≥pia da Licen√ßa P√∫blica Geral GNU, sob o t√≠tulo "LICENCA.txt",
+junto com este programa, se n√£o, acesse o Portal do Software P√∫blico Brasileiro no
+endere√ßo www.softwarepublico.gov.br ou escreva para a Funda√ß√£o do Software Livre(FSF)
 Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
 */
-                       // P·gina para apuraÁ„o dos votos de determinada EleiÁ„o
+                       // P√°gina para apura√ß√£o dos votos de determinada Elei√ß√£o
 require_once('../CABECALHO.PHP');
 
 $Controlador = Controlador::instancia();
@@ -30,7 +30,7 @@ $Comissao = $Eleicao->verificaComissao($Pessoa);
 
 if(!$Pessoa->eGerenteSistema() && ($Comissao == false)) { ?>
     <div class="Erro">
-        <p><strong>Erro:</strong> Permiss„o negada.</p>
+        <p><strong>Erro:</strong> Permiss√£o negada.</p>
 
         <p><a href="ELC_Cadastro_Concursos.php">Voltar</a></p>
     </div>
@@ -42,7 +42,7 @@ if(!$Pessoa->eGerenteSistema() && ($Comissao == false)) { ?>
 if( ($Concurso->estadoConcurso() < CONCURSO_ENCERRADO) || ($Concurso->get("situacaoconcurso") != SITUACAOCONCURSO_APURADO)
  || (!$Pessoa->eGerenteSistema() && $Comissao != COMISSAO_GERENTE)) { ?>
     <div class="Erro">
-        <p><strong>Erro:</strong> Esta eleiÁ„o est· indisponÌvel para visualizaÁ„o dos votos.</p>
+        <p><strong>Erro:</strong> Esta elei√ß√£o est√° indispon√≠vel para visualiza√ß√£o dos votos.</p>
 
         <p><a href="ELC_Cadastro_Concursos.php">Voltar</a></p>
     </div>
@@ -56,7 +56,7 @@ if(isset($_GET['CodUrna']) && (trim($_GET['CodUrna']) != "")) {
     $Urna = $Eleicao->devolveUrna($_GET['CodUrna']);
     if(is_null($Urna)) { ?>
         <div class="Erro">
-            <p><strong>Erro:</strong> Urna inv·lida.</p>
+            <p><strong>Erro:</strong> Urna inv√°lida.</p>
 
             <p><a href="ELC_Cadastro_Concursos.php">Voltar</a></p>
         </div>
@@ -65,7 +65,7 @@ if(isset($_GET['CodUrna']) && (trim($_GET['CodUrna']) != "")) {
         <?php
         exit;
     }
-  MostraCabecalho('ApuraÁ„o da Urna "'.$Urna->get("descricao").'"');
+  MostraCabecalho('Apura√ß√£o da Urna "'.$Urna->get("descricao").'"');
   ?>
   <script language="javascript">
     function MostraCandidatos(Chapa) {
@@ -90,7 +90,7 @@ if(isset($_GET['CodUrna']) && (trim($_GET['CodUrna']) != "")) {
      </tr>   
      <tr class="linha2"> 
        <td width="20%" align="right">
-         <font size="2" face="verdana"><b>EleiÁ„o:&nbsp;</b></font>
+         <font size="2" face="verdana"><b>Elei√ß√£o:&nbsp;</b></font>
        </td>
        <td width="80%" align="left">
          <font size="2" face="verdana"><?=$Eleicao->get("descricao")?></font>
@@ -145,7 +145,7 @@ if(isset($_GET['CodUrna']) && (trim($_GET['CodUrna']) != "")) {
                     $Participacao = $Candidato->getObj("Participacao"); ?>
                     <tr class="linha<?=$i?>">
                         <td>
-                          &nbsp;&nbsp;&nbsp;<b><?=$Participacao->get("descricao")?></b> - <?=$Pessoa->get("nomepessoa")?>
+                          &nbsp;&nbsp;&nbsp;<b><?=$Participacao->get("descricaoparticipacao")?></b> - <?=$Pessoa->get("nomepessoa")?>
                         </td>
                     </tr>
                 <?php
@@ -203,8 +203,8 @@ if(isset($_GET['CodUrna']) && (trim($_GET['CodUrna']) != "")) {
      </tr>
   </table>
 
-  <a href="javascript: void(0);" onclick="javascript: janela = window.open('ELC_Relatorio_Votos.php?CodConcurso=<?=$Concurso->getChave()?>&CodEleicao=<?=$Eleicao->getChave()?>&CodUrna=<?=$Urna->getChave()?>&ord=nr', 'hhg', 'top=5, left=10');">Relat&oacute;rio de Votos (por n&uacute;mero de chapa)</a><br />
-  <a href="javascript: void(0);" onclick="javascript: janela = window.open('ELC_Relatorio_Votos.php?CodConcurso=<?=$Concurso->getChave()?>&CodEleicao=<?=$Eleicao->getChave()?>&CodUrna=<?=$Urna->getChave()?>&ord=votos', 'hhg', 'top=5, left=10');">Relat&oacute;rio de Votos (por ordem de coloca&ccedil;&atilde;o)</a>
+  <a href="javascript: void(0);" onclick="javascript: janela = window.open('ELC_Relatorio_Votos.php?CodConcurso=<?=$Concurso->getChave()?>&CodEleicao=<?=$Eleicao->getChave()?>&CodUrna=<?=$Urna->getChave()?>&ord=nr', 'hhg', 'top=5, left=10');">Relat√≥rio de Votos (por n√∫mero de chapa)</a><br />
+  <a href="javascript: void(0);" onclick="javascript: janela = window.open('ELC_Relatorio_Votos.php?CodConcurso=<?=$Concurso->getChave()?>&CodEleicao=<?=$Eleicao->getChave()?>&CodUrna=<?=$Urna->getChave()?>&ord=votos', 'hhg', 'top=5, left=10');">Relat√≥rio de Votos (por ordem de coloca√ß√£o)</a>
 
   <br /><br />
 
@@ -235,7 +235,7 @@ else {
      </tr>   
      <tr class="linha2"> 
        <td width="20%" align="right">
-         <font size="2" face="verdana"><b>EleiÁ„o:&nbsp;</b></font>
+         <font size="2" face="verdana"><b>Elei√ß√£o:&nbsp;</b></font>
        </td>
        <td width="80%" align="left">
          <font size="2" face="verdana"><?=$Eleicao->get("descricao")?></font>

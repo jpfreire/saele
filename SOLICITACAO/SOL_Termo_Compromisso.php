@@ -2,19 +2,19 @@
 /*
 Copyright 2011 da UFRGS - Universidade Federal do Rio Grande do Sul
 
-Este arquivo é parte do programa SAELE - Sistema Aberto de Eleições Eletrônicas.
+Este arquivo Ã© parte do programa SAELE - Sistema Aberto de EleiÃ§Ãµes EletrÃ´nicas.
 
-O SAELE é um software livre; você pode redistribuí-lo e/ou modificá-lo dentro dos
-termos da Licença Pública Geral GNU como publicada pela Fundação do Software Livre
-(FSF); na versão 2 da Licença.
+O SAELE Ã© um software livre; vocÃª pode redistribuÃ­-lo e/ou modificÃ¡-lo dentro dos
+termos da LicenÃ§a PÃºblica Geral GNU como publicada pela FundaÃ§Ã£o do Software Livre
+(FSF); na versÃ£o 2 da LicenÃ§a.
 
-Este programa é distribuído na esperança que possa ser útil, mas SEM NENHUMA GARANTIA;
-sem uma garantia implícita de ADEQUAÇÃO a qualquer MERCADO ou APLICAÇÃO EM PARTICULAR.
-Veja a Licença Pública Geral GNU/GPL em português para maiores detalhes.
+Este programa Ã© distribuÃ­do na esperanÃ§a que possa ser Ãºtil, mas SEM NENHUMA GARANTIA;
+sem uma garantia implÃ­cita de ADEQUAÃ‡ÃƒO a qualquer MERCADO ou APLICAÃ‡ÃƒO EM PARTICULAR.
+Veja a LicenÃ§a PÃºblica Geral GNU/GPL em portuguÃªs para maiores detalhes.
 
-Você deve ter recebido uma cópia da Licença Pública Geral GNU, sob o título "LICENCA.txt",
-junto com este programa, se não, acesse o Portal do Software Público Brasileiro no
-endereço www.softwarepublico.gov.br ou escreva para a Fundação do Software Livre(FSF)
+VocÃª deve ter recebido uma cÃ³pia da LicenÃ§a PÃºblica Geral GNU, sob o tÃ­tulo "LICENCA.txt",
+junto com este programa, se nÃ£o, acesse o Portal do Software PÃºblico Brasileiro no
+endereÃ§o www.softwarepublico.gov.br ou escreva para a FundaÃ§Ã£o do Software Livre(FSF)
 Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
 */
 
@@ -22,15 +22,15 @@ require_once('../CABECALHO.PHP');
 
 $_SESSION['Campos'] = $_POST;
 
-MostraCabecalho("Solicitação de Concurso Eleitoral");
+MostraCabecalho("SolicitaÃ§Ã£o de Concurso Eleitoral");
 
 $Erros = array();
 if(trim($_POST['NomeConcurso']) == "")
     $Erros[] = "Nome do Concurso";
 if((trim($_POST['DataInicio']) == "") || (Consulta::formataValidaData($_POST['DataInicio']) === false))
-    $Erros[] = "Data de início";
+    $Erros[] = "Data de inÃ­cio";
 if((trim($_POST['HoraInicio']) == "") || (Consulta::validaHora($_POST['HoraInicio']) === false))
-    $Erros[] = "Hora de início";
+    $Erros[] = "Hora de inÃ­cio";
 if((trim($_POST['DataFim']) == "") || (Consulta::formataValidaData($_POST['DataFim']) === false))
     $Erros[] = "Data de fim";
 if((trim($_POST['HoraFim']) == "") || (Consulta::validaHora($_POST['HoraFim']) === false))
@@ -45,13 +45,13 @@ $TemEleicao = false;
 foreach($_POST['Eleicao'] as $Eleicao)
     $TemEleicao = $TemEleicao || (trim($Eleicao) != "");
 if(!$TemEleicao)
-    $Erros[] = "Eleições do concurso";
+    $Erros[] = "EleiÃ§Ãµes do concurso";
 if(!in_array($_POST['TipoEleicao'], array("S", "E", "N")))
     $Erros[] = "Tipo do concurso";
 
 if(!empty($Erros)) { ?>
     <div class="Erro">
-        <p><strong>Atenção:</strong> os seguintes campos não foram informados ou estão inválidos:</p>
+        <p><strong>AtenÃ§Ã£o:</strong> os seguintes campos nÃ£o foram informados ou estÃ£o invÃ¡lidos:</p>
 
         <ul>
             <?php
@@ -73,17 +73,17 @@ $_SESSION['ModalidadeConcurso'] = "E";
 
 <div class="molduraExterna">
 <p class="TermoTitulo">
-  ELEIÇÕES ELETRÔNICAS
+  ELEIÃ‡Ã•ES ELETRÃ”NICAS
 </p>
 
 <div class="TermoParagrafo">
-  A partir desta solicitação, a Comissão Eleitoral será responsável pela
-  definição do público-alvo, dos locais de votação e do cronograma eleitoral.
+  A partir desta solicitaÃ§Ã£o, a ComissÃ£o Eleitoral serÃ¡ responsÃ¡vel pela
+  definiÃ§Ã£o do pÃºblico-alvo, dos locais de votaÃ§Ã£o e do cronograma eleitoral.
 </div>
 <div class="TermoParagrafo">
-  Para configuração da Eleição, o responsável pelo sistema entrará em contato
-  para agendar uma reunião presencial, onde serão estabelecidas
-  as especificações para o arquivo com a lista de participantes do Concurso
+  Para configuraÃ§Ã£o da EleiÃ§Ã£o, o responsÃ¡vel pelo sistema entrarÃ¡ em contato
+  para agendar uma reuniÃ£o presencial, onde serÃ£o estabelecidas
+  as especificaÃ§Ãµes para o arquivo com a lista de participantes do Concurso
   e as imagens das chapas e candidatos.
 </div>
 

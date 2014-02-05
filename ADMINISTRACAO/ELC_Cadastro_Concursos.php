@@ -2,22 +2,22 @@
 /*
 Copyright 2011 da UFRGS - Universidade Federal do Rio Grande do Sul
 
-Este arquivo È parte do programa SAELE - Sistema Aberto de EleiÁıes EletrÙnicas.
+Este arquivo √© parte do programa SAELE - Sistema Aberto de Elei√ß√µes Eletr√¥nicas.
 
-O SAELE È um software livre; vocÍ pode redistribuÌ-lo e/ou modific·-lo dentro dos
-termos da LicenÁa P˙blica Geral GNU como publicada pela FundaÁ„o do Software Livre
-(FSF); na vers„o 2 da LicenÁa.
+O SAELE √© um software livre; voc√™ pode redistribu√≠-lo e/ou modific√°-lo dentro dos
+termos da Licen√ßa P√∫blica Geral GNU como publicada pela Funda√ß√£o do Software Livre
+(FSF); na vers√£o 2 da Licen√ßa.
 
-Este programa È distribuÌdo na esperanÁa que possa ser ˙til, mas SEM NENHUMA GARANTIA;
-sem uma garantia implÌcita de ADEQUA«√O a qualquer MERCADO ou APLICA«√O EM PARTICULAR.
-Veja a LicenÁa P˙blica Geral GNU/GPL em portuguÍs para maiores detalhes.
+Este programa √© distribu√≠do na esperan√ßa que possa ser √∫til, mas SEM NENHUMA GARANTIA;
+sem uma garantia impl√≠cita de ADEQUA√á√ÉO a qualquer MERCADO ou APLICA√á√ÉO EM PARTICULAR.
+Veja a Licen√ßa P√∫blica Geral GNU/GPL em portugu√™s para maiores detalhes.
 
-VocÍ deve ter recebido uma cÛpia da LicenÁa P˙blica Geral GNU, sob o tÌtulo "LICENCA.txt",
-junto com este programa, se n„o, acesse o Portal do Software P˙blico Brasileiro no
-endereÁo www.softwarepublico.gov.br ou escreva para a FundaÁ„o do Software Livre(FSF)
+Voc√™ deve ter recebido uma c√≥pia da Licen√ßa P√∫blica Geral GNU, sob o t√≠tulo "LICENCA.txt",
+junto com este programa, se n√£o, acesse o Portal do Software P√∫blico Brasileiro no
+endere√ßo www.softwarepublico.gov.br ou escreva para a Funda√ß√£o do Software Livre(FSF)
 Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
 */
-                       // P·gina principal da AdministraÁ„o, para cadastro de Concursos e EleiÁıes
+                       // P√°gina principal da Administra√ß√£o, para cadastro de Concursos e Elei√ß√µes
 require_once('../CABECALHO.PHP');
 error_reporting(E_PARSE | E_ERROR | E_WARNING | E_NOTICE);
 include("Adm_Common.php");
@@ -43,11 +43,11 @@ $xajax->printJavascript('../xajax/');
 	addHoliday(25,12,0,"Natal")
 		addHoliday(1,1,0,"Ano Novo")
 		monthName = new
-		Array("Janeiro","Fevereiro","MarÁo","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro")
+		Array("Janeiro","Fevereiro","Mar√ßo","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro")
 		showToday = 0
 		dayName = new Array ("Dom","Seg","Ter","Qua","Qui","Sex","Sab")
-		gotoString = "Vai para o mÍs atual"
-		todayString = "Hoje È"
+		gotoString = "Vai para o m√™s atual"
+		todayString = "Hoje √©"
 		weekString = "DS"
 		imgDir = "../imagens/"
 </script>
@@ -155,7 +155,7 @@ $xajax->printJavascript('../xajax/');
 <?php if($GerenteSistema) { ?>
 <div align="center">
   <input type="button" value="Cadastrar Pessoas" onClick="javascript: location.href='ELC_Cadastro_Pessoas.php';" /> &nbsp;
-  <input type="button" value="Solicita&ccedil;&otilde;es Pendentes" onClick="javascript: location.href='ELC_Solicitacoes_Concursos.php';" />
+  <input type="button" value="Solicita√ß√µes Pendentes" onClick="javascript: location.href='ELC_Solicitacoes_Concursos.php';" />
 </div>
 <?php } ?>
 
@@ -166,9 +166,9 @@ $xajax->printJavascript('../xajax/');
             <td align="center">
                     <font size="2" face="verdana">
                     As tabelas abaixo representam os concursos eleitorais e suas respectivas
-                    elei&ccedil;&otilde;es que est&atilde;o dispon&iacute;veis para
-                    edi&ccedil;&atilde;o.<br />
-                    <? if ($GerenteSistema) echo "Para incluir novos concursos, clique no bot&atilde;o abaixo."; ?>
+                    elei√ß√µes que est√£o dispon√≠veis para
+                    edi√ß√£o.<br />
+                    <? if ($GerenteSistema) echo "Para incluir novos concursos, clique no bot√£o abaixo."; ?>
                     </font>
             </td>
     </tr>
@@ -205,16 +205,16 @@ $xajax->printJavascript('../xajax/');
 	<input type="hidden" name="CodConcurso" id="CodConcurso" value="" />
     <table width="95%" border="0" cellspacing="0" cellpadding="0" align="center" style="font-size: 10pt;">
         <tr class="LinhaTitulo">
-            <td colspan="3">EdiÁ„o de Concurso</td>
+            <td colspan="3">Edi√ß√£o de Concurso</td>
 		</tr>
         <tr class="Linha1">
-            <td colspan="3">Descri&ccedil;&atilde;o do Concurso:</td>
+            <td colspan="3">Descri√ß√£o do Concurso:</td>
 		</tr>
         <tr class="Linha2">
             <td colspan="3"> &nbsp; <input type="text" name="DescConcurso" id="DescConcurso" value="" size="30" /></td>
 		</tr>
         <tr class="Linha1">
-            <td colspan="3">Per&iacute;odo do Concurso:</td>
+            <td colspan="3">Per√≠odo do Concurso:</td>
 		</tr>
 		<tr class="Linha2">
             <td width="15%"> &nbsp; Data:</td>
@@ -239,13 +239,13 @@ $xajax->printJavascript('../xajax/');
 			</td>
 		</tr>
         <tr class="Linha1">
-            <td colspan="3">Modalidade da Elei&ccedil;&atilde;o:</td>
+            <td colspan="3">Modalidade da Elei√ß√£o:</td>
 		</tr>
         <tr class="Linha2">
             <td colspan="3"> &nbsp;
-                <input type="radio" name="BarradoPorIP" id="BarradoPorIPS" value="S" /> Com Urnas
-                <input type="radio" name="BarradoPorIP" id="BarradoPorIPE" value="E" /> Com Escopo
-                <input type="radio" name="BarradoPorIP" id="BarradoPorIPN" value="N" /> Livre
+                <label><input type="radio" name="BarradoPorIP" id="BarradoPorIPS" value="S" /> Com Urnas</label>
+                <label><input type="radio" name="BarradoPorIP" id="BarradoPorIPE" value="E" /> Com Escopo</label>
+                <label><input type="radio" name="BarradoPorIP" id="BarradoPorIPN" value="N" /> Livre</label>
 			</td>
 		</tr>
         <tr class="Linha1">
@@ -253,8 +253,8 @@ $xajax->printJavascript('../xajax/');
 		</tr>
         <tr class="Linha2">
             <td colspan="3"> &nbsp;
-                <input type="radio" name="IndContagem" id="IndContagemS" value="S" /> Sim
-                <input type="radio" name="IndContagem" id="IndContagemN" value="N" /> N&atilde;o
+                <label><input type="radio" name="IndContagem" id="IndContagemS" value="S" /> Sim</label>
+                <label><input type="radio" name="IndContagem" id="IndContagemN" value="N" /> N√£o</label>
 			</td>
 		</tr>
         <tr class="Linha1">
@@ -262,8 +262,8 @@ $xajax->printJavascript('../xajax/');
 		</tr>
         <tr class="Linha2">
             <td colspan="3"> &nbsp;
-                <input type="radio" name="Modalidade" id="ModalidadeE" value="E" /> Elei&ccedil;&atilde;o
-                <input type="radio" name="Modalidade" id="ModalidadeQ" value="Q" /> Enquete
+                <label><input type="radio" name="Modalidade" id="ModalidadeE" value="E" /> Elei√ß√£o</label>
+                <label><input type="radio" name="Modalidade" id="ModalidadeQ" value="Q" /> Enquete</label>
 			</td>
 		</tr>
 	</table>
@@ -275,33 +275,40 @@ $xajax->printJavascript('../xajax/');
 </div>
 
 <div id="DivEdicaoEleicao" class="Layer1" style="width:600px; height: 250px; display: none;">
-    <form name="FormEleicao" id="FormEleicao">
+  <form name="FormEleicao" id="FormEleicao">
 	<input type="hidden" name="CodConcursoElc" id="CodConcursoElc" value="" />
 	<input type="hidden" name="CodEleicao" id="CodEleicao" value="" />
     <table width="95%" border="0" cellspacing="0" cellpadding="0" align="center" style="font-size: 10pt;">
         <tr class="LinhaTitulo">
-            <td colspan="3">EdiÁ„o de EleiÁ„o</td>
-		</tr>
+            <td colspan="3">Edi√ß√£o de Elei√ß√£o</td>
+        </tr>
         <tr class="Linha1">
-            <td colspan="3">Descri&ccedil;&atilde;o da EleiÁ„o:</td>
-		</tr>
+            <td colspan="3">Descri√ß√£o da Elei√ß√£o:</td>
+        </tr>
         <tr class="Linha2">
             <td colspan="3"> &nbsp; <input type="text" name="DescEleicao" id="DescEleicao" value="" size="50" /></td>
-		</tr>
+        </tr>
         <tr class="Linha1">
             <td colspan="3">Nr. de Possibilidades de Voto:</td>
-		</tr>
+        </tr>
         <tr class="Linha2">
             <td colspan="3"> &nbsp; <input type="text" name="NrPossibilidades" id="NrPossibilidades" value="" size="3" /></td>
-		</tr>
+        </tr>
         <tr class="Linha1">
-            <td colspan="3">Nr. de DÌgitos para n˙meros de chapa:</td>
-		</tr>
+            <td colspan="3">Nr. de D√≠gitos para n√∫meros de chapa:</td>
+        </tr>
         <tr class="Linha2">
-            <td colspan="3"> &nbsp;
-                        <input type="radio" name="NrDigitosChapa" id="NrDigitosChapa2" value="2" /> 2
-                        <input type="radio" name="NrDigitosChapa" id="NrDigitosChapa1" value="1" /> 1</td>
-		</tr>
+            <td colspan="3"> 
+                &nbsp;
+                <select size="1" name="NrDigitosChapa" id="NrDigitosChapa">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </td>
+        </tr>
     </table>
 	<div style="text-align: center;" id="BtnEMailEleitores">
         <input type="button" value="Enviar E-Mail para eleitores" onclick="javascript: xajax_EnviarEMailEleitores(xajax.getFormValues('FormEleicao'));" />
@@ -309,7 +316,7 @@ $xajax->printJavascript('../xajax/');
 	<div style="text-align: center;">
         <input type="button" value="Cancelar" onClick="javascript: document.getElementById('DivEdicaoEleicao').style.display = 'none';" />
         <input type="button" value="Salvar" id="BtnSalvarEleicao" onClick="javascript: xajax_SalvarEleicao(xajax.getFormValues('FormEleicao'));" />
-        <input type="button" value="AvanÁar" onClick="javascript: xajax_SalvarEleicao(xajax.getFormValues('FormEleicao'), true);" />
+        <input type="button" value="Avan√ßar" onClick="javascript: xajax_SalvarEleicao(xajax.getFormValues('FormEleicao'), true);" />
 	</div>
     </form>
 </div>
@@ -320,27 +327,27 @@ $xajax->printJavascript('../xajax/');
 		<tr class="LinhaTitulo"> <td colspan="2">AUDITORIA</td> </tr>
 		<tr class="LinhaHR"> <td colspan="2"><hr /></td> </tr>
 		<tr class="Linha1">
-			<td width="50%"> &nbsp; N&uacute;mero de votos logados: </td>
+			<td width="50%"> &nbsp; N√∫mero de votos logados: </td>
 			<td style="text-align: center; font-weight: bold;"> <span id="Consistencia1"></span> </td>
 		</tr>
 		<tr class="Linha2">
-			<td width="50%"> &nbsp; N&uacute;mero de votos computados: </td>
+			<td width="50%"> &nbsp; N√∫mero de votos computados: </td>
 			<td style="text-align: center; font-weight: bold;"> <span id="Consistencia2"></span> </td>
 		</tr>
 		<tr class="LinhaHR"> <td colspan="2"><hr /></td> </tr>
 		<tr class="Linha1">
 			<td colspan="2" style="padding: 5px; text-align: justify;">
-				<b>N&uacute;mero de votos logados</b>: Verifica se o n&uacute;mero de votos
-					 registrados no Log de Opera&ccedil;&atilde;o &eacute; igual ao n&uacute;mero
-					 de eleitores que j&aacute; votaram.
+				<b>N√∫mero de votos logados</b>: Verifica se o n√∫mero de votos
+					 registrados no Log de Opera√ß√£o √© igual ao n√∫mero
+					 de eleitores que j√° votaram.
 			</td>
 		</tr>
 		<tr class="Linha2">
 			<td colspan="2" style="padding: 5px; text-align: justify;">
-				<b>N&uacute;mero de votos computados</b>: Verifica se a soma de todos os votos
-					 scontados para todas as chapas/opÁıes, incluindo brancos e nulos, dividida pelo n&uacute;mero
-					 de possibilidades de voto, &eacute; igual ao n&uacute;mero de eleitores que
-					 j&aacute; votaram.
+				<b>N√∫mero de votos computados</b>: Verifica se a soma de todos os votos
+					 scontados para todas as chapas/op√ß√µes, incluindo brancos e nulos, dividida pelo n√∫mero
+					 de possibilidades de voto, √© igual ao n√∫mero de eleitores que
+					 j√° votaram.
 			</td>
 		</tr>
 	</table>
@@ -356,7 +363,7 @@ $xajax->printJavascript('../xajax/');
 		<tr class="LinhaTitulo"> <td>Envio de E-Mails</td> </tr>
         <tr class="Linha1">
 			<td style="text-align: center;">
-                TÌtulo: <input type="text" name="TituloEMail" id="TituloEMail" size="40" />
+                T√≠tulo: <input type="text" name="TituloEMail" id="TituloEMail" size="40" />
             </td>
         </tr>
         <tr class="Linha2">
@@ -371,12 +378,12 @@ $xajax->printJavascript('../xajax/');
             </td>
 		</tr>
         <tr class="Linha2">
-            <td>OBS: o termo "[NOME]" ser· substituÌdo pelo nome do remetente.</td>
+            <td>OBS: o termo "[NOME]" ser√° substitu√≠do pelo nome do remetente.</td>
         </tr>
         <tr class="Linha1">
             <td>Enviar e-mails para:<br />
-                <label><input type="radio" name="Destinatarios" id="Destinatarios1" value="1" checked="checked" /> Eleitores que <strong>N√O</strong> votaram</label><br />
-                <label><input type="radio" name="Destinatarios" id="Destinatarios2" value="2" /> Eleitores que <strong>J¡</strong> votaram</label><br />
+                <label><input type="radio" name="Destinatarios" id="Destinatarios1" value="1" checked="checked" /> Eleitores que <strong>N√ÉO</strong> votaram</label><br />
+                <label><input type="radio" name="Destinatarios" id="Destinatarios2" value="2" /> Eleitores que <strong>J√Å</strong> votaram</label><br />
                 <label><input type="radio" name="Destinatarios" id="Destinatarios3" value="3" /> Todos os eleitores</label>
             </td>
         </tr>

@@ -2,19 +2,19 @@
 /*
 Copyright 2011 da UFRGS - Universidade Federal do Rio Grande do Sul
 
-Este arquivo é parte do programa SAELE - Sistema Aberto de Eleições Eletrônicas.
+Este arquivo Ã© parte do programa SAELE - Sistema Aberto de EleiÃ§Ãµes EletrÃ´nicas.
 
-O SAELE é um software livre; você pode redistribuí-lo e/ou modificá-lo dentro dos
-termos da Licença Pública Geral GNU como publicada pela Fundação do Software Livre
-(FSF); na versão 2 da Licença.
+O SAELE Ã© um software livre; vocÃª pode redistribuÃ­-lo e/ou modificÃ¡-lo dentro dos
+termos da LicenÃ§a PÃºblica Geral GNU como publicada pela FundaÃ§Ã£o do Software Livre
+(FSF); na versÃ£o 2 da LicenÃ§a.
 
-Este programa é distribuído na esperança que possa ser útil, mas SEM NENHUMA GARANTIA;
-sem uma garantia implícita de ADEQUAÇÃO a qualquer MERCADO ou APLICAÇÃO EM PARTICULAR.
-Veja a Licença Pública Geral GNU/GPL em português para maiores detalhes.
+Este programa Ã© distribuÃ­do na esperanÃ§a que possa ser Ãºtil, mas SEM NENHUMA GARANTIA;
+sem uma garantia implÃ­cita de ADEQUAÃ‡ÃƒO a qualquer MERCADO ou APLICAÃ‡ÃƒO EM PARTICULAR.
+Veja a LicenÃ§a PÃºblica Geral GNU/GPL em portuguÃªs para maiores detalhes.
 
-Você deve ter recebido uma cópia da Licença Pública Geral GNU, sob o título "LICENCA.txt",
-junto com este programa, se não, acesse o Portal do Software Público Brasileiro no
-endereço www.softwarepublico.gov.br ou escreva para a Fundação do Software Livre(FSF)
+VocÃª deve ter recebido uma cÃ³pia da LicenÃ§a PÃºblica Geral GNU, sob o tÃ­tulo "LICENCA.txt",
+junto com este programa, se nÃ£o, acesse o Portal do Software PÃºblico Brasileiro no
+endereÃ§o www.softwarepublico.gov.br ou escreva para a FundaÃ§Ã£o do Software Livre(FSF)
 Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
 */
 
@@ -48,10 +48,10 @@ require_once("Eleicao.class.php");
 require_once("LogOperacao.class.php");
 
 /**
- * A classe ConcursoEleitoral representa um grupo de eleições que ocorre em
- * um determinado período de tempo. Utilizando o exemplo das eleições federais,
+ * A classe ConcursoEleitoral representa um grupo de eleiÃ§Ãµes que ocorre em
+ * um determinado perÃ­odo de tempo. Utilizando o exemplo das eleiÃ§Ãµes federais,
  * a cada quatro anos, ocorre um CONCURSO ELEITORAL, dentro do qual se realizam
- * várias ELEIÇÕES: eleição para deputado estadual e federal, senador, governador
+ * vÃ¡rias ELEIÃ‡Ã•ES: eleiÃ§Ã£o para deputado estadual e federal, senador, governador
  * e presidente.
  */
 final class ConcursoEleitoral extends Entidade {
@@ -67,13 +67,13 @@ final class ConcursoEleitoral extends Entidade {
     static private $Strings = array(
         'E' => array(
             STR_CONCURSOELEITORAL   => "Concurso Eleitoral",
-            STR_ELEICAO             => "Eleição",
+            STR_ELEICAO             => "EleiÃ§Ã£o",
             STR_CHAPA               => "Chapa",
             STR_GERENTE             => "Gerente",
             STR_ELEITOR             => "Eleitor",
             STR_VOTO                => "Voto",
             STR_CONCURSOSELEITORAIS => "Concursos Eleitorais",
-            STR_ELEICOES            => "Eleições",
+            STR_ELEICOES            => "EleiÃ§Ãµes",
             STR_CHAPAS              => "Chapas",
             STR_GERENTES            => "Gerentes",
             STR_ELEITORES           => "Eleitores",
@@ -81,15 +81,15 @@ final class ConcursoEleitoral extends Entidade {
         ),
         'Q' => array(
             STR_CONCURSOELEITORAL   => "Enquete",
-            STR_ELEICAO             => "Questão",
-            STR_CHAPA               => "Opção",
-            STR_GERENTE             => "Responsável",
+            STR_ELEICAO             => "QuestÃ£o",
+            STR_CHAPA               => "OpÃ§Ã£o",
+            STR_GERENTE             => "ResponsÃ¡vel",
             STR_ELEITOR             => "Participante",
             STR_VOTO                => "Resposta",
             STR_CONCURSOSELEITORAIS => "Enquete",
-            STR_ELEICOES            => "Questões",
-            STR_CHAPAS              => "Opções",
-            STR_GERENTES            => "Responsáveis",
+            STR_ELEICOES            => "QuestÃµes",
+            STR_CHAPAS              => "OpÃ§Ãµes",
+            STR_GERENTES            => "ResponsÃ¡veis",
             STR_ELEITORES           => "Participantes",
             STR_VOTOS               => "Respostas",
         )
@@ -99,13 +99,13 @@ final class ConcursoEleitoral extends Entidade {
       "codconcurso" => array(Tipo => "numero", Tamanho => 4, Foreign => false)
     );
     protected $VetorCampos = array(
-      "descricao"           => array(Nome => "Descrição", Tipo => texto, Tamanho => 120, Obrigatorio => true),
-      "datahorainicio"      => array(Nome => "Início", Tipo => datahora, Obrigatorio => true),
+      "descricao"           => array(Nome => "DescriÃ§Ã£o", Tipo => texto, Tamanho => 120, Obrigatorio => true),
+      "datahorainicio"      => array(Nome => "InÃ­cio", Tipo => datahora, Obrigatorio => true),
       "datahorafim"         => array(Nome => "Fim", Tipo => datahora, Obrigatorio => true),
       "indbarradoporip"     => array(Nome => "Barrado por IP", Tipo => texto, Obrigatorio => true, Valores => array('S', 'E', 'N')),
       "indhabilitacontagem" => array(Nome => "Contagem para gerentes", Tipo => texto, Obrigatorio => true, Valores => array('S', 'N')),
       "modalidadeconcurso"  => array(Nome => "Modalidade", Tipo => texto, Obrigatorio => true, Valores => array('E', 'Q')),
-      "situacaoconcurso"    => array(Nome => "Situação", Tipo => numero, Obrigatorio => true, Valores => array(0, 1, 2, 3, 4))
+      "situacaoconcurso"    => array(Nome => "SituaÃ§Ã£o", Tipo => numero, Obrigatorio => true, Valores => array(0, 1, 2, 3, 4))
     );
     private $EstadoConcurso = NULL;
 /**
@@ -117,8 +117,8 @@ final class ConcursoEleitoral extends Entidade {
     }
 
 /**
- * Devolve uma Eleicao do atual concurso. Caso ela não exista, devolve NULL.
- * @param int $CodEleicao O código da eleição desejada.
+ * Devolve uma Eleicao do atual concurso. Caso ela nÃ£o exista, devolve NULL.
+ * @param int $CodEleicao O cÃ³digo da eleiÃ§Ã£o desejada.
  * @return Eleicao
  */
     public function devolveEleicao($CodEleicao) {
@@ -133,7 +133,7 @@ final class ConcursoEleitoral extends Entidade {
     }
 
 /**
- * Devolve um iterador com todas as eleições do concurso.
+ * Devolve um iterador com todas as eleiÃ§Ãµes do concurso.
  * @return Iterador
  */
     public function devolveEleicoes() {
@@ -142,7 +142,7 @@ final class ConcursoEleitoral extends Entidade {
     }
 
 /**
- * Devolve um iterador com todas as eleições disponíveis para votação para uma
+ * Devolve um iterador com todas as eleiÃ§Ãµes disponÃ­veis para votaÃ§Ã£o para uma
  * determinada pessoa.
  * @param PessoaEleicao $Pessoa
  * @return Iterador
@@ -184,18 +184,18 @@ where TAB.codconcurso = :CodConcurso[numero]
             $Campos['CodConcurso'] = $this->getChave();
             return new Iterador("Eleicao", $SQL, $Campos, $this);
         }
-        else throw new ConcursoEleitoralException("Concurso não iniciado", 0);
+        else throw new ConcursoEleitoralException("Concurso nÃ£o iniciado", 0);
     }
 
 /**
- * Informa se o ConcursoEleitoral está aberto para edição dos dados.
+ * Informa se o ConcursoEleitoral estÃ¡ aberto para ediÃ§Ã£o dos dados.
  * @return boolean
  */
     public function abertoParaAlteracoes() {
         return $this->estadoConcurso() == CONCURSO_NAOINICIADO;
     }
 /**
- * Informa se o ConcursoEleitoral está aberto para votação.
+ * Informa se o ConcursoEleitoral estÃ¡ aberto para votaÃ§Ã£o.
  * @return boolean
  */
     public function abertoParaVotacao() {
@@ -211,7 +211,7 @@ where TAB.codconcurso = :CodConcurso[numero]
     }
 
 /**
- * Informa o estado do ConcursoEleitoral em relação à data atual:
+ * Informa o estado do ConcursoEleitoral em relaÃ§Ã£o Ã  data atual:
  * CONCURSO_NAOINICIADO, CONCURSO_INICIADO ou CONCURSO_ENCERRADO.
  * @return int
  */
@@ -232,14 +232,14 @@ where TAB.codconcurso = :CodConcurso[numero]
     }
 
 /**
- * Informa a situação atual do ConcursoEleitoral em forma textual.
- * @return string Descrição da situação atual
+ * Informa a situaÃ§Ã£o atual do ConcursoEleitoral em forma textual.
+ * @return string DescriÃ§Ã£o da situaÃ§Ã£o atual
  */
     public function situacaoConcursoTextual() {
         return self::$SituacaoConcursoTextual[$this->get("situacaoconcurso")];
     }
 /**
- * Gera um vetor com o checklist do ConcursoEleitoral; ou seja, uma série de verificações
+ * Gera um vetor com o checklist do ConcursoEleitoral; ou seja, uma sÃ©rie de verificaÃ§Ãµes
  * feitas sobre o concurso para verificar o andamento do cadastro.
  * @return array
  */
@@ -252,8 +252,8 @@ where TAB.codconcurso = :CodConcurso[numero]
                                    and not exists
                                     (select * from eleicoes.chapa where codconcurso = E.codconcurso))
                             then 'S' else 'N' end as Check ",
-                "OK" => "Já existem chapas cadastradas em todas as eleições deste concurso.",
-                "Erro" => "Existem eleições neste concurso que não possuem chapas."
+                "OK" => "JÃ¡ existem chapas cadastradas em todas as eleiÃ§Ãµes deste concurso.",
+                "Erro" => "Existem eleiÃ§Ãµes neste concurso que nÃ£o possuem chapas."
                 ),
             1 => array(
                 "SQL" => " select case when not exists
@@ -264,16 +264,16 @@ where TAB.codconcurso = :CodConcurso[numero]
                                      where codconcurso = e.codconcurso
                                        and codeleicao = e.codeleicao))
                             then 'S' else 'N' end as Check ",
-                "OK" => "Já existem eleitores cadastrados em todas as eleições deste concurso.",
-                "Erro" => "Existem eleições neste concurso que não possuem eleitores."
+                "OK" => "JÃ¡ existem eleitores cadastrados em todas as eleiÃ§Ãµes deste concurso.",
+                "Erro" => "Existem eleiÃ§Ãµes neste concurso que nÃ£o possuem eleitores."
                 ),
             2 => array(
                 "SQL" => " select case when
                                 (select situacaoconcurso from eleicoes.concursoeleitoral
                                  where codconcurso = :CodConcurso[numero]) >= ".SITUACAOCONCURSO_HOMOLOGADO."
                             then 'S' else 'N' end as Check ",
-                "OK" => "Este concurso eleitoral já foi homologado.",
-                "Erro" => "A homologação final deste concurso ainda não foi realizada."
+                "OK" => "Este concurso eleitoral jÃ¡ foi homologado.",
+                "Erro" => "A homologaÃ§Ã£o final deste concurso ainda nÃ£o foi realizada."
                 ),
             3 => array(
                 "SQL" => " select case when exists
@@ -281,8 +281,8 @@ where TAB.codconcurso = :CodConcurso[numero]
                                   where codconcurso = :CodConcurso[numero]
                                     and descricao = '".DESCRICAO_ZERESIMA."')
                             then 'S' else 'N' end as Check ",
-                "OK" => "A zerésima deste concurso já foi realizada.",
-                "Erro" => "A zerésima deste concurso ainda não foi realizada."
+                "OK" => "A zerÃ©sima deste concurso jÃ¡ foi realizada.",
+                "Erro" => "A zerÃ©sima deste concurso ainda nÃ£o foi realizada."
                 )
         );
         $ChecklistRetorno = array();
@@ -307,9 +307,9 @@ where TAB.codconcurso = :CodConcurso[numero]
     }
 
 /**
- * Efetua o procedimento de contagem de votos para as eleições do ConcursoEleitoral.
- * Esse procedimento só pode ser realizado após o término do período de votação,
- * e habilita a apuração dos votos. Ele somente pode ser feito pelo gerente
+ * Efetua o procedimento de contagem de votos para as eleiÃ§Ãµes do ConcursoEleitoral.
+ * Esse procedimento sÃ³ pode ser realizado apÃ³s o tÃ©rmino do perÃ­odo de votaÃ§Ã£o,
+ * e habilita a apuraÃ§Ã£o dos votos. Ele somente pode ser feito pelo gerente
  * do sistema.
  * @return boolean
  */
@@ -318,9 +318,9 @@ where TAB.codconcurso = :CodConcurso[numero]
         $Pessoa = $Controlador->recuperaPessoaLogada();
 
         if(!$Pessoa->eGerenteSistema())
-            throw new ConcursoEleitoralException("Operação exclusiva para gerentes", 1);
+            throw new ConcursoEleitoralException("OperaÃ§Ã£o exclusiva para gerentes", 1);
         if($this->estadoConcurso() != CONCURSO_ENCERRADO)
-            throw new ConcursoEleitoralException("Os votos só podem ser contados após o término do concurso", 2);
+            throw new ConcursoEleitoralException("Os votos sÃ³ podem ser contados apÃ³s o tÃ©rmino do concurso", 2);
         $db = DB::instancia();
         $db->iniciaTransacao();
         $Eleicoes = $this->devolveEleicoes();
@@ -341,8 +341,8 @@ where TAB.codconcurso = :CodConcurso[numero]
     }
 
 /**
- * Encerra o concurso eleitoral, alterado sua sitação para Arquivado. Esse
- * procedimento pode ser feito somente após a contagem de votos, e apenas pelo
+ * Encerra o concurso eleitoral, alterado sua sitaÃ§Ã£o para Arquivado. Esse
+ * procedimento pode ser feito somente apÃ³s a contagem de votos, e apenas pelo
  * gerente do concurso.
  * @return boolean
  */
@@ -350,9 +350,9 @@ where TAB.codconcurso = :CodConcurso[numero]
         $Controlador = Controlador::instancia();
         $Pessoa = $Controlador->recuperaPessoaLogada();
         if(!$Pessoa->eGerenteSistema())
-            throw new ConcursoEleitoralException("Usuário sem permissão", 0);
+            throw new ConcursoEleitoralException("UsuÃ¡rio sem permissÃ£o", 0);
         if($this->get("situacaoconcurso") < SITUACAOCONCURSO_APURADO)
-            throw new ConcursoEleitoralException("O Concurso ainda não foi apurado", 0);
+            throw new ConcursoEleitoralException("O Concurso ainda nÃ£o foi apurado", 0);
         $db = DB::instancia();
         $db->iniciaTransacao();
         $this->set("situacaoconcurso", SITUACAOCONCURSO_ARQUIVADO);
@@ -365,7 +365,7 @@ where TAB.codconcurso = :CodConcurso[numero]
     }
 
 /**
- * Gera um LogOperacao para o ConcursoEleitoral atual, com a descrição informada.
+ * Gera um LogOperacao para o ConcursoEleitoral atual, com a descriÃ§Ã£o informada.
  * @param string $Descricao
  * @return LogOperacao
  */
@@ -394,4 +394,3 @@ where TAB.codconcurso = :CodConcurso[numero]
 class ConcursoEleitoralException extends Exception {
     
 }
-?>

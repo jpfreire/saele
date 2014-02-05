@@ -2,19 +2,19 @@
 /*
 Copyright 2011 da UFRGS - Universidade Federal do Rio Grande do Sul
 
-Este arquivo È parte do programa SAELE - Sistema Aberto de EleiÁıes EletrÙnicas.
+Este arquivo √© parte do programa SAELE - Sistema Aberto de Elei√ß√µes Eletr√¥nicas.
 
-O SAELE È um software livre; vocÍ pode redistribuÌ-lo e/ou modific·-lo dentro dos
-termos da LicenÁa P˙blica Geral GNU como publicada pela FundaÁ„o do Software Livre
-(FSF); na vers„o 2 da LicenÁa.
+O SAELE √© um software livre; voc√™ pode redistribu√≠-lo e/ou modific√°-lo dentro dos
+termos da Licen√ßa P√∫blica Geral GNU como publicada pela Funda√ß√£o do Software Livre
+(FSF); na vers√£o 2 da Licen√ßa.
 
-Este programa È distribuÌdo na esperanÁa que possa ser ˙til, mas SEM NENHUMA GARANTIA;
-sem uma garantia implÌcita de ADEQUA«√O a qualquer MERCADO ou APLICA«√O EM PARTICULAR.
-Veja a LicenÁa P˙blica Geral GNU/GPL em portuguÍs para maiores detalhes.
+Este programa √© distribu√≠do na esperan√ßa que possa ser √∫til, mas SEM NENHUMA GARANTIA;
+sem uma garantia impl√≠cita de ADEQUA√á√ÉO a qualquer MERCADO ou APLICA√á√ÉO EM PARTICULAR.
+Veja a Licen√ßa P√∫blica Geral GNU/GPL em portugu√™s para maiores detalhes.
 
-VocÍ deve ter recebido uma cÛpia da LicenÁa P˙blica Geral GNU, sob o tÌtulo "LICENCA.txt",
-junto com este programa, se n„o, acesse o Portal do Software P˙blico Brasileiro no
-endereÁo www.softwarepublico.gov.br ou escreva para a FundaÁ„o do Software Livre(FSF)
+Voc√™ deve ter recebido uma c√≥pia da Licen√ßa P√∫blica Geral GNU, sob o t√≠tulo "LICENCA.txt",
+junto com este programa, se n√£o, acesse o Portal do Software P√∫blico Brasileiro no
+endere√ßo www.softwarepublico.gov.br ou escreva para a Funda√ß√£o do Software Livre(FSF)
 Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
 */
 
@@ -24,9 +24,9 @@ db::instancia();
 require("../xajax/xajax_core/xajax.inc.php");
 
 $xajax = new xajax('Xajax_Escopos.php');
-
-//$xajax->setFlag('debug', true);
-$xajax->setCharEncoding("iso-8859-1");
+$xajax->configure('javascript URI', '../xajax/');
+$xajax->configure('responseType', 'XML');
+$xajax->configure('characterEncoding', 'UTF-8');
 $xajax->configure("decodeUTF8Input", true);
 
 $xajax->register(XAJAX_FUNCTION, "ListaEscopos");
@@ -62,7 +62,7 @@ function ListaEscopos() {
                     <tr class="Linha'.$i.'">
                         <td>
                             &nbsp;<a href="javascript: void(0);" onclick="javascript: xajax_MostraEdicaoEscopo('.$NrSeqEscopo.');">[editar]</a>
-                                   '.$Escopo->get("descricao").' ('.$Escopo->get("prefixoip").') - '.($Escopo->get("indativa") == "S" ? "ATIVA" : "N&Atilde;O ATIVA").($Excluir ? ' &nbsp;
+                                   '.$Escopo->get("descricao").' ('.$Escopo->get("prefixoip").') - '.($Escopo->get("indativa") == "S" ? "ATIVA" : "N√ÉO ATIVA").($Excluir ? ' &nbsp;
                                     <a href="javascript: void(0);" onclick="javascript: xajax_ExcluiEscopo('.$NrSeqEscopo.')">[excluir]</a>' : NULL).'
                         </td>
                     </tr> ';
@@ -99,7 +99,7 @@ function MostraEdicaoEscopo($NrSeqEscopo=NULL) {
 	<table border="0" cellpadding="0" cellspacing="0" width="95%" align="center">
         <tr class="Linha1">
             <td>
-                &nbsp;Descri&ccedil;&atilde;o do Escopo:
+                &nbsp;Descri√ß√£o do Escopo:
             </td>
         </tr>
         <tr class="Linha2">
@@ -110,7 +110,7 @@ function MostraEdicaoEscopo($NrSeqEscopo=NULL) {
         </tr>
         <tr class="Linha1">
             <td>
-                &nbsp;Prefixo IP: (deixe em branco os campos que n„o fazem parte do prefixo)
+                &nbsp;Prefixo IP: (deixe em branco os campos que n√£o fazem parte do prefixo)
             </td>
         </tr>
         <tr class="Linha2">
@@ -145,14 +145,14 @@ function SalvaEscopo($Form) {
 	$objResponse = new xajaxResponse();
 
 	if(trim($Form['Descricao']) == "")
-        return $objResponse->alert("Preencha a descriÁ„o da urna.");
+        return $objResponse->alert("Preencha a descri√ß√£o da urna.");
 
     $Controlador = Controlador::instancia();
 
     $Eleicao = $Controlador->recuperaEleicaoEdicao();
     if(trim($Form['NrSeqEscopo']) == "") {
         if(!is_null($Eleicao->devolveEscopoPorIPExato(implode(".", $Form['IP']))))
-            return $objResponse->alert("Este prefixo j· possui um escopo associado");
+            return $objResponse->alert("Este prefixo j√° possui um escopo associado");
         $Escopo = $Eleicao->geraEscopoIP();
     }
     else {
@@ -160,13 +160,13 @@ function SalvaEscopo($Form) {
     }
     
     if(!$Escopo->definePartesIP($Form['IP']))
-        return $objResponse->alert("Preencha um endereÁo de IP v·lido.");
+        return $objResponse->alert("Preencha um endere√ßo de IP v√°lido.");
 
     $Escopo->set("descricao", $Form['Descricao']);
     $Escopo->set("indativa", (isset($Form['UrnaAtiva']) && $Form['UrnaAtiva'] == 'S' ? 'S' : 'N'));
     $Escopo->salva();
 
-    $objResponse->loadCommands(ListaEscopos());
+    $objResponse->appendResponse(ListaEscopos());
     $objResponse->script("FechaLayer()");
 	return $objResponse;
 }
@@ -179,7 +179,7 @@ function ExcluiEscopo($NrSeqEscopo) {
     $Eleicao = $Controlador->recuperaEleicaoEdicao();
     $Escopo = $Eleicao->devolveEscopoIP($NrSeqEscopo);
     $Escopo->exclui();
-    $objResponse->loadCommands(ListaEscopos());
+    $objResponse->appendResponse(ListaEscopos());
 	return $objResponse;
 }
 

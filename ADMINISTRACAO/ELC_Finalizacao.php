@@ -2,31 +2,31 @@
 /*
 Copyright 2011 da UFRGS - Universidade Federal do Rio Grande do Sul
 
-Este arquivo é parte do programa SAELE - Sistema Aberto de Eleições Eletrônicas.
+Este arquivo Ã© parte do programa SAELE - Sistema Aberto de EleiÃ§Ãµes EletrÃ´nicas.
 
-O SAELE é um software livre; você pode redistribuí-lo e/ou modificá-lo dentro dos
-termos da Licença Pública Geral GNU como publicada pela Fundação do Software Livre
-(FSF); na versão 2 da Licença.
+O SAELE Ã© um software livre; vocÃª pode redistribuÃ­-lo e/ou modificÃ¡-lo dentro dos
+termos da LicenÃ§a PÃºblica Geral GNU como publicada pela FundaÃ§Ã£o do Software Livre
+(FSF); na versÃ£o 2 da LicenÃ§a.
 
-Este programa é distribuído na esperança que possa ser útil, mas SEM NENHUMA GARANTIA;
-sem uma garantia implícita de ADEQUAÇÃO a qualquer MERCADO ou APLICAÇÃO EM PARTICULAR.
-Veja a Licença Pública Geral GNU/GPL em português para maiores detalhes.
+Este programa Ã© distribuÃ­do na esperanÃ§a que possa ser Ãºtil, mas SEM NENHUMA GARANTIA;
+sem uma garantia implÃ­cita de ADEQUAÃ‡ÃƒO a qualquer MERCADO ou APLICAÃ‡ÃƒO EM PARTICULAR.
+Veja a LicenÃ§a PÃºblica Geral GNU/GPL em portuguÃªs para maiores detalhes.
 
-Você deve ter recebido uma cópia da Licença Pública Geral GNU, sob o título "LICENCA.txt",
-junto com este programa, se não, acesse o Portal do Software Público Brasileiro no
-endereço www.softwarepublico.gov.br ou escreva para a Fundação do Software Livre(FSF)
+VocÃª deve ter recebido uma cÃ³pia da LicenÃ§a PÃºblica Geral GNU, sob o tÃ­tulo "LICENCA.txt",
+junto com este programa, se nÃ£o, acesse o Portal do Software PÃºblico Brasileiro no
+endereÃ§o www.softwarepublico.gov.br ou escreva para a FundaÃ§Ã£o do Software Livre(FSF)
 Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
 */
-                           // Finalização de Concurso Eleitoral
+                           // FinalizaÃ§Ã£o de Concurso Eleitoral
 require_once('../CABECALHO.PHP');
 
 $Cod = $_SESSION['CodPessoaEleicao'];       
 $Direito = VerificaGerenteSistema();
 
 if(!$Direito) {
-  echo "<html><body>\n";
+  echo "<html><head><meta charset=\"utf-8\"></head><body>\n";
   echo "<div align=\"center\">\n";
-  echo "<br><font size=\"2\" face=\"verdana\">Erro! O usu&aacute;rio n&atilde;o tem permiss&atilde;o para acessar esta p&aacute;gina.<br><br>\n";
+  echo "<br><font size=\"2\" face=\"verdana\">Erro! O usuÃ¡rio nÃ£o tem permissÃ£o para acessar esta pÃ¡gina.<br><br>\n";
   echo "<a href=\"javascript: window.close();\">Fechar</a></font>\n";
   echo "</div>";
   echo "<body></html>";
@@ -52,15 +52,15 @@ if($_POST['Confirma'] == "S") {
   $Insere->setparametros("CodPessoa,CodConcurso,IP", $campo);
   $Insere->executa();
   ?>
-  <html><body><script>window.close();</script></body></html>
+  <html><head><meta charset="utf-8"></head><body><script>window.close();</script></body></html>
   <?php
   exit;
 } ?>
 
 <html>
 <head>
-    <meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
-    <title>Finaliza&ccedil;&atilde;o de Concurso Eleitoral</title>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <title>FinalizaÃ§Ã£o de Concurso Eleitoral</title>
     <link rel="stylesheet" type="text/css" href="code/eleicao.css"> 
 </head>
 
@@ -73,7 +73,7 @@ if($_POST['Confirma'] == "S") {
     <td align="center">
       <font size="2" face="verdana">Tem certeza de que deseja finalizar este concurso eleitoral?</font>
       <br /><br />
-      <input type="button" value="N&atilde;o" onClick="javascript: window.close();" />
+      <input type="button" value="NÃ£o" onClick="javascript: window.close();" />
       <input type="submit" value="Sim">
     </td>
   </tr>

@@ -2,19 +2,19 @@
 /*
 Copyright 2011 da UFRGS - Universidade Federal do Rio Grande do Sul
 
-Este arquivo È parte do programa SAELE - Sistema Aberto de EleiÁıes EletrÙnicas.
+Este arquivo √© parte do programa SAELE - Sistema Aberto de Elei√ß√µes Eletr√¥nicas.
 
-O SAELE È um software livre; vocÍ pode redistribuÌ-lo e/ou modific·-lo dentro dos
-termos da LicenÁa P˙blica Geral GNU como publicada pela FundaÁ„o do Software Livre
-(FSF); na vers„o 2 da LicenÁa.
+O SAELE √© um software livre; voc√™ pode redistribu√≠-lo e/ou modific√°-lo dentro dos
+termos da Licen√ßa P√∫blica Geral GNU como publicada pela Funda√ß√£o do Software Livre
+(FSF); na vers√£o 2 da Licen√ßa.
 
-Este programa È distribuÌdo na esperanÁa que possa ser ˙til, mas SEM NENHUMA GARANTIA;
-sem uma garantia implÌcita de ADEQUA«√O a qualquer MERCADO ou APLICA«√O EM PARTICULAR.
-Veja a LicenÁa P˙blica Geral GNU/GPL em portuguÍs para maiores detalhes.
+Este programa √© distribu√≠do na esperan√ßa que possa ser √∫til, mas SEM NENHUMA GARANTIA;
+sem uma garantia impl√≠cita de ADEQUA√á√ÉO a qualquer MERCADO ou APLICA√á√ÉO EM PARTICULAR.
+Veja a Licen√ßa P√∫blica Geral GNU/GPL em portugu√™s para maiores detalhes.
 
-VocÍ deve ter recebido uma cÛpia da LicenÁa P˙blica Geral GNU, sob o tÌtulo "LICENCA.txt",
-junto com este programa, se n„o, acesse o Portal do Software P˙blico Brasileiro no
-endereÁo www.softwarepublico.gov.br ou escreva para a FundaÁ„o do Software Livre(FSF)
+Voc√™ deve ter recebido uma c√≥pia da Licen√ßa P√∫blica Geral GNU, sob o t√≠tulo "LICENCA.txt",
+junto com este programa, se n√£o, acesse o Portal do Software P√∫blico Brasileiro no
+endere√ßo www.softwarepublico.gov.br ou escreva para a Funda√ß√£o do Software Livre(FSF)
 Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
 */
 
@@ -22,11 +22,11 @@ require_once('../CABECALHO.PHP');
 
 $Campos = $_SESSION['Campos'];
 
-MostraCabecalho("SolicitaÁ„o de Enquete");
+MostraCabecalho("Solicita√ß√£o de Enquete");
 
 if(!isset($_SESSION['Valido'])) { ?>
     <div class="Erro">
-        <p><strong>SolicitaÁ„o inv·lida</strong>.</p>
+        <p><strong>Solicita√ß√£o inv√°lida</strong>.</p>
 
         <p><input type="button" value="Voltar" onclick="javascript: location.href = 'SOL_Solicitacao.php';" /></p>
     </div>
@@ -45,7 +45,7 @@ if(!isset($_SESSION['Valido'])) { ?>
   </tr>
   <tr bgcolor="#f5f5f5">
     <td colspan="3">
-      <font size="2" face="verdana"><b>&nbsp; Per&iacute;odo:</b> De <?=$Campos['DataInicio']?> &agrave;s <?=$Campos['HoraInicio']?> at&eacute; <?=$Campos['DataFim']?> &agrave;s <?=$Campos['HoraFim']?></font>
+      <font size="2" face="verdana"><b>&nbsp; Per√≠odo:</b> De <?=$Campos['DataInicio']?> √†s <?=$Campos['HoraInicio']?> at√© <?=$Campos['DataFim']?> √†s <?=$Campos['HoraFim']?></font>
     </td>
   </tr> 
   <tr bgcolor="white">
@@ -61,7 +61,7 @@ if(!isset($_SESSION['Valido'])) { ?>
   </tr>
   <tr bgcolor="#f5f5f5">
     <td colspan="3">
-      <font size="2" face="verdana"><b>&nbsp; Quest&atilde;o(&otilde;es):</b><br /> &nbsp;&nbsp;&nbsp;
+      <font size="2" face="verdana"><b>&nbsp; Quest√£o(√µes):</b><br /> &nbsp;&nbsp;&nbsp;
 			<?=implode("<br /> &nbsp;&nbsp;&nbsp; ", $Campos['Eleicao'])?></font>
     </td>
   </tr>
@@ -77,7 +77,7 @@ if(!isset($_SESSION['Valido'])) { ?>
   </tr>
   <tr bgcolor="#f5f5f5">
     <td colspan="3">
-      <font size="2" face="verdana"><b>&nbsp; Observa&ccedil;&otilde;es adicionais:</b> <?=$Campos['Observacao']?></font>
+      <font size="2" face="verdana"><b>&nbsp; Observa√ß√µes adicionais:</b> <?=$Campos['Observacao']?></font>
     </td>
   </tr> 
 </table>

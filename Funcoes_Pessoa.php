@@ -1,57 +1,80 @@
 <?php
+//define(LDAP_OPT_DIAGNOSTIC_MESSAGE, 0x0032);
 /*
 Copyright 2011 da UFRGS - Universidade Federal do Rio Grande do Sul
 
-Este arquivo È parte do programa SAELE - Sistema Aberto de EleiÁıes EletrÙnicas.
+Este arquivo √© parte do programa SAELE - Sistema Aberto de Elei√ß√µes Eletr√¥nicas.
 
-O SAELE È um software livre; vocÍ pode redistribuÌ-lo e/ou modific·-lo dentro dos
-termos da LicenÁa P˙blica Geral GNU como publicada pela FundaÁ„o do Software Livre
-(FSF); na vers„o 2 da LicenÁa.
+O SAELE √© um software livre; voc√™ pode redistribu√≠-lo e/ou modific√°-lo dentro dos
+termos da Licen√ßa P√∫blica Geral GNU como publicada pela Funda√ß√£o do Software Livre
+(FSF); na vers√£o 2 da Licen√ßa.
 
-Este programa È distribuÌdo na esperanÁa que possa ser ˙til, mas SEM NENHUMA GARANTIA;
-sem uma garantia implÌcita de ADEQUA«√O a qualquer MERCADO ou APLICA«√O EM PARTICULAR.
-Veja a LicenÁa P˙blica Geral GNU/GPL em portuguÍs para maiores detalhes.
+Este programa √© distribu√≠do na esperan√ßa que possa ser √∫til, mas SEM NENHUMA GARANTIA;
+sem uma garantia impl√≠cita de ADEQUA√á√ÉO a qualquer MERCADO ou APLICA√á√ÉO EM PARTICULAR.
+Veja a Licen√ßa P√∫blica Geral GNU/GPL em portugu√™s para maiores detalhes.
 
-VocÍ deve ter recebido uma cÛpia da LicenÁa P˙blica Geral GNU, sob o tÌtulo "LICENCA.txt",
-junto com este programa, se n„o, acesse o Portal do Software P˙blico Brasileiro no
-endereÁo www.softwarepublico.gov.br ou escreva para a FundaÁ„o do Software Livre(FSF)
+Voc√™ deve ter recebido uma c√≥pia da Licen√ßa P√∫blica Geral GNU, sob o t√≠tulo "LICENCA.txt",
+junto com este programa, se n√£o, acesse o Portal do Software P√∫blico Brasileiro no
+endere√ßo www.softwarepublico.gov.br ou escreva para a Funda√ß√£o do Software Livre(FSF)
 Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
 */
 
 error_reporting(E_PARSE | E_ERROR);
 
 /**
- * Esta funÁ„o È respons·vel por realizar a autenticaÁ„o da pessoa. Ela ser·
- * invocada no momento do login, e deve certificar que o usu·rio informado È
- * v·lido e sua senha est· correta. O valor de retorno dever· ser booleano
- * igual a TRUE caso a autenticaÁ„o seja bem sucedida e FALSE em caso contr·rio.
+ * Esta fun√ß√£o √© respons√°vel por realizar a autentica√ß√£o da pessoa. Ela ser√°
+ * invocada no momento do login, e deve certificar que o usu√°rio informado √©
+ * v√°lido e sua senha est√° correta. O valor de retorno dever√° ser booleano
+ * igual a TRUE caso a autentica√ß√£o seja bem sucedida e FALSE em caso contr√°rio.
  * @param string $Usuario
  * @param string $Senha
  * @return boolean
  */
 function AutenticaPessoa($Usuario, $Senha) {
-	return true;
+        return true;
+	#$Usuario = str_pad($Usuario, 8, '0', STR_PAD_LEFT);
+        ldap_set_option(NULL, LDAP_OPT_DEBUG_LEVEL, 7);
+	$ldapconn = ldap_connect("ldap://redechesf.local", 389)or die("N√£o foi poss√≠vel conectar com a redechesf(LDAP).<br>");
+        
+	if (!$ldapconn) {
+	//return "Erro ao estabelecer conex√£o com o LDAP";
+            echo 'Erro ao conectar ldap_connect'.$Usuario .' - '. $Senha.'<br>';
+	return FALSE;
+	}
+	//ldap_set_option($ldapconn, LDAP_OPT_PROTOCOL_VERSION, 3);
+        
+        $retorno = ldap_bind($ldapconn, "$Usuario@redechesf.local", $Senha);
+//        if ($retorno) {
+//            if (ldap_get_option($ldapconn, LDAP_OPT_DIAGNOSTIC_MESSAGE, $extended_error)) {
+//                echo "Error Binding to LDAP: $extended_error <br>";
+//            } else {
+//                echo "Error Binding to LDAP: No additional information is available.<br>";
+//            }
+//        }
+         echo("msg:'".ldap_error($retorno)."'</br>");
+        echo 'retorno do ldap_bind ('.$retorno.')<br>';
+	return $retorno;
 }
 
 /**
- * Esta funÁ„o realiza a homologaÁ„o dos dados de uma pessoa no sistema. Ela
- * receber· todos os dados da pessoa armazenados no sistema (Nome, CPF, Registro
- * geral, E-Mail, etc.) em um vetor, e dever· verificar se esses dados est„o
- * corretos de acordo com a base institucional. O valor de retorno ser· um
- * string, e dever· ser NULL quando a homologaÁ„o for bem sucedida; em caso
- * contr·rio, a funÁ„o dever· retornar a mensagem de erro que ser· exibida
- * para o gerente de sistemas no momento da homologaÁ„o. N„o h· restriÁıes
- * para a mensagem, porÈm recomenda-se que ela seja explÌcita e auto-explicativa.
- * O vetor $DadosPessoa tem, por default, os seguintes Ìndices:
- *  codpessoaeleicao: o cÛdigo de uso interno do sistema
- *  identificacaousuario: um cÛdigo de identificaÁ„o definido pela instituiÁ„o
+ * Esta fun√ß√£o realiza a homologa√ß√£o dos dados de uma pessoa no sistema. Ela
+ * receber√° todos os dados da pessoa armazenados no sistema (Nome, CPF, Registro
+ * geral, E-Mail, etc.) em um vetor, e dever√° verificar se esses dados est√£o
+ * corretos de acordo com a base institucional. O valor de retorno ser√° um
+ * string, e dever√° ser NULL quando a homologa√ß√£o for bem sucedida; em caso
+ * contr√°rio, a fun√ß√£o dever√° retornar a mensagem de erro que ser√° exibida
+ * para o gerente de sistemas no momento da homologa√ß√£o. N√£o h√° restri√ß√µes
+ * para a mensagem, por√©m recomenda-se que ela seja expl√≠cita e auto-explicativa.
+ * O vetor $DadosPessoa tem, por default, os seguintes √≠ndices:
+ *  codpessoaeleicao: o c√≥digo de uso interno do sistema
+ *  identificacaousuario: um c√≥digo de identifica√ß√£o definido pela institui√ß√£o
  *  nomepessoa: o nome da pessoa, como registrado no sistema
- *  cpf: o cpf, armazenado como n˙mero - isto È, sem zeros ‡ esquerda, pontos e traÁos
- *  nrregistrogeral: o n˙mero da carteira de identidade
- *  localtrabalho: o nome do local de trabalho do usu·rio; pode ser vazio
- *  pessoaautenticada: um caracter S ou N, que diz que a pessoa est· homologada
- *  gerentesistema: um caracter S ou N que indica se a pessoa È gerente do sistema
- *  solicitante: um caracter S ou N que indica se a pessoa pode solicitar eleiÁıes
+ *  cpf: o cpf, armazenado como n√∫mero - isto √©, sem zeros √† esquerda, pontos e tra√ßos
+ *  nrregistrogeral: o n√∫mero da carteira de identidade
+ *  localtrabalho: o nome do local de trabalho do usu√°rio; pode ser vazio
+ *  pessoaautenticada: um caracter S ou N, que diz que a pessoa est√° homologada
+ *  gerentesistema: um caracter S ou N que indica se a pessoa √© gerente do sistema
+ *  solicitante: um caracter S ou N que indica se a pessoa pode solicitar elei√ß√µes
  * @param array $DadosPessoa
  * @return string
  */

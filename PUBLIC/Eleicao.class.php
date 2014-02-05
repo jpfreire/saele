@@ -2,19 +2,19 @@
 /*
 Copyright 2011 da UFRGS - Universidade Federal do Rio Grande do Sul
 
-Este arquivo È parte do programa SAELE - Sistema Aberto de EleiÁıes EletrÙnicas.
+Este arquivo √© parte do programa SAELE - Sistema Aberto de Elei√ß√µes Eletr√¥nicas.
 
-O SAELE È um software livre; vocÍ pode redistribuÌ-lo e/ou modific·-lo dentro dos
-termos da LicenÁa P˙blica Geral GNU como publicada pela FundaÁ„o do Software Livre
-(FSF); na vers„o 2 da LicenÁa.
+O SAELE √© um software livre; voc√™ pode redistribu√≠-lo e/ou modific√°-lo dentro dos
+termos da Licen√ßa P√∫blica Geral GNU como publicada pela Funda√ß√£o do Software Livre
+(FSF); na vers√£o 2 da Licen√ßa.
 
-Este programa È distribuÌdo na esperanÁa que possa ser ˙til, mas SEM NENHUMA GARANTIA;
-sem uma garantia implÌcita de ADEQUA«√O a qualquer MERCADO ou APLICA«√O EM PARTICULAR.
-Veja a LicenÁa P˙blica Geral GNU/GPL em portuguÍs para maiores detalhes.
+Este programa √© distribu√≠do na esperan√ßa que possa ser √∫til, mas SEM NENHUMA GARANTIA;
+sem uma garantia impl√≠cita de ADEQUA√á√ÉO a qualquer MERCADO ou APLICA√á√ÉO EM PARTICULAR.
+Veja a Licen√ßa P√∫blica Geral GNU/GPL em portugu√™s para maiores detalhes.
 
-VocÍ deve ter recebido uma cÛpia da LicenÁa P˙blica Geral GNU, sob o tÌtulo "LICENCA.txt",
-junto com este programa, se n„o, acesse o Portal do Software P˙blico Brasileiro no
-endereÁo www.softwarepublico.gov.br ou escreva para a FundaÁ„o do Software Livre(FSF)
+Voc√™ deve ter recebido uma c√≥pia da Licen√ßa P√∫blica Geral GNU, sob o t√≠tulo "LICENCA.txt",
+junto com este programa, se n√£o, acesse o Portal do Software P√∫blico Brasileiro no
+endere√ßo www.softwarepublico.gov.br ou escreva para a Funda√ß√£o do Software Livre(FSF)
 Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
 */
 
@@ -30,8 +30,8 @@ define("CHAPAS_PORNUMERO", 0);
 define("CHAPAS_PORVOTOSDESC", 1);
 
 /**
- * Esta classe representa uma eleiÁ„o dentro de um ConcursoEleitoral, no qual
- * o eleitor poder· ter· uma ou mais possibilidades de voto em um n˙mero determinado
+ * Esta classe representa uma elei√ß√£o dentro de um ConcursoEleitoral, no qual
+ * o eleitor poder√° ter√° uma ou mais possibilidades de voto em um n√∫mero determinado
  * de chapas.
  */
 final class Eleicao extends Entidade {
@@ -41,9 +41,9 @@ final class Eleicao extends Entidade {
       "codeleicao"  => array(Tipo => numero, Tamanho => 4, Foreign => false)
     );
     protected $VetorCampos = array(
-      "descricao"           => array(Nome => "DescriÁ„o", Tipo => texto, Tamanho => 120, Obrigatorio => true),
-      "nrpossibilidades"    => array(Nome => "N˙mero de possibilidades de votos", Tipo => numero, Obrigatorio => true),
-      "nrdigitoschapa"      => array(Nome => "N˙mero de dÌgitos para chava", Tipo => numero, Obrigatorio => true, Valores => array(1, 2)),
+      "descricao"           => array(Nome => "Descri√ß√£o", Tipo => texto, Tamanho => 120, Obrigatorio => true),
+      "nrpossibilidades"    => array(Nome => "N√∫mero de possibilidades de votos", Tipo => numero, Obrigatorio => true),
+      "nrdigitoschapa"      => array(Nome => "N√∫mero de d√≠gitos para chava", Tipo => numero, Obrigatorio => true, Valores => array(1, 2, 3, 4, 5)),
       "votosbrancos"        => array(Nome => "Votos brancos", Tipo => numero, Obrigatorio => false),
       "votosnulos"          => array(Nome => "Votos nulos", Tipo => numero, Obrigatorio => false)
     );
@@ -60,7 +60,7 @@ final class Eleicao extends Entidade {
     }
 
 /**
- * Cria uma nova chapa para a atual eleiÁ„o.
+ * Cria uma nova chapa para a atual elei√ß√£o.
  * @return Chapa
  */
     public function geraChapa() {
@@ -68,8 +68,8 @@ final class Eleicao extends Entidade {
     }
 
 /**
- * Devolve uma chapa da atual eleiÁ„o. Caso ela n„o exista, devolve NULL.
- * @param int $CodChapa O cÛdigo da chapa desejada.
+ * Devolve uma chapa da atual elei√ß√£o. Caso ela n√£o exista, devolve NULL.
+ * @param int $CodChapa O c√≥digo da chapa desejada.
  * @return Chapa
  */
     public function devolveChapa($CodChapa) {
@@ -81,7 +81,7 @@ final class Eleicao extends Entidade {
     }
 
 /**
- * Devolve um iterador com todas as chapas da eleiÁ„o.
+ * Devolve um iterador com todas as chapas da elei√ß√£o.
  * @return Iterador
  */
     public function devolveChapas($Ordem=null) {
@@ -98,7 +98,7 @@ final class Eleicao extends Entidade {
                             array("Concurso" => $this->Concurso, "Eleicao" => $this));
     }
 /**
- * Devolve o n˙mero total de votos depositados na eleiÁ„o atual. Este procedimento
+ * Devolve o n√∫mero total de votos depositados na elei√ß√£o atual. Este procedimento
  * serve apenas para fins de auditoria.
  * @return int
  */
@@ -114,14 +114,14 @@ final class Eleicao extends Entidade {
     }
 
 /**
- * Devolve o n˙mero de votos em branco depositados na eleiÁ„o atual. Como este
- * procedimento informa parte do resultado da eleiÁ„o, ele sÛ pode ser executado
- * apÛs o tÈrmino do perÌodo de votaÁ„o.
+ * Devolve o n√∫mero de votos em branco depositados na elei√ß√£o atual. Como este
+ * procedimento informa parte do resultado da elei√ß√£o, ele s√≥ pode ser executado
+ * ap√≥s o t√©rmino do per√≠odo de vota√ß√£o.
  * @return int
  */
     public function devolveNrVotosBrancos() {
         if($this->Concurso->estadoConcurso() != CONCURSO_ENCERRADO)
-            throw new EleicaoException("Os votos sÛ podem ser contados apÛs o tÈrmino do concurso", 1);
+            throw new EleicaoException("Os votos s√≥ podem ser contados ap√≥s o t√©rmino do concurso", 1);
 
         $SQL = " select count(*) as Nr from eleicoes.voto
                  where codconcurso = :codconcurso[numero]
@@ -135,14 +135,14 @@ final class Eleicao extends Entidade {
     }
 
 /**
- * Devolve o n˙mero de votos nulos depositados na eleiÁ„o atual. Como este
- * procedimento informa parte do resultado da eleiÁ„o, ele sÛ pode ser executado
- * apÛs o tÈrmino do perÌodo de votaÁ„o.
+ * Devolve o n√∫mero de votos nulos depositados na elei√ß√£o atual. Como este
+ * procedimento informa parte do resultado da elei√ß√£o, ele s√≥ pode ser executado
+ * ap√≥s o t√©rmino do per√≠odo de vota√ß√£o.
  * @return int
  */
     public function devolveNrVotosNulos() {
         if($this->Concurso->estadoConcurso() != CONCURSO_ENCERRADO)
-            throw new EleicaoException("Os votos sÛ podem ser contados apÛs o tÈrmino do concurso", 1);
+            throw new EleicaoException("Os votos s√≥ podem ser contados ap√≥s o t√©rmino do concurso", 1);
         $SQL = " select count(*) as Nr from eleicoes.voto
                  where codconcurso = :codconcurso[numero]
                    and codeleicao = :codeleicao[numero]
@@ -155,14 +155,14 @@ final class Eleicao extends Entidade {
     }
 
 /**
- * Devolve o n˙mero de votos em branco depositados em uma determinada urna
- * na eleiÁ„o atual. Como este procedimento informa parte do resultado da
- * eleiÁ„o, ele sÛ pode ser executado apÛs o tÈrmino do perÌodo de votaÁ„o.
+ * Devolve o n√∫mero de votos em branco depositados em uma determinada urna
+ * na elei√ß√£o atual. Como este procedimento informa parte do resultado da
+ * elei√ß√£o, ele s√≥ pode ser executado ap√≥s o t√©rmino do per√≠odo de vota√ß√£o.
  * @return int
  */
     public function devolveNrVotosBrancosPorUrna(UrnaVirtual $Urna) {
         if($this->Concurso->estadoConcurso() != CONCURSO_ENCERRADO)
-            throw new EleicaoException("Os votos sÛ podem ser contados apÛs o tÈrmino do concurso", 1);
+            throw new EleicaoException("Os votos s√≥ podem ser contados ap√≥s o t√©rmino do concurso", 1);
         if( ($Urna->get("codconcurso") == $this->get("codconcurso"))
          && ($Urna->get("codeleicao") == $this->get("codeleicao"))) {
             $SQL = " select count(*) as Nr from eleicoes.voto
@@ -177,18 +177,18 @@ final class Eleicao extends Entidade {
             $Consulta->executa(true);
             return $Consulta->campo("Nr");
         }
-        else throw new EleicaoException("Urna inv·lida", 0);
+        else throw new EleicaoException("Urna inv√°lida", 0);
     }
 
 /**
- * Devolve o n˙mero de votos nulos depositados em uma determinada urna
- * na eleiÁ„o atual. Como este procedimento informa parte do resultado da
- * eleiÁ„o, ele sÛ pode ser executado apÛs o tÈrmino do perÌodo de votaÁ„o.
+ * Devolve o n√∫mero de votos nulos depositados em uma determinada urna
+ * na elei√ß√£o atual. Como este procedimento informa parte do resultado da
+ * elei√ß√£o, ele s√≥ pode ser executado ap√≥s o t√©rmino do per√≠odo de vota√ß√£o.
  * @return int
  */
     public function devolveNrVotosNulosPorUrna(UrnaVirtual $Urna) {
         if($this->Concurso->estadoConcurso() != CONCURSO_ENCERRADO)
-            throw new EleicaoException("Os votos sÛ podem ser contados apÛs o tÈrmino do concurso", 1);
+            throw new EleicaoException("Os votos s√≥ podem ser contados ap√≥s o t√©rmino do concurso", 1);
         if( ($Urna->get("codconcurso") == $this->get("codconcurso"))
          && ($Urna->get("codeleicao") == $this->get("codeleicao"))) {
             $SQL = " select count(*) as Nr from eleicoes.voto
@@ -203,17 +203,17 @@ final class Eleicao extends Entidade {
             $Consulta->executa(true);
             return $Consulta->campo("Nr");
         }
-        else throw new EleicaoException("Urna inv·lida", 0);
+        else throw new EleicaoException("Urna inv√°lida", 0);
     }
 
 /**
- * Efetua o procedimento de contagem de votos para a eleiÁ„o. Esse procedimento
- * sÛ pode ser realizado apÛs o tÈrmino do perÌodo de votaÁ„o do concurso.
+ * Efetua o procedimento de contagem de votos para a elei√ß√£o. Esse procedimento
+ * s√≥ pode ser realizado ap√≥s o t√©rmino do per√≠odo de vota√ß√£o do concurso.
  * @return boolean
  */
     public function realizaContagemVotos() {
         if($this->Concurso->estadoConcurso() != CONCURSO_ENCERRADO)
-            throw new EleicaoException("Os votos sÛ podem ser contados apÛs o tÈrmino do concurso", 1);
+            throw new EleicaoException("Os votos s√≥ podem ser contados ap√≥s o t√©rmino do concurso", 1);
         $Chapas = $this->devolveChapas();
         foreach($Chapas as $Chapa) {
             $Chapa->set("nrvotosrecebidos", $Chapa->devolveNrVotos());
@@ -225,7 +225,7 @@ final class Eleicao extends Entidade {
     }
 
 /**
- * Gera uma nova urna para a eleiÁ„o atual.
+ * Gera uma nova urna para a elei√ß√£o atual.
  * @return UrnaVirtual
  */
     public function geraUrna() {
@@ -233,9 +233,9 @@ final class Eleicao extends Entidade {
     }
 
 /**
- * Devolve uma urna da atual eleiÁ„o a partir do cÛdigo. Caso ela n„o exista,
+ * Devolve uma urna da atual elei√ß√£o a partir do c√≥digo. Caso ela n√£o exista,
  * devolve NULL.
- * @param int $CodUrna O cÛdigo da urna desejado.
+ * @param int $CodUrna O c√≥digo da urna desejado.
  * @return UrnaVirtual
  */
     public function devolveUrna($CodUrna) {
@@ -247,7 +247,7 @@ final class Eleicao extends Entidade {
     }
 
 /**
- * Devolve um iterador com todas as urnas cadastradas para a eleiÁ„o.
+ * Devolve um iterador com todas as urnas cadastradas para a elei√ß√£o.
  * @return Iterador
  */
     public function devolveUrnas() {
@@ -260,9 +260,9 @@ final class Eleicao extends Entidade {
     }
 
 /**
- * Devolve uma urna da atual eleiÁ„o a partir do endereÁo IP. Caso ela n„o exista,
+ * Devolve uma urna da atual elei√ß√£o a partir do endere√ßo IP. Caso ela n√£o exista,
  * devolve NULL.
- * @param string $IP O endereÁo IP da urna.
+ * @param string $IP O endere√ßo IP da urna.
  * @return UrnaVirtual
  */
     public function devolveUrnaPorIP($IP) {
@@ -281,8 +281,8 @@ where codconcurso = :CodConcurso[numero]
     }
 
 /**
- * Devolve a chapa a partir do n˙mero de votaÁ„o. Caso n„o exista, devolve NULL.
- * @param int $NrChapa O n˙mero da chapa desejada.
+ * Devolve a chapa a partir do n√∫mero de vota√ß√£o. Caso n√£o exista, devolve NULL.
+ * @param int $NrChapa O n√∫mero da chapa desejada.
  * @return Chapa
  */
     public function devolveChapaPorNumero($NrChapa) {
@@ -300,7 +300,7 @@ where codconcurso = :CodConcurso[numero]
           return NULL;
     }
 /**
- * Gera um novo escopo IP para a eleiÁ„o.
+ * Gera um novo escopo IP para a elei√ß√£o.
  * @return EscopoIP
  */
     public function geraEscopoIP() {
@@ -308,7 +308,7 @@ where codconcurso = :CodConcurso[numero]
     }
 
 /**
- * Devolve um escopo IP a partir de seu cÛdigo. Caso n„o exista, devolve NULL.
+ * Devolve um escopo IP a partir de seu c√≥digo. Caso n√£o exista, devolve NULL.
  * @param int $NrSeqEscopo
  * @return EscopoIP
  */
@@ -321,7 +321,7 @@ where codconcurso = :CodConcurso[numero]
     }
 
 /**
- * Devolve um iterador com todos os escopos IP da eleiÁ„o.
+ * Devolve um iterador com todos os escopos IP da elei√ß√£o.
  * @return Iterador
  */
     public function devolveEscoposIP() {
@@ -334,10 +334,10 @@ where codconcurso = :CodConcurso[numero]
     }
 
 /**
- * Devolve um escopo IP da eleiÁ„o que englobe o endereÁo IP dado. Caso haja mais
- * de um escopo que satisfaÁa esse requisito, ser· devolvido o escopo mais
- * especÌfico (ex. 192.168.15.* È mais especÌfico do que 192.168.*.*). Caso
- * nenhum escopo IP incorpore o endereÁo dado, retorna NULL.
+ * Devolve um escopo IP da elei√ß√£o que englobe o endere√ßo IP dado. Caso haja mais
+ * de um escopo que satisfa√ßa esse requisito, ser√° devolvido o escopo mais
+ * espec√≠fico (ex. 192.168.15.* √© mais espec√≠fico do que 192.168.*.*). Caso
+ * nenhum escopo IP incorpore o endere√ßo dado, retorna NULL.
  * @param string $IP
  * @return EscopoIP
  */
@@ -363,7 +363,7 @@ where codconcurso = :CodConcurso[numero]
     }
 
 /**
- * Devolve um escopo IP da eleiÁ„o a partir do prefixo exato. Caso n„o exista,
+ * Devolve um escopo IP da elei√ß√£o a partir do prefixo exato. Caso n√£o exista,
  * devolve NULL.
  * @param string $IP
  * @return EscopoIP
@@ -384,10 +384,10 @@ where codconcurso = :CodConcurso[numero]
     }
 
 /**
- * Devolve um iterador com os eleitores da eleiÁ„o. … possÌvel aplicar filtros
+ * Devolve um iterador com os eleitores da elei√ß√£o. √â poss√≠vel aplicar filtros
  * na lista de eleitores: ELEITOR_JAVOTOU, ELEITOR_NAOVOTOU, ELEITOR_HOMOLOGADO
  * e ELEITOR_NAOHOMOLOGADO. Esses filtros podem ser combinados, passando cada um
- * como um par‚metro diferente.
+ * como um par√¢metro diferente.
  * @return Iterador
  */
     public function devolveEleitores() {
@@ -411,7 +411,7 @@ where codconcurso = :CodConcurso[numero]
 
 /**
  * Devolve um objeto Eleitor para a PessoaEleicao informada, caso ela seja
- * eleitora da Eleicao atual. Caso contr·rio, devolve NULL.
+ * eleitora da Eleicao atual. Caso contr√°rio, devolve NULL.
  * @param PessoaEleicao $Pessoa
  * @return Eleitor
  */
@@ -424,9 +424,9 @@ where codconcurso = :CodConcurso[numero]
     }
 
 /**
- * Exclui eleitores da eleiÁ„o. … possÌvel aplicar filtros para a exclus„o:
+ * Exclui eleitores da elei√ß√£o. √â poss√≠vel aplicar filtros para a exclus√£o:
  * ELEITOR_JAVOTOU, ELEITOR_NAOVOTOU, ELEITOR_HOMOLOGADO e ELEITOR_NAOHOMOLOGADO.
- * Esses filtros podem ser combinados, passando cada um como um par‚metro diferente.
+ * Esses filtros podem ser combinados, passando cada um como um par√¢metro diferente.
  * @return boolean
  */
     public function excluiEleitores() {
@@ -451,7 +451,7 @@ where codconcurso = :CodConcurso[numero]
     }
 
 /**
- * Informa se a eleiÁ„o j· teve a zerÈsima realizada.
+ * Informa se a elei√ß√£o j√° teve a zer√©sima realizada.
  * @return boolean
  */
     public function eleicaoZerada() {
@@ -459,18 +459,18 @@ where codconcurso = :CodConcurso[numero]
     }
 
 /**
- * Zera os votos de uma eleiÁ„o. Procedimento necess·rio para
- * o inÌcio de uma eleiÁ„o.
+ * Zera os votos de uma elei√ß√£o. Procedimento necess√°rio para
+ * o in√≠cio de uma elei√ß√£o.
  * @return boolean
  */
     public function realizaZeresima() {
         $Controlador = Controlador::instancia();
         $Pessoa = $Controlador->recuperaPessoaLogada();
         if(!$Pessoa->eGerenteSistema() && ($this->verificaComissao($Pessoa) != COMISSAO_GERENTE))
-            throw new EleicaoException("Pessoa sem permiss„o", 0);
+            throw new EleicaoException("Pessoa sem permiss√£o", 0);
 
         if($this->eleicaoZerada())
-            throw new EleicaoException("A eleiÁ„o j· foi zerada", 0);
+            throw new EleicaoException("A elei√ß√£o j√° foi zerada", 0);
 
         try {
             $db = DB::instancia();
@@ -501,8 +501,8 @@ where codconcurso = :CodConcurso[numero]
     }
 
 /**
- * Verifica se a pessoa informada È membro da comiss„o ou gerente da eleiÁ„o.
- * Retorna false, se a pessoa n„o for nenhum dos dois, ou
+ * Verifica se a pessoa informada √© membro da comiss√£o ou gerente da elei√ß√£o.
+ * Retorna false, se a pessoa n√£o for nenhum dos dois, ou
  * retorna ELEICAO_GERENTE ou ELEICAO_MEMBROCOMISSAO.
  * @param PessoaEleicao $Pessoa
  * @return int|boolean
@@ -520,7 +520,7 @@ where codconcurso = :CodConcurso[numero]
 
 /**
  * Devolve o objeto Candidato para a PessoaEleicao informada, caso ela seja
- * candidato de alguma chapa da eleiÁ„o corrente. Caso contr·rio, devolve NULL.
+ * candidato de alguma chapa da elei√ß√£o corrente. Caso contr√°rio, devolve NULL.
  * @param PessoaEleicao $Pessoa
  * @return Candidato
  */
@@ -540,7 +540,7 @@ where codconcurso = :CodConcurso[numero]
     }
 
 /**
- * Retorna todos os gerentes da eleiÁ„o.
+ * Retorna todos os gerentes da elei√ß√£o.
  * @return Iterador
  */
     public function devolveGerentes() {
@@ -553,7 +553,7 @@ where codconcurso = :CodConcurso[numero]
 
 /**
  * Devolve o objeto MembroComissao para a PessoaEleicao informada, caso ela seja
- * gerente eleiÁ„o corrente. Caso contr·rio, devolve NULL.
+ * gerente elei√ß√£o corrente. Caso contr√°rio, devolve NULL.
  * @param PessoaEleicao $Pessoa
  * @return Candidato
  */
@@ -566,7 +566,7 @@ where codconcurso = :CodConcurso[numero]
     }
 
 /**
- * Retorna todos os membros da comiss„o eleitoral da eleiÁ„o.
+ * Retorna todos os membros da comiss√£o eleitoral da elei√ß√£o.
  * @return Iterador
  */
     public function devolveMembrosComissao() {
@@ -579,48 +579,48 @@ where codconcurso = :CodConcurso[numero]
 
 /**
  * Devolve o objeto MembroComissao para a PessoaEleicao informada, caso ela seja
- * membro da comiss„o eleitoral da eleiÁ„o corrente. Caso contr·rio, devolve NULL.
+ * membro da comiss√£o eleitoral da elei√ß√£o corrente. Caso contr√°rio, devolve NULL.
  * @param PessoaEleicao $Pessoa
  * @return Candidato
  */
     public function devolveMembroComissao(PessoaEleicao $Pessoa) {
         $Membro = new MembroComissao($this->Concurso, $this, $Pessoa);
-        if($Gerente->novo() || ($Membro->get("gerente") == "S"))
+        if($Membro->novo() || ($Membro->get("gerente") == "S"))
             return null;
         else
             return $Membro;
     }
 
 /**
- * Cadastra a PessoaEleicao informada como gerente da eleiÁ„o.
+ * Cadastra a PessoaEleicao informada como gerente da elei√ß√£o.
  * @param PessoaEleicao $Pessoa
  * @return boolean
  */
     public function cadastraGerente(PessoaEleicao $Pessoa) {
         $MembroComissao = new MembroComissao($this->Concurso, $this, $Pessoa);
         if(!$MembroComissao->novo())
-            throw new MembroComissaoException("Esta pessoa j· faz parte da comiss„o eleitoral", 1);
+            throw new MembroComissaoException("Esta pessoa j√° faz parte da comiss√£o eleitoral", 1);
         $MembroComissao->set("gerente", "S");
         $MembroComissao->salva();
         return true;
     }
 
 /**
- * Cadastra a PessoaEleicao informada na comiss„o eleitoral da eleiÁ„o.
+ * Cadastra a PessoaEleicao informada na comiss√£o eleitoral da elei√ß√£o.
  * @param PessoaEleicao $Pessoa
  * @return boolean
  */
     public function cadastraMembroComissao(PessoaEleicao $Pessoa) {
         $MembroComissao = new MembroComissao($this->Concurso, $this, $Pessoa);
         if(!$MembroComissao->novo())
-            throw new MembroComissaoException("Esta pessoa j· faz parte da comiss„o eleitoral", 1);
+            throw new MembroComissaoException("Esta pessoa j√° faz parte da comiss√£o eleitoral", 1);
         $MembroComissao->set("gerente", "N");
         $MembroComissao->salva();
         return true;
     }
 
 /**
- * Cadastra a PessoaEleicao informada como Eleitor da eleiÁ„o.
+ * Cadastra a PessoaEleicao informada como Eleitor da elei√ß√£o.
  * @param PessoaEleicao $Pessoa
  * @return boolean
  */
@@ -631,8 +631,8 @@ where codconcurso = :CodConcurso[numero]
     }
 
 /**
- * Devolve um iterador com as pessoas n„o homologadas relacionadas ‡ eleiÁ„o:
- * membros da comiss„o, gerentes, candidatos e eleitores.
+ * Devolve um iterador com as pessoas n√£o homologadas relacionadas √† elei√ß√£o:
+ * membros da comiss√£o, gerentes, candidatos e eleitores.
  * @return Iterador
  */
     public function devolvePessoasNaoHomologadas() {
@@ -654,7 +654,7 @@ where codconcurso = :CodConcurso[numero]
     }
 
 /**
- * Gera um LogOperacao para a Eleicao atual, com a descriÁ„o informada.
+ * Gera um LogOperacao para a Eleicao atual, com a descri√ß√£o informada.
  * @param string $Descricao
  * @return LogOperacao
  */

@@ -2,84 +2,84 @@
 <html>
   <head>
     <title></title>
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   </head>
   <body>
-    <h1>Guia de Instação do Sistema de Eleições</h1>
+    <h1>Guia de InstaÃ§Ã£o do Sistema de EleiÃ§Ãµes</h1>
     
-    <h2>Pr&eacute;-requisitos</h2>
+    <h2>PrÃ©-requisitos</h2>
     
     <p>
-        O sistema requer uma instalação do PHP (versão 5) e um banco de dados
+        O sistema requer uma instalaÃ§Ã£o do PHP (versÃ£o 5) e um banco de dados
         PostgreSQL. Esse banco de dados deve ser criado manualmente, e chamar-se
         "eleicoes". Se for preciso escolher outro nome, ele deve ser inserido
         na linha 2 do arquivo <code>CONEXAO/DBPHP.php</code>.
     </p>
     <p>
-        <strong>ATENÇÃO:</strong> para evitar problemas de codificação de caracteres,
-        selecione a codificação LATIN1 para o banco de dados. Não é possível mudar a
-        codificação depois da criação; ou seja, se ela estiver diferente, será necessário
-        remover o banco de dados e criá-lo de novo, ou adaptar o arquivo
+        <strong>ATENÃ‡ÃƒO:</strong> para evitar problemas de codificaÃ§Ã£o de caracteres,
+        selecione a codificaÃ§Ã£o LATIN1 para o banco de dados. NÃ£o Ã© possÃ­vel mudar a
+        codificaÃ§Ã£o depois da criaÃ§Ã£o; ou seja, se ela estiver diferente, serÃ¡ necessÃ¡rio
+        remover o banco de dados e criÃ¡-lo de novo, ou adaptar o arquivo
         <code>CONEXAO/DBPHP.php</code> para converter as strings enviadas para o banco.
     </p>
 
-    <h2>Passo 1: Configuração da conexão</h2>
+    <h2>Passo 1: ConfiguraÃ§Ã£o da conexÃ£o</h2>
 
     <p>
-        O sistema precisa dos parâmetros para realizar a conexão ao banco de dados.
-        Esses parâmetros são o <em>nome do usuário</em> do banco de dados, a
-        <em>senha</em> do usuário e o <em>host</em> onde ele se encontra.
+        O sistema precisa dos parÃ¢metros para realizar a conexÃ£o ao banco de dados.
+        Esses parÃ¢metros sÃ£o o <em>nome do usuÃ¡rio</em> do banco de dados, a
+        <em>senha</em> do usuÃ¡rio e o <em>host</em> onde ele se encontra.
     </p>
     <p>
-        Esses parâmetros devem ser colocados no arquivo <code>DBPHP.php</code>, que
-        se encontra no diretório <code>CONEXAO</code>. A partir da linha 37, são
-        criadas três variáveis que deverão conter esses parâmetros. Altere essas
-        linhas para que as três variáveis recebam os valores correspondentes.
+        Esses parÃ¢metros devem ser colocados no arquivo <code>DBPHP.php</code>, que
+        se encontra no diretÃ³rio <code>CONEXAO</code>. A partir da linha 37, sÃ£o
+        criadas trÃªs variÃ¡veis que deverÃ£o conter esses parÃ¢metros. Altere essas
+        linhas para que as trÃªs variÃ¡veis recebam os valores correspondentes.
     </p>
 
-    <h2>Passo 2: Geração da base de dados</h2>
+    <h2>Passo 2: GeraÃ§Ã£o da base de dados</h2>
 
     <p>
-        A criação da base de dados é feita através da execução de um <em>script</em>.
+        A criaÃ§Ã£o da base de dados Ã© feita atravÃ©s da execuÃ§Ã£o de um <em>script</em>.
         Para isso, execute o arquivo <code>Scrits.php</code> em seu navegador. Caso
-        a conexão tenha sido executada corretamente, você verá uma mensagem de
-        confirmação, e o <em>schema</em> <code>eleicoes</code> terá sido criado,
-        juntamente com todas as tabelas necessárias para o sistema.
+        a conexÃ£o tenha sido executada corretamente, vocÃª verÃ¡ uma mensagem de
+        confirmaÃ§Ã£o, e o <em>schema</em> <code>eleicoes</code> terÃ¡ sido criado,
+        juntamente com todas as tabelas necessÃ¡rias para o sistema.
     </p>
 
-    <h2>Passo 3: Implementação das rotinas de homologação e autenticação</h2>
+    <h2>Passo 3: ImplementaÃ§Ã£o das rotinas de homologaÃ§Ã£o e autenticaÃ§Ã£o</h2>
 
     <p>
-        O sistema de Eleições possui um cadastro interno de usuários, com os
-        dados pessoais necessários para seu funcionamento. Esse cadastro deve
-        ser coerente com a <em>base institucional</em> de pessoas, e ele <em>não
-        possui</em> dados de autenticação &mdash; ou seja, ele não armazena as
-        senhas de usuários.
+        O sistema de EleiÃ§Ãµes possui um cadastro interno de usuÃ¡rios, com os
+        dados pessoais necessÃ¡rios para seu funcionamento. Esse cadastro deve
+        ser coerente com a <em>base institucional</em> de pessoas, e ele <em>nÃ£o
+        possui</em> dados de autenticaÃ§Ã£o &mdash; ou seja, ele nÃ£o armazena as
+        senhas de usuÃ¡rios.
     </p>
     <p>
-        A tabela <code>pessoaeleicao</code> armazena, para cada usuário, um
-        <em>código de identificação</em>. Esse código é específico da instituição,
-        e será armazenado como uma string alfanumérica de 30 caracteres. No momento
-        de cadastro ou carregamento de uma pessoa, deve ser informado esse código
-        de identificação, bem como seus dados pessoais. Nesse momento, o sistema
-        fará a <em>homologação</em> dos dados da pessoa, para verificar se os dados
-        informados estão de acordo com os dados da base institucional. Essa operação
-        é feita também sempre que os dados de uma pessoa forem alterados.
+        A tabela <code>pessoaeleicao</code> armazena, para cada usuÃ¡rio, um
+        <em>cÃ³digo de identificaÃ§Ã£o</em>. Esse cÃ³digo Ã© especÃ­fico da instituiÃ§Ã£o,
+        e serÃ¡ armazenado como uma string alfanumÃ©rica de 30 caracteres. No momento
+        de cadastro ou carregamento de uma pessoa, deve ser informado esse cÃ³digo
+        de identificaÃ§Ã£o, bem como seus dados pessoais. Nesse momento, o sistema
+        farÃ¡ a <em>homologaÃ§Ã£o</em> dos dados da pessoa, para verificar se os dados
+        informados estÃ£o de acordo com os dados da base institucional. Essa operaÃ§Ã£o
+        Ã© feita tambÃ©m sempre que os dados de uma pessoa forem alterados.
     </p>
     <p>
-        No momento do <em>login</em>, o usuário fornecerá seu código de identificação
-        e sua senha. O sistema então fará a <em>identificação</em> do usuário, para
-        ver se o código fornecido existe no cadastro e se a senha está correta.
+        No momento do <em>login</em>, o usuÃ¡rio fornecerÃ¡ seu cÃ³digo de identificaÃ§Ã£o
+        e sua senha. O sistema entÃ£o farÃ¡ a <em>identificaÃ§Ã£o</em> do usuÃ¡rio, para
+        ver se o cÃ³digo fornecido existe no cadastro e se a senha estÃ¡ correta.
     </p>
     <p>
-        Essas duas operações dependem de funções que <strong>devem ser implementadas
-        pelo gerente do sistema</strong>, e que dependerão da estrutura da instituição.
-        Essas funções estão definidas e explicadas no arquivo <code>Funcoes_Pessoa.php</code>,
+        Essas duas operaÃ§Ãµes dependem de funÃ§Ãµes que <strong>devem ser implementadas
+        pelo gerente do sistema</strong>, e que dependerÃ£o da estrutura da instituiÃ§Ã£o.
+        Essas funÃ§Ãµes estÃ£o definidas e explicadas no arquivo <code>Funcoes_Pessoa.php</code>,
         e <em>devem ser implementadas corretamente</em> para o bom funcionamento
         do sistema.
     </p>
     <p>
-        Por default, as funções nunca homologam e autenticam os usuários. Portanto,
+        Por default, as funÃ§Ãµes nunca homologam e autenticam os usuÃ¡rios. Portanto,
         seu funcionamento deve ser alterado antes que o sistema entre em
         funcionamento.
     </p>
@@ -87,20 +87,20 @@
     <h2>Passo 4: Cadastro do gerente de sistemas</h2>
     
     <p>
-        O gerente do sistema dispõe de um formulário para cadastro do usuário
+        O gerente do sistema dispÃµe de um formulÃ¡rio para cadastro do usuÃ¡rio
         inicial, que encontra-se no caminho <code>INICIAL/CadastroUsuarioInicial.php</code>.
-        Ele deverá informar seus dados pessoais, que serão submetidos
-        à homologação mencionada no passo acima. Assim que a homologação for bem
-        sucedida, o usuário será cadastrado, e poderá ser realizado então o login
-        no módulo de administração, fornecendo o código de identificação e a senha.
+        Ele deverÃ¡ informar seus dados pessoais, que serÃ£o submetidos
+        Ã  homologaÃ§Ã£o mencionada no passo acima. Assim que a homologaÃ§Ã£o for bem
+        sucedida, o usuÃ¡rio serÃ¡ cadastrado, e poderÃ¡ ser realizado entÃ£o o login
+        no mÃ³dulo de administraÃ§Ã£o, fornecendo o cÃ³digo de identificaÃ§Ã£o e a senha.
     </p>
     <p>
-        Esse script só pode ser executado quando a tabela de pessoas estiver vazia;
-        ou seja, após ele ser utilizado com sucesso, ou após algum dado seja
-        informado manualmente na tabela, ele impedirá o acesso. Mesmo assim,
-        recomenda-se que o arquivo de cadastro seja excluído imediatamente após
-        o seu uso, para que ele não possa ser usado indevidamente por outros
-        usuários.
+        Esse script sÃ³ pode ser executado quando a tabela de pessoas estiver vazia;
+        ou seja, apÃ³s ele ser utilizado com sucesso, ou apÃ³s algum dado seja
+        informado manualmente na tabela, ele impedirÃ¡ o acesso. Mesmo assim,
+        recomenda-se que o arquivo de cadastro seja excluÃ­do imediatamente apÃ³s
+        o seu uso, para que ele nÃ£o possa ser usado indevidamente por outros
+        usuÃ¡rios.
     </p>
   </body>
 </html>

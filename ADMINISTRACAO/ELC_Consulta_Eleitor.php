@@ -2,22 +2,22 @@
 /*
 Copyright 2011 da UFRGS - Universidade Federal do Rio Grande do Sul
 
-Este arquivo È parte do programa SAELE - Sistema Aberto de EleiÁıes EletrÙnicas.
+Este arquivo √© parte do programa SAELE - Sistema Aberto de Elei√ß√µes Eletr√¥nicas.
 
-O SAELE È um software livre; vocÍ pode redistribuÌ-lo e/ou modific·-lo dentro dos
-termos da LicenÁa P˙blica Geral GNU como publicada pela FundaÁ„o do Software Livre
-(FSF); na vers„o 2 da LicenÁa.
+O SAELE √© um software livre; voc√™ pode redistribu√≠-lo e/ou modific√°-lo dentro dos
+termos da Licen√ßa P√∫blica Geral GNU como publicada pela Funda√ß√£o do Software Livre
+(FSF); na vers√£o 2 da Licen√ßa.
 
-Este programa È distribuÌdo na esperanÁa que possa ser ˙til, mas SEM NENHUMA GARANTIA;
-sem uma garantia implÌcita de ADEQUA«√O a qualquer MERCADO ou APLICA«√O EM PARTICULAR.
-Veja a LicenÁa P˙blica Geral GNU/GPL em portuguÍs para maiores detalhes.
+Este programa √© distribu√≠do na esperan√ßa que possa ser √∫til, mas SEM NENHUMA GARANTIA;
+sem uma garantia impl√≠cita de ADEQUA√á√ÉO a qualquer MERCADO ou APLICA√á√ÉO EM PARTICULAR.
+Veja a Licen√ßa P√∫blica Geral GNU/GPL em portugu√™s para maiores detalhes.
 
-VocÍ deve ter recebido uma cÛpia da LicenÁa P˙blica Geral GNU, sob o tÌtulo "LICENCA.txt",
-junto com este programa, se n„o, acesse o Portal do Software P˙blico Brasileiro no
-endereÁo www.softwarepublico.gov.br ou escreva para a FundaÁ„o do Software Livre(FSF)
+Voc√™ deve ter recebido uma c√≥pia da Licen√ßa P√∫blica Geral GNU, sob o t√≠tulo "LICENCA.txt",
+junto com este programa, se n√£o, acesse o Portal do Software P√∫blico Brasileiro no
+endere√ßo www.softwarepublico.gov.br ou escreva para a Funda√ß√£o do Software Livre(FSF)
 Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
 */
-                               // Consulta de Eleitores para saber se j· votaram
+                               // Consulta de Eleitores para saber se j√° votaram
 require_once('../CABECALHO.PHP');
 
 $Controlador = Controlador::instancia();
@@ -33,25 +33,25 @@ elseif(isset($_POST['CodConcurso']) && isset($_POST['CodEleicao'])) {
     $Eleicao = $Concurso->devolveEleicao($_POST['CodEleicao']);
 }
 else {
-   echo "<br>Erro! Par‚metros inv·lidos.<br><br>\n";
+   echo "<br>Erro! Par√¢metros inv√°lidos.<br><br>\n";
    echo "<a href=\"javascript: window.close();\">Fechar</a>\n";
    exit;
 }
 if(($Concurso->estadoConcurso() != CONCURSO_ENCERRADO) || ($Concurso->get("situacaoconcurso") != SITUACAOCONCURSO_APURADO)) {
-   echo "<br>Erro! Este concurso n„o foi apurado.<br><br>\n";
+   echo "<br>Erro! Este concurso n√£o foi apurado.<br><br>\n";
    echo "<a href=\"javascript: window.close();\">Fechar</a>\n";
    exit;
 }
 if(!$Pessoa->eGerenteSistema() && ($Eleicao->verificaComissao($Pessoa) != COMISSAO_GERENTE)) {
-   echo "<br><font class=\"a2\">Erro! O usu&aacute;rio n&atilde;o tem permiss&atilde;o para acessar esta p&aacute;gina.</font><br><br>\n";
+   echo "<br><font class=\"a2\">Erro! O usu√°rio n√£o tem permiss√£o para acessar esta p√°gina.</font><br><br>\n";
    echo "<a href=\"javascript: window.close();\">Fechar</a>\n";
    exit;
 }
 
-if(isset($_POST['IN_Selecao']) && (trim($_POST['IN_Selecao']) != "")) { // Quando a pessoa j· foi selecionada ?>
+if(isset($_POST['IN_Selecao']) && (trim($_POST['IN_Selecao']) != "")) { // Quando a pessoa j√° foi selecionada ?>
 <html>
 <head>
-    <meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
     <title>Pesquisa de Eleitor</title>
     <link rel="stylesheet" type="text/css" href="code/eleicao.css">
 </head>
@@ -80,24 +80,24 @@ if(isset($_POST['IN_Selecao']) && (trim($_POST['IN_Selecao']) != "")) { // Quand
 
     if(!is_null($Eleitor->get("datahoravoto"))) {
         if(!is_null($Eleitor->get("codurnavoto"))) {
-            $Urna = new UrnaVirtual($Eleitor->get("codurnavoto")); ?>
-            O eleitor <?=$PessoaSelecionada->get("nomepessoa")?> votou nesta eleiÁ„o na urna "<?=$Urna->get("descricao")?>" (<?=$Urna->getChave()?>).
+            $Urna = new UrnaVirtual($Concurso, $Eleicao, $Eleitor->get("codurnavoto")); ?>
+            O eleitor <?=$PessoaSelecionada->get("nomepessoa")?> votou nesta elei√ß√£o na urna "<?=$Urna->get("descricao")?>" (<?=$Urna->getChave()?>).
         <?php
         }
         else { ?>
-                O eleitor <?=$PessoaSelecionada->get("nomepessoa")?> votou nesta eleiÁ„o.
+                O eleitor <?=$PessoaSelecionada->get("nomepessoa")?> votou nesta elei√ß√£o.
         <?php
         }
     }
     else { ?>
-                O eleitor <?=$PessoaSelecionada->get("nomepessoa")?> <b>n„o</b> votou nesta eleiÁ„o.
+                O eleitor <?=$PessoaSelecionada->get("nomepessoa")?> <b>n√£o</b> votou nesta elei√ß√£o.
     <?php
     } ?>
     </td>
   </tr>
 </table>
 <br />
-<input type="button" value="Voltar" onClick="javascript: location.href = 'ELC_Consulta_Eleitor.php?CodConcurso=<?=$Concurso->GetChave()?>&CodEleicao=<?=$Concurso->GetChave()?>';" /> &nbsp;
+<input type="button" value="Voltar" onClick="javascript: location.href = 'ELC_Consulta_Eleitor.php?CodConcurso=<?=$Concurso->GetChave()?>&CodEleicao=<?=$Eleicao->GetChave()?>';" /> &nbsp;
 <input type="button" value="Fechar" onClick="javascript: window.close();" />
 
 </div>
@@ -106,7 +106,7 @@ if(isset($_POST['IN_Selecao']) && (trim($_POST['IN_Selecao']) != "")) { // Quand
 
 <?php
 }
-elseif(isset($_POST['IN_Pesq']) && (trim($_POST['IN_Pesq']) != "")) { // Quando a pesquisa j· foi enviada
+elseif(isset($_POST['IN_Pesq']) && (trim($_POST['IN_Pesq']) != "")) { // Quando a pesquisa j√° foi enviada
     if($_POST['IN_Criterio'] == 1) { // Pesquisa por nome
         if($_POST['IN_Pesquisa'] == 1) // Termo inicial
             $Criterio = $_POST['IN_Pesq']."%";
@@ -133,7 +133,7 @@ elseif(isset($_POST['IN_Pesq']) && (trim($_POST['IN_Pesq']) != "")) { // Quando 
     } ?>
 <html>
 <head>
-    <meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
     <title>Pesquisa de Eleitor</title>
     <link rel="stylesheet" type="text/css" href="code/eleicao.css">
 </head>
@@ -179,14 +179,14 @@ elseif(isset($_POST['IN_Pesq']) && (trim($_POST['IN_Pesq']) != "")) { // Quando 
     <?php
     }
     else {
-        echo 'N„o foi encontrado nenhum eleitor nesta eleiÁ„o com o critÈrio selecionado.';
+        echo 'N√£o foi encontrado nenhum eleitor nesta elei√ß√£o com o crit√©rio selecionado.';
     }
     ?>
     </td>
   </tr>
 </table>
 <br />
-<input type="button" value="Voltar" onClick="javascript: location.href = 'ELC_Consulta_Eleitor.php?CodConcurso=<?=$Concurso->GetChave()?>&CodEleicao=<?=$Concurso->GetChave()?>';" /> &nbsp;
+<input type="button" value="Voltar" onClick="javascript: location.href = 'ELC_Consulta_Eleitor.php?CodConcurso=<?=$Concurso->GetChave()?>&CodEleicao=<?=$Eleicao->GetChave()?>';" /> &nbsp;
 <input type="button" value="Fechar" onClick="javascript: window.close();" />
 
 </div>
@@ -198,7 +198,7 @@ elseif(isset($_POST['IN_Pesq']) && (trim($_POST['IN_Pesq']) != "")) { // Quando 
 else { // Antes de enviar a pesquisa ?>
 <html>
 <head>
-    <meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
     <title>Pesquisa de Eleitor</title>
     <link rel="stylesheet" type="text/css" href="code/eleicao.css">
 </head>
@@ -217,13 +217,13 @@ else { // Antes de enviar a pesquisa ?>
 
   function Valida(Form) {
     if(Form.IN_Pesq.value.length < 3) {
-      alert('O critÈrio de pesquisa deve possuir, no mÌnimo, 3 caracteres.');
+      alert('O crit√©rio de pesquisa deve possuir, no m√≠nimo, 3 caracteres.');
       return false;
     }
 
     if(document.getElementById('Criterio2').checked) {
       if(isNaN(Form.IN_Pesq.value) || Form.IN_Pesq.value.length > 6) {
-        alert('CÛdigo inv·lido.');
+        alert('C√≥digo inv√°lido.');
         return false;
       }
     }
@@ -289,7 +289,7 @@ else { // Antes de enviar a pesquisa ?>
             <input type="radio" value="1" name="IN_Criterio" id="Criterio1" onClick="javascript: Mudou(this);" checked="checked">
             Nome
             <input type="radio" value="2" name="IN_Criterio" id="Criterio2" onClick="javascript: Mudou(this);">
-            CÛdigo</font>
+            C√≥digo</font>
          </td>
          <td>
          </td>

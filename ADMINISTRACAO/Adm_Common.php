@@ -2,19 +2,19 @@
 /*
 Copyright 2011 da UFRGS - Universidade Federal do Rio Grande do Sul
 
-Este arquivo È parte do programa SAELE - Sistema Aberto de EleiÁıes EletrÙnicas.
+Este arquivo √© parte do programa SAELE - Sistema Aberto de Elei√ß√µes Eletr√¥nicas.
 
-O SAELE È um software livre; vocÍ pode redistribuÌ-lo e/ou modific·-lo dentro dos
-termos da LicenÁa P˙blica Geral GNU como publicada pela FundaÁ„o do Software Livre
-(FSF); na vers„o 2 da LicenÁa.
+O SAELE √© um software livre; voc√™ pode redistribu√≠-lo e/ou modific√°-lo dentro dos
+termos da Licen√ßa P√∫blica Geral GNU como publicada pela Funda√ß√£o do Software Livre
+(FSF); na vers√£o 2 da Licen√ßa.
 
-Este programa È distribuÌdo na esperanÁa que possa ser ˙til, mas SEM NENHUMA GARANTIA;
-sem uma garantia implÌcita de ADEQUA«√O a qualquer MERCADO ou APLICA«√O EM PARTICULAR.
-Veja a LicenÁa P˙blica Geral GNU/GPL em portuguÍs para maiores detalhes.
+Este programa √© distribu√≠do na esperan√ßa que possa ser √∫til, mas SEM NENHUMA GARANTIA;
+sem uma garantia impl√≠cita de ADEQUA√á√ÉO a qualquer MERCADO ou APLICA√á√ÉO EM PARTICULAR.
+Veja a Licen√ßa P√∫blica Geral GNU/GPL em portugu√™s para maiores detalhes.
 
-VocÍ deve ter recebido uma cÛpia da LicenÁa P˙blica Geral GNU, sob o tÌtulo "LICENCA.txt",
-junto com este programa, se n„o, acesse o Portal do Software P˙blico Brasileiro no
-endereÁo www.softwarepublico.gov.br ou escreva para a FundaÁ„o do Software Livre(FSF)
+Voc√™ deve ter recebido uma c√≥pia da Licen√ßa P√∫blica Geral GNU, sob o t√≠tulo "LICENCA.txt",
+junto com este programa, se n√£o, acesse o Portal do Software P√∫blico Brasileiro no
+endere√ßo www.softwarepublico.gov.br ou escreva para a Funda√ß√£o do Software Livre(FSF)
 Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
 */
 
@@ -26,8 +26,9 @@ require_once("../PUBLIC/ConcursoEleitoral.class.php");
 require("../xajax/xajax_core/xajax.inc.php");
 
 $xajax = new xajax('Adm_Common.php');
-
-$xajax->setCharEncoding("iso-8859-1");
+$xajax->configure('javascript URI', '../xajax/');
+$xajax->configure('responseType', 'XML');
+$xajax->configure('characterEncoding', 'UTF-8');
 $xajax->configure("decodeUTF8Input", true);
 
 $xajax->register(XAJAX_FUNCTION, "CarregaTabelaConcursos");
@@ -93,14 +94,14 @@ function CarregaTabelaConcursos() {
 		if($Direito && $EmAberto)
             $Str .= '    <td class="Centro" width="10%"><a href="javascript: void(0);" onclick="javascript: EditaEleicao('.$CodConcurso.', 0);">[INCLUIR]</a></td>';
 
-		$Str .= '    <td class="Centro">'.$Concurso->retornaString(STR_CONCURSOELEITORAL).': ['.$Campos['CodConcurso'].'] '.$Concurso->get("descricao").' (de '.$Concurso->get("datahorainicio", datahora).' at&eacute; '.$Concurso->get("datahorafim", datahora).') ';
+		$Str .= '    <td class="Centro">'.$Concurso->retornaString(STR_CONCURSOELEITORAL).': ['.$Campos['CodConcurso'].'] '.$Concurso->get("descricao").' (de '.$Concurso->get("datahorainicio", datahora).' at√© '.$Concurso->get("datahorafim", datahora).') ';
 
         if(!$EmAberto && !$JaContou)
             $Str .= '<a href="javascript: void(0);" onClick="javascript: MostraEnvioEMail('.$Campos['CodConcurso'].');">[Enviar E-Mails]</a> ';
 
 		if($Direito && ($Concurso->get("situacaoconcurso") < SITUACAOCONCURSO_HOMOLOGADO)) {
-            $Str .= '<a href="ELC_Valida_Pessoas_Concurso.php?CodConcurso='.$Campos['CodConcurso'].'">[Homologa&ccedil;&atilde;o]</a>
-			       <a href="ELC_Valida_Pessoas_Concurso.php?CodConcurso='.$Campos['CodConcurso'].'&Final">[Homologa&ccedil;&atilde;o final]</a> ';
+            $Str .= '<a href="ELC_Valida_Pessoas_Concurso.php?CodConcurso='.$Campos['CodConcurso'].'">[Homologa√ß√£o]</a>
+			       <a href="ELC_Valida_Pessoas_Concurso.php?CodConcurso='.$Campos['CodConcurso'].'&Final">[Homologa√ß√£o final]</a> ';
 
             $Str .= '<a href="javascript: void(0);" onClick="javascript: EditaConcurso('.$Campos['CodConcurso'].');">[Editar]</a> ';
         }
@@ -156,12 +157,12 @@ function CarregaTabelaConcursos() {
 				  $Porcentagem = 0;
 				else
 				  $Porcentagem = round(($ConsultaVotantes->campo("NumVotantes") / $ConsultaVotantes->campo("NumEleitores")) * 100, 2);
-				$Str .= "Ativo. ".$Porcentagem."% dos eleitores j&aacute; votaram.";
+				$Str .= "Ativo. ".$Porcentagem."% dos eleitores j√° votaram.";
 			}
 			else {
                 if($Encerrou) {
                     if($JaContou) {
-                        $Str .= 'Encerrada. <a href="ELC_Apuracao.php?CodConcurso='.$CodConcurso.'&CodEleicao='.$CodEleicao.'">Visualizar a apura&ccedil;&atilde;o</a>';
+                        $Str .= 'Encerrada. <a href="ELC_Apuracao.php?CodConcurso='.$CodConcurso.'&CodEleicao='.$CodEleicao.'">Visualizar a apura√ß√£o</a>';
                     }
 					else
                         $Str .= 'Encerrada; aguardando a contagem dos votos.';
@@ -207,7 +208,7 @@ function EdicaoConcurso($CodConcurso=NULL) {
     $Pessoa = $Controlador->recuperaPessoaLogada();
 
     if(!$Pessoa->eGerenteSistema()) {
-        $objResponse->alert("O usu·rio n„o possui direito para esta operaÁ„o.");
+        $objResponse->alert("O usu√°rio n√£o possui direito para esta opera√ß√£o.");
 		return $objResponse;
 	}
 
@@ -244,9 +245,9 @@ function EdicaoConcurso($CodConcurso=NULL) {
               ->assign("BarradoPorIPE", "checked", ($BarradoPorIP == "E" ? 'checked="checked"' : NULL))
               ->assign("BarradoPorIPN", "checked", ($BarradoPorIP == "N" ? 'checked="checked"' : NULL))
               ->assign("IndContagemS", "checked", ($IndContagem == "S" ? 'checked="checked"' : NULL))
-			  ->assign("IndContagemN", "checked", ($IndContagem == "N" ? 'checked="checked"' : NULL))
-              ->assign("ModalidadeE", "checked", ($Modalidade == "E" ? 'checked="checked"' : NULL))
-              ->assign("ModalidadeQ", "checked", ($Modalidade == "Q" ? 'checked="checked"' : NULL))
+              ->assign("IndContagemN", "checked", ($IndContagem == "N" ? 'checked="checked"' : NULL))
+              ->assign("ModalidadeE", "checked", ($Modalidade == "S" ? 'checked="checked"' : NULL))
+              ->assign("ModalidadeQ", "checked", ($Modalidade == "N" ? 'checked="checked"' : NULL))
               ->assign("DivEdicaoConcurso", "style.display", "block");
 	return $objResponse;
 }
@@ -258,18 +259,18 @@ function SalvarConcurso($Form) {
     $Pessoa = $Controlador->recuperaPessoaLogada();
 
     if(!$Pessoa->eGerenteSistema()) {
-	  $objResponse->alert("O usu·rio n„o possui direito para esta operaÁ„o.");
+	  $objResponse->alert("O usu√°rio n√£o possui direito para esta opera√ß√£o.");
 		return $objResponse;
 	}
 
 	if(trim($Form['DescConcurso']) == "")
-	  $objResponse->alert("Preencha a descriÁ„o do concurso.");
+	  $objResponse->alert("Preencha a descri√ß√£o do concurso.");
 	elseif(trim($Form['DataInicio']) == "")
-	  $objResponse->alert("Preencha a data de inÌcio do concurso.");
+	  $objResponse->alert("Preencha a data de in√≠cio do concurso.");
 	elseif(trim($Form['DataFim']) == "")
 	  $objResponse->alert("Preencha a data de fim do concurso.");
 	elseif(trim($Form['HoraInicio']) == "")
-	  $objResponse->alert("Preencha a hora de inÌcio do concurso.");
+	  $objResponse->alert("Preencha a hora de in√≠cio do concurso.");
 	elseif(trim($Form['HoraFim']) == "")
 	  $objResponse->alert("Preencha a hora de fim do concurso.");
 	else {
@@ -290,7 +291,7 @@ function SalvarConcurso($Form) {
 
         $Concurso->salva();
 		$objResponse->assign("DivEdicaoConcurso", "style.display", "none");
-		$objResponse->loadCommands(CarregaTabelaConcursos());
+		$objResponse->appendResponse(CarregaTabelaConcursos());
 	}
 	return $objResponse;
 }
@@ -306,7 +307,7 @@ function EdicaoEleicao($CodConcurso, $CodEleicao=NULL) {
 
 	if(is_null($CodEleicao)) {
         if(!$Pessoa->eGerenteSistema()) {
-            $objResponse->alert("PERMISS√O NEGADA: OperaÁ„o exclusiva para gerentes do sistema");
+            $objResponse->alert("PERMISS√ÉO NEGADA: Opera√ß√£o exclusiva para gerentes do sistema");
             return $objResponse;
         }
 
@@ -320,7 +321,7 @@ function EdicaoEleicao($CodConcurso, $CodEleicao=NULL) {
         $Eleicao = $Concurso->devolveEleicao($CodEleicao);
 
         if(!$Pessoa->eGerenteSistema() && ($Eleicao->verificaComissao($Pessoa) != COMISSAO_GERENTE)) {
-            $objResponse->alert("PERMISS√O NEGADA: OperaÁ„o exclusiva para gerentes do sistema e da eleiÁ„o");
+            $objResponse->alert("PERMISS√ÉO NEGADA: Opera√ß√£o exclusiva para gerentes do sistema e da elei√ß√£o");
             return $objResponse;
         }
 
@@ -344,10 +345,8 @@ function EdicaoEleicao($CodConcurso, $CodEleicao=NULL) {
                 ->assign("DescEleicao", "disabled", ($ConcursoAtivo ? 'disabled' : null))
                 ->assign("NrPossibilidades", "value", $NrPossibilidades)
                 ->assign("NrPossibilidades", "disabled", ($ConcursoAtivo ? 'disabled' : null))
-                ->assign("NrDigitosChapa2", "checked", $NrDigitos == 2 ? 'checked' : null)
-                ->assign("NrDigitosChapa1", "checked", $NrDigitos == 1 ? 'checked' : null)
-                ->assign("NrDigitosChapa2", "disabled", $EditarNrDigitos ? null : 'disabled')
-                ->assign("NrDigitosChapa1", "disabled", $EditarNrDigitos ? null : 'disabled')
+                ->assign("NrDigitosChapa", "value", $NrDigitos)
+                ->assign("NrDigitosChapa", "disabled", $EditarNrDigitos ? null : 'disabled')
                 ->assign("BtnSalvarEleicao", "disabled", ($ConcursoAtivo ? 'disabled' : null))
                 ->assign("DivEdicaoEleicao", "style.display", "block");
 	return $objResponse;
@@ -362,7 +361,7 @@ function SalvarEleicao($Form, $VaiParaRelatorio=false) {
     if($Concurso->estadoConcurso() < CONCURSO_INICIADO) {
         if(trim($Form['CodEleicao']) == "") {
             if(!$Pessoa->eGerenteSistema()) {
-                $objResponse->alert("PERMISS√O NEGADA: OperaÁ„o exclusiva para gerentes do sistema");
+                $objResponse->alert("PERMISS√ÉO NEGADA: Opera√ß√£o exclusiva para gerentes do sistema");
                 return $objResponse;
             }
 
@@ -372,29 +371,33 @@ function SalvarEleicao($Form, $VaiParaRelatorio=false) {
             $Eleicao = $Concurso->devolveEleicao($Form['CodEleicao']);
 
             if(!$Pessoa->eGerenteSistema() && ($Eleicao->verificaComissao($Pessoa) != COMISSAO_GERENTE)) {
-                $objResponse->alert("PERMISS√O NEGADA: OperaÁ„o exclusiva para gerentes do sistema e da eleiÁ„o");
+                $objResponse->alert("PERMISS√ÉO NEGADA: Opera√ß√£o exclusiva para gerentes do sistema e da elei√ß√£o");
                 return $objResponse;
             }
         }
+        
+        $ConcursoAtivo = ($Concurso->estadoConcurso() >= CONCURSO_INICIADO);
+        $Chapas = $Eleicao->devolveChapas();
+        $EditarNrDigitos = (!$Chapas->temRegistro() and !$ConcursoAtivo);
 
         if(trim($Form['DescEleicao']) == "")
-            return $objResponse->alert("Preencha a descriÁ„o da eleiÁ„o");
+            return $objResponse->alert("Preencha a descri√ß√£o da elei√ß√£o");
         if((trim($Form['NrPossibilidades'])) == "" || (!is_numeric($Form['NrPossibilidades'])))
-            return $objResponse->alert("Preencha o n˙mero de possibilidades de voto (apenas dÌgitos)");
-        if(isset($Form['NrDigitosChapa']) && ($Form['NrDigitosChapa'] != 1) && ($Form['NrDigitosChapa'] != 2))
-            return $objResponse->alert("Selecione o n˙mero de digitos por chapa");
+            return $objResponse->alert("Preencha o n√∫mero de possibilidades de voto (apenas d√≠gitos)");
+        if($EditarNrDigitos && (trim($Form['NrDigitosChapa']) == "" || (!in_array($Form['NrDigitosChapa'], array(1, 2, 3, 4, 5)))))
+            return $objResponse->alert("Selecione o n√∫mero de digitos por chapa");
         $Eleicao->set("descricao", $Form['DescEleicao']);
         $Eleicao->set("nrpossibilidades", $Form['NrPossibilidades']);
-        if(isset($Form['NrDigitosChapa']))
-            $Eleicao->set("nrdigitoschapa", $Form['NrDigitosChapa']);
+        if($EditarNrDigitos)
+          $Eleicao->set("nrdigitoschapa", $Form['NrDigitosChapa']);
         $Eleicao->salva();
     }
 
     $objResponse->assign("DivEdicaoEleicao", "style.display", "none");
     if($VaiParaRelatorio)
-        $objResponse->script("location.href = 'ELC_Relatorio_Eleicao.php?CodConcurso=".$Form['CodConcursoElc']."&CodEleicao=".$Form['CodEleicao']."';");
+        $objResponse->script("location.href = 'ELC_Relatorio_Eleicao.php?CodConcurso=".$Form['CodConcursoElc']."&CodEleicao=".$Eleicao->get("CodEleicao")."';");
     else
-        $objResponse->loadCommands(CarregaTabelaConcursos());
+        $objResponse->appendResponse(CarregaTabelaConcursos());
     return $objResponse;
 }
 
@@ -406,18 +409,18 @@ function EnviarEMailEleitores($Form) {
     $Concurso = new ConcursoEleitoral($Form['CodConcursoElc']);
     $Eleicao = $Concurso->devolveEleicao($Form['CodEleicao']);
     if(!$Pessoa->eGerenteSistema() && ($Eleicao->verificaComissao($Pessoa) != COMISSAO_GERENTE))
-        return $objResponse->alert("PERMISS√O NEGADA: OperaÁ„o exclusiva para gerentes do sistema e da eleiÁ„o.");
+        return $objResponse->alert("PERMISS√ÉO NEGADA: Opera√ß√£o exclusiva para gerentes do sistema e da elei√ß√£o.");
 
     if($Concurso->get("indbarradoporip") == "S")
-        return $objResponse->alert("ERRO: OperaÁ„o n„o permitida para concursos com urnas.");
+        return $objResponse->alert("ERRO: Opera√ß√£o n√£o permitida para concursos com urnas.");
     if(LogOperacao::getNumLogsPorDescricao(DESCRICAO_EMAILS, $Concurso, $Eleicao) > 0)
-        return $objResponse->alert("ERRO: E-Mails j· enviados para esta eleiÁ„o.");
+        return $objResponse->alert("ERRO: E-Mails j√° enviados para esta elei√ß√£o.");
 
-    $Titulo = "ConvocaÁ„o para ".$Concurso->retornaString(STR_CONCURSOELEITORAL).": ".$Concurso->get("descricao");
+    $Titulo = "Convoca√ß√£o para ".$Concurso->retornaString(STR_CONCURSOELEITORAL).": ".$Concurso->get("descricao");
     $Mensagem = '<p>Prezado eleitor:</p>
-<p>VocÍ est· sendo convidado ‡ votaÁ„o para '.($Concurso->get("modalidadeconcurso") == "E" ? "o concurso eleitoral " : "a enquete ").' "'.$Concurso->get("descricao").'",
-que ocorre no dia '.$Concurso->get("datahorainicio", data).' ‡s '.$Concurso->get("datahorainicio", hora).'.</p>
-<p><a href="http://'.$_SERVER['SERVER_NAME'].'/LoginEleicoes.php?CodConcurso='.$Concurso->getChave().'">Acesse a urna de votaÁ„o atravÈs deste link</a>.</p>
+<p>Voc√™ est√° sendo convidado √† vota√ß√£o para '.($Concurso->get("modalidadeconcurso") == "E" ? "o concurso eleitoral " : "a enquete ").' "'.$Concurso->get("descricao").'",
+que ocorre no dia '.$Concurso->get("datahorainicio", data).' √†s '.$Concurso->get("datahorainicio", hora).'.</p>
+<p><a href="http://'.$_SERVER['SERVER_NAME'].'/LoginEleicoes.php?CodConcurso='.$Concurso->getChave().'">Acesse a urna de vota√ß√£o atrav√©s deste link</a>.</p>
 <p>Participe!</p>';
     $Eleitores = $Eleicao->devolveEleitores(ELEITOR_NAOVOTOU);
     foreach($Eleitores as $Eleitor) {
@@ -437,17 +440,17 @@ function FinalizarConcurso($CodConcurso) {
     $Controlador = Controlador::instancia();
     $Pessoa = $Controlador->recuperaPessoaLogada();
     if(!$Pessoa->eGerenteSistema()) {
-        return $objResponse->alert("O usu·rio n„o possui direito para esta operaÁ„o.");
+        return $objResponse->alert("O usu√°rio n√£o possui direito para esta opera√ß√£o.");
 	}
 
     $Concurso = new ConcursoEleitoral($CodConcurso);
     if($Concurso->get("situacaoconcurso") < SITUACAOCONCURSO_APURADO) {
-        return $objResponse->alert("O Concurso ainda n„o foi apurado.");
+        return $objResponse->alert("O Concurso ainda n√£o foi apurado.");
 	}
 
     $Concurso->finalizaConcurso();
 	$objResponse->alert("Concurso Eleitoral finalizado com sucesso.");
-    $objResponse->loadCommands(CarregaTabelaConcursos());
+    $objResponse->appendResponse(CarregaTabelaConcursos());
 
 	return $objResponse;
 }
@@ -461,7 +464,7 @@ function Consistencia($CodConcurso, $CodEleicao) {
     $Eleicao = $Concurso->devolveEleicao($CodEleicao);
 
     if(!$Pessoa->eGerenteSistema() && ($Eleicao->verificaComissao($Pessoa) != COMISSAO_GERENTE)) {
-        return $objResponse->alert("O usu·rio n„o possui direito para esta operaÁ„o.");
+        return $objResponse->alert("O usu√°rio n√£o possui direito para esta opera√ß√£o.");
 	}
 
 	$NrPossibilidades = $Eleicao->get("nrpossibilidades");
@@ -484,12 +487,12 @@ function EnvioEMails($CodConcurso) {
     $Pessoa = controlador::instancia()->recuperaPessoaLogada();
 
     $Concurso = new ConcursoEleitoral($CodConcurso);
-    $TituloEMail = "ConvocaÁ„o para votaÁ„o";
+    $TituloEMail = "Convoca√ß√£o para vota√ß√£o";
     $RemetenteEMail = $Pessoa->get("email");
     $TextoEMail =
 "Prezado [NOME]:
-No dia ".$Concurso->get("datahorainicio", data).", ‡s ".$Concurso->get("datahorainicio", hora).",
-ser· dado inÌcio ".($Concurso->get("modalidadeconcurso") == "E" ? "ao concurso eleitoral " : "‡ enquete ").$Concurso->get("descricao").". Para votar, acesse o link abaixo:
+No dia ".$Concurso->get("datahorainicio", data).", √†s ".$Concurso->get("datahorainicio", hora).",
+ser√° dado in√≠cio ".($Concurso->get("modalidadeconcurso") == "E" ? "ao concurso eleitoral " : "√† enquete ").$Concurso->get("descricao").". Para votar, acesse o link abaixo:
 
 http://".$_SERVER['SERVER_NAME']."/LoginEleicoes.php?CodConcurso=".$CodConcurso;
     $objResponse->assign("TituloEMail", "value", $TituloEMail)
@@ -513,9 +516,9 @@ function EnviarEMails($Form) {
 
     $SQLAdd = null;
     switch($Form['Destinatarios']) {
-        case 1: // Apenas quem n„o votou
+        case 1: // Apenas quem n√£o votou
             $SQLAdd = " and datahoravoto is null "; break;
-        case 2: // Apenas quem j· votou
+        case 2: // Apenas quem j√° votou
             $SQLAdd = " and datahoravoto is not null "; break;
     }
 
@@ -542,7 +545,7 @@ function PesquisaPessoas($Form) {
     $NomePesq = trim(str_replace("%", "", $Form['NomePesq']));
 
 	if(strlen($NomePesq) < 3) {
-        $objResponse->alert("O critÈrio de pesquisa deve possui, no mÌnimo, 3 caracteres.");
+        $objResponse->alert("O crit√©rio de pesquisa deve possui, no m√≠nimo, 3 caracteres.");
 		return $objResponse;
 	}
 	if($Form['TipoPesq'] == "1")
@@ -559,7 +562,7 @@ function PesquisaPessoas($Form) {
 		foreach($Pessoas as $CodPessoaEleicao => $Pessoa) {
             $Str .= '<li><a id="Pessoa'.$CodPessoaEleicao.'" href="javascript: void(0);" onclick="javascript: xajax_CarregaEdicaoPessoa('.$CodPessoaEleicao.');">'.$Pessoa->get("nomepessoa");
 			if(!$Pessoa->homologada())
-                $Str .= ' <strong>(N√O HOMOLOGADA)</strong>';
+                $Str .= ' <strong>(N√ÉO HOMOLOGADA)</strong>';
 			if($Pessoa->eSolicitante())
                 $Str .= ' <strong>(Solicitante)</strong>';
 			if($Pessoa->eGerenteSistema())
@@ -572,7 +575,7 @@ function PesquisaPessoas($Form) {
 	else {
 	  $objResponse->assign("ListaSolicitantes", "style.textAlign", "center");
 	  $objResponse->assign("ListaSolicitantes", "style.fontWeight", "bold");
-	  $objResponse->assign("ListaSolicitantes", "innerHTML", "N„o foi encontrada pessoa com o critÈrio selecionado.");
+	  $objResponse->assign("ListaSolicitantes", "innerHTML", "N√£o foi encontrada pessoa com o crit√©rio selecionado.");
 	}
 	return $objResponse;
 }
@@ -581,12 +584,12 @@ function CarregaEdicaoPessoa($CodPessoaEleicao=NULL) {
 	$objResponse = new xajaxResponse();
     $Controlador = Controlador::instancia();
     if(!$Controlador->recuperaPessoaLogada()->eGerenteSistema())
-        throw new Exception("Permiss„o negada", 0);
+        throw new Exception("Permiss√£o negada", 0);
 
     if(!is_null($CodPessoaEleicao) && is_numeric($CodPessoaEleicao)) {
         $Pessoa = new PessoaEleicao($CodPessoaEleicao);
         if(!$Pessoa->valido())
-            return $objResponse->alert("Pessoa inv·lida.");
+            return $objResponse->alert("Pessoa inv√°lida.");
         $IdentificacaoUsuario = $Pessoa->get("identificacaousuario");
         $NomePessoa = $Pessoa->get("nomepessoa");
         $LocalTrabalho = $Pessoa->get("localtrabalho");
@@ -603,13 +606,13 @@ function CarregaEdicaoPessoa($CodPessoaEleicao=NULL) {
     }
 
     $HTML = '
-<h1>EdiÁ„o de Pessoa</h1>
+<h1>Edi√ß√£o de Pessoa</h1>
 
 <form id="EdicaoPessoa" name="EdicaoPessoa">
 <input type="hidden" name="codpessoaeleicao" value="'.$CodPessoaEleicao.'" />
 <table>
     <tr class="Linha1">
-        <td>CÛdigo do usu·rio:</td>
+        <td>C√≥digo do usu√°rio:</td>
         <td><input type="text" size="30" name="identificacaousuario" value="'.$IdentificacaoUsuario.'" /></td>
     </tr>
     <tr class="Linha2">
@@ -660,18 +663,18 @@ function SalvaPessoa($Form) {
 	$objResponse = new xajaxResponse();
     $Controlador = Controlador::instancia();
     if(!$Controlador->recuperaPessoaLogada()->eGerenteSistema())
-        throw new Exception("Permiss„o negada", 0);
+        throw new Exception("Permiss√£o negada", 0);
 
     if(isset($Form['codpessoaeleicao']) && is_numeric($Form['codpessoaeleicao'])) {
         $Pessoa = new PessoaEleicao($Form['codpessoaeleicao']);
         if(!$Pessoa->valido())
-            return $objResponse->alert("Pessoa inv·lida.");
+            return $objResponse->alert("Pessoa inv√°lida.");
     }
     else
         $Pessoa = new PessoaEleicao();
     
     if(trim($Form['identificacaousuario']) == "")
-        return $objResponse->alert("Preencha o cÛdigo do usu·rio.");
+        return $objResponse->alert("Preencha o c√≥digo do usu√°rio.");
     if(trim($Form['nomepessoa']) == "")
         return $objResponse->alert("Preencha o nome da pessoa.");
     if(trim($Form['nrregistrogeral']) == "")
@@ -694,7 +697,7 @@ function SalvaPessoa($Form) {
             $Pessoa->set("pessoaautenticada", "S");
         }
         else
-            return $objResponse->alert("Aviso: os dados da pessoa n„o foram homologados.\nResposta: ".$Resposta);
+            return $objResponse->alert("Aviso: os dados da pessoa n√£o foram homologados.\nResposta: ".$Resposta);
 
         if($Pessoa->novo() || ($Pessoa->getChave() != $Controlador->recuperaPessoaLogada()->getChave())) {
             if(isset($Form['gerentesistema']) && ($Form['gerentesistema'] == "S"))
@@ -711,12 +714,12 @@ function SalvaPessoa($Form) {
         $Pessoa->salva();
     }
     catch(EntidadeValorInvalidoException $e) {
-        return $objResponse->alert("Valor inv·lido: ".$e->getMessage());
+        return $objResponse->alert("Valor inv√°lido: ".$e->getMessage());
     }
 
     $Str = $Pessoa->get("nomepessoa");
     if(!$Pessoa->homologada())
-        $Str .= ' <strong>(N√O HOMOLOGADA)</strong>';
+        $Str .= ' <strong>(N√ÉO HOMOLOGADA)</strong>';
     if($Pessoa->eSolicitante())
         $Str .= ' <strong>(Solicitante)</strong>';
     if($Pessoa->eGerenteSistema())

@@ -2,29 +2,29 @@
 /*
 Copyright 2011 da UFRGS - Universidade Federal do Rio Grande do Sul
 
-Este arquivo é parte do programa SAELE - Sistema Aberto de Eleições Eletrônicas.
+Este arquivo Ã© parte do programa SAELE - Sistema Aberto de EleiÃ§Ãµes EletrÃ´nicas.
 
-O SAELE é um software livre; você pode redistribuí-lo e/ou modificá-lo dentro dos
-termos da Licença Pública Geral GNU como publicada pela Fundação do Software Livre
-(FSF); na versão 2 da Licença.
+O SAELE Ã© um software livre; vocÃª pode redistribuÃ­-lo e/ou modificÃ¡-lo dentro dos
+termos da LicenÃ§a PÃºblica Geral GNU como publicada pela FundaÃ§Ã£o do Software Livre
+(FSF); na versÃ£o 2 da LicenÃ§a.
 
-Este programa é distribuído na esperança que possa ser útil, mas SEM NENHUMA GARANTIA;
-sem uma garantia implícita de ADEQUAÇÃO a qualquer MERCADO ou APLICAÇÃO EM PARTICULAR.
-Veja a Licença Pública Geral GNU/GPL em português para maiores detalhes.
+Este programa Ã© distribuÃ­do na esperanÃ§a que possa ser Ãºtil, mas SEM NENHUMA GARANTIA;
+sem uma garantia implÃ­cita de ADEQUAÃ‡ÃƒO a qualquer MERCADO ou APLICAÃ‡ÃƒO EM PARTICULAR.
+Veja a LicenÃ§a PÃºblica Geral GNU/GPL em portuguÃªs para maiores detalhes.
 
-Você deve ter recebido uma cópia da Licença Pública Geral GNU, sob o título "LICENCA.txt",
-junto com este programa, se não, acesse o Portal do Software Público Brasileiro no
-endereço www.softwarepublico.gov.br ou escreva para a Fundação do Software Livre(FSF)
+VocÃª deve ter recebido uma cÃ³pia da LicenÃ§a PÃºblica Geral GNU, sob o tÃ­tulo "LICENCA.txt",
+junto com este programa, se nÃ£o, acesse o Portal do Software PÃºblico Brasileiro no
+endereÃ§o www.softwarepublico.gov.br ou escreva para a FundaÃ§Ã£o do Software Livre(FSF)
 Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
 */
 
 require_once('../CABECALHO.PHP');
 
 if(!isset($_SESSION['Valido'])) {
-    MostraCabecalho("Solicitação de Concurso Eleitoral");
+    MostraCabecalho("SolicitaÃ§Ã£o de Concurso Eleitoral");
     ?>
     <div class="Erro">
-        <p><strong>Solicitação inválida</strong>.</p>
+        <p><strong>SolicitaÃ§Ã£o invÃ¡lida</strong>.</p>
 
         <p><input type="button" value="Voltar" onclick="javascript: location.href = 'SOL_Solicitacao.php';" /></p>
     </div>
@@ -56,16 +56,16 @@ foreach($Campos['Eleicao'] as $Indice => $Descr) {
 }
 
 if($_SESSION['ModalidadeConcurso'] == "C") {
-    $TituloPagina = "Solicitação de ConcursoEleitoral";
+    $TituloPagina = "SolicitaÃ§Ã£o de ConcursoEleitoral";
 
-    $Titulo = "Solicitação de Eleição Eletrônica";
-    $Mensagem = "Foi encaminhada uma solicitação de eleição, por ".$Pessoa->get("nomepessoa").".";
+    $Titulo = "SolicitaÃ§Ã£o de EleiÃ§Ã£o EletrÃ´nica";
+    $Mensagem = "Foi encaminhada uma solicitaÃ§Ã£o de eleiÃ§Ã£o, por ".$Pessoa->get("nomepessoa").".";
 }
 else {
-    $TituloPagina = "Solicitação de Enquete";
+    $TituloPagina = "SolicitaÃ§Ã£o de Enquete";
 
-    $Titulo = "Solicitação de Enquete";
-    $Mensagem = "Foi encaminhada uma solicitação de enquete, por ".$Pessoa->get("nomepessoa").".";
+    $Titulo = "SolicitaÃ§Ã£o de Enquete";
+    $Mensagem = "Foi encaminhada uma solicitaÃ§Ã£o de enquete, por ".$Pessoa->get("nomepessoa").".";
 }
 unset($_SESSION['Campos']);
 unset($_SESSION['Valido']);
@@ -73,7 +73,7 @@ unset($_SESSION['ModalidadeConcurso']);
 MostraCabecalho($TituloPagina); ?>
 <br />
 <div align="center">
-  <font size="2" face="verdana">Solicitação enviada com sucesso.</font><br /><br />
+  <font size="2" face="verdana">SolicitaÃ§Ã£o enviada com sucesso.</font><br /><br />
 
   <input type="button" value="Fechar" onclick="javascript: location.href='../ELC_Logout.php';" />
 </div>

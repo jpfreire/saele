@@ -2,19 +2,19 @@
 /*
 Copyright 2011 da UFRGS - Universidade Federal do Rio Grande do Sul
 
-Este arquivo È parte do programa SAELE - Sistema Aberto de EleiÁıes EletrÙnicas.
+Este arquivo √© parte do programa SAELE - Sistema Aberto de Elei√ß√µes Eletr√¥nicas.
 
-O SAELE È um software livre; vocÍ pode redistribuÌ-lo e/ou modific·-lo dentro dos
-termos da LicenÁa P˙blica Geral GNU como publicada pela FundaÁ„o do Software Livre
-(FSF); na vers„o 2 da LicenÁa.
+O SAELE √© um software livre; voc√™ pode redistribu√≠-lo e/ou modific√°-lo dentro dos
+termos da Licen√ßa P√∫blica Geral GNU como publicada pela Funda√ß√£o do Software Livre
+(FSF); na vers√£o 2 da Licen√ßa.
 
-Este programa È distribuÌdo na esperanÁa que possa ser ˙til, mas SEM NENHUMA GARANTIA;
-sem uma garantia implÌcita de ADEQUA«√O a qualquer MERCADO ou APLICA«√O EM PARTICULAR.
-Veja a LicenÁa P˙blica Geral GNU/GPL em portuguÍs para maiores detalhes.
+Este programa √© distribu√≠do na esperan√ßa que possa ser √∫til, mas SEM NENHUMA GARANTIA;
+sem uma garantia impl√≠cita de ADEQUA√á√ÉO a qualquer MERCADO ou APLICA√á√ÉO EM PARTICULAR.
+Veja a Licen√ßa P√∫blica Geral GNU/GPL em portugu√™s para maiores detalhes.
 
-VocÍ deve ter recebido uma cÛpia da LicenÁa P˙blica Geral GNU, sob o tÌtulo "LICENCA.txt",
-junto com este programa, se n„o, acesse o Portal do Software P˙blico Brasileiro no
-endereÁo www.softwarepublico.gov.br ou escreva para a FundaÁ„o do Software Livre(FSF)
+Voc√™ deve ter recebido uma c√≥pia da Licen√ßa P√∫blica Geral GNU, sob o t√≠tulo "LICENCA.txt",
+junto com este programa, se n√£o, acesse o Portal do Software P√∫blico Brasileiro no
+endere√ßo www.softwarepublico.gov.br ou escreva para a Funda√ß√£o do Software Livre(FSF)
 Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
 */
 
@@ -23,6 +23,7 @@ session_destroy();
 ?>
 <html>
 <head>
+    <meta charset="utf-8">
 <title>Login</title>
 
 <style type="text/css">
@@ -81,16 +82,16 @@ function valida(Form)
 {
     if(Form.Usuario.value.length=="")
       { campo = Form.Usuario;
-        smserro = "CÛdigo do Usuario n„o informado ! \n\n";
+        smserro = "C√≥digo do Usuario n√£o informado ! \n\n";
       }
 
     if(Form.Senha.value.length=="")
       { campo = Form.Senha;
-        smserro = "Senha n„o informada ! \n\n";
+        smserro = "Senha n√£o informada ! \n\n";
       }
     if(Form.Usuario.value.length=="" && Form.Senha.value.length=="")
       { campo = Form.Usuario;
-        smserro = "CÛdigo do Usu·rio e senha n„o informadas ! \n\n";
+        smserro = "C√≥digo do Usu√°rio e senha n√£o informadas ! \n\n";
       }
 
     if(smserro.length > 0)
@@ -111,7 +112,7 @@ function valida(Form)
 
 <table width="100%" class="barraInicial">
 <tr><td>
-  AUTENTICA&Ccedil;&Atilde;O
+  AUTENTICA√á√ÉO
 </td></tr>
 </table>
 
@@ -133,12 +134,12 @@ function valida(Form)
 <table width="50%" class="caixaLogin">
   <tr class="caixaLoginTitulo">
     <td colspan="2">
-      IDENTIFICA&Ccedil;&Atilde;O
+      IDENTIFICA√á√ÉO
     </td>
   </tr>
   <tr class="caixaLoginNormal">
     <td>
-      USU&Aacute;RIO
+      USU√ÅRIO
     </td>
     <td>
       <input type="text" size="15" maxlength="30" name="Usuario" value="" />

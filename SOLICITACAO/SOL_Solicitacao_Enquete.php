@@ -2,19 +2,19 @@
 /*
 Copyright 2011 da UFRGS - Universidade Federal do Rio Grande do Sul
 
-Este arquivo È parte do programa SAELE - Sistema Aberto de EleiÁıes EletrÙnicas.
+Este arquivo √© parte do programa SAELE - Sistema Aberto de Elei√ß√µes Eletr√¥nicas.
 
-O SAELE È um software livre; vocÍ pode redistribuÌ-lo e/ou modific·-lo dentro dos
-termos da LicenÁa P˙blica Geral GNU como publicada pela FundaÁ„o do Software Livre
-(FSF); na vers„o 2 da LicenÁa.
+O SAELE √© um software livre; voc√™ pode redistribu√≠-lo e/ou modific√°-lo dentro dos
+termos da Licen√ßa P√∫blica Geral GNU como publicada pela Funda√ß√£o do Software Livre
+(FSF); na vers√£o 2 da Licen√ßa.
 
-Este programa È distribuÌdo na esperanÁa que possa ser ˙til, mas SEM NENHUMA GARANTIA;
-sem uma garantia implÌcita de ADEQUA«√O a qualquer MERCADO ou APLICA«√O EM PARTICULAR.
-Veja a LicenÁa P˙blica Geral GNU/GPL em portuguÍs para maiores detalhes.
+Este programa √© distribu√≠do na esperan√ßa que possa ser √∫til, mas SEM NENHUMA GARANTIA;
+sem uma garantia impl√≠cita de ADEQUA√á√ÉO a qualquer MERCADO ou APLICA√á√ÉO EM PARTICULAR.
+Veja a Licen√ßa P√∫blica Geral GNU/GPL em portugu√™s para maiores detalhes.
 
-VocÍ deve ter recebido uma cÛpia da LicenÁa P˙blica Geral GNU, sob o tÌtulo "LICENCA.txt",
-junto com este programa, se n„o, acesse o Portal do Software P˙blico Brasileiro no
-endereÁo www.softwarepublico.gov.br ou escreva para a FundaÁ„o do Software Livre(FSF)
+Voc√™ deve ter recebido uma c√≥pia da Licen√ßa P√∫blica Geral GNU, sob o t√≠tulo "LICENCA.txt",
+junto com este programa, se n√£o, acesse o Portal do Software P√∫blico Brasileiro no
+endere√ßo www.softwarepublico.gov.br ou escreva para a Funda√ß√£o do Software Livre(FSF)
 Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
 */
 
@@ -26,7 +26,7 @@ $Pessoa = $Controlador->recuperaPessoaLogada();
 if(!$Pessoa->eSolicitante()) {
     echo '
     <div class="Erro">
-        <p><strong>Erro!</strong> O usu·rio n„o tem permiss„o para acessar esta p·gina.</p>
+        <p><strong>Erro!</strong> O usu√°rio n√£o tem permiss√£o para acessar esta p√°gina.</p>
         <p><a href="../ELC_Logout.php">Voltar</a></p>
     </div>
     </body></html> ';
@@ -42,7 +42,7 @@ if(isset($_SESSION['Campos']))
 else
     $Campos = array();
 
-MostraCabecalho("SolicitaÁ„o de Enquete");
+MostraCabecalho("Solicita√ß√£o de Enquete");
 ?>
 <script language="javascript" src="../CODE/popcalendar.js"></script>
 
@@ -50,11 +50,11 @@ MostraCabecalho("SolicitaÁ„o de Enquete");
 	addHoliday(25,12,0,"Natal")
 		addHoliday(1,1,0,"Ano Novo")
 		monthName = new
-		Array("Janeiro","Fevereiro","MarÁo","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro")
+		Array("Janeiro","Fevereiro","Mar√ßo","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro")
 		showToday = 0
 		dayName = new Array ("Dom","Seg","Ter","Qua","Qui","Sex","Sab")
-		gotoString = "Vai para o mÍs atual"
-		todayString = "Hoje È"
+		gotoString = "Vai para o m√™s atual"
+		todayString = "Hoje √©"
 		weekString = "DS"
 		imgDir = "../imagens/"
 </script>
@@ -63,7 +63,7 @@ MostraCabecalho("SolicitaÁ„o de Enquete");
 
 <br />
 <div align="center">
-  <font size="3" face="verdana"><b>Formul·rio para SolicitaÁ„o de Enquetes</b></font>
+  <font size="3" face="verdana"><b>Formul√°rio para Solicita√ß√£o de Enquetes</b></font>
 </div>
 <br />
 
@@ -80,7 +80,7 @@ MostraCabecalho("SolicitaÁ„o de Enquete");
   </tr>
   <tr bgcolor="white">
     <td colspan="2">
-      <font size="2" face="verdana"><b>&nbsp; Per&iacute;odo:</b></font>
+      <font size="2" face="verdana"><b>&nbsp; Per√≠odo:</b></font>
     </td>
   </tr>
   <tr bgcolor="#f5f5f5">
@@ -88,11 +88,11 @@ MostraCabecalho("SolicitaÁ„o de Enquete");
       <font size="2" face="verdana">
         &nbsp;&nbsp;&nbsp; De <input name="DataInicio" id="DataInicio" type="text" size="10" maxlength="10" value="<?=(isset($Campos['DataInicio']) ? $Campos['DataInicio'] : null)?>" readonly="readonly" />
           <input type="button" value=" ... " onclick="javascript: popUpCalendar(this, document.getElementById('DataInicio'),'dd/mm/yyyy');" />
-          &agrave;s <input name="HoraInicio" id="HoraInicio" type="text" size="8" maxlength="5" value="<?=(isset($Campos['HoraInicio']) ? $Campos['HoraInicio'] : null)?>" />
-          <b>Aten&ccedil;&atilde;o:</b> s&oacute; ser&atilde;o aceitas enquetes com data de inÌcio a partir de <?=$VinteDias?> <br />
-        &nbsp;&nbsp;&nbsp; At&eacute; <input name="DataFim" id="DataFim" type="text" size="10" maxlength="10" value="<?=(isset($Campos['DataFim']) ? $Campos['DataFim'] : null)?>" readonly="readonly" />
+          √†s <input name="HoraInicio" id="HoraInicio" type="text" size="8" maxlength="5" value="<?=(isset($Campos['HoraInicio']) ? $Campos['HoraInicio'] : null)?>" />
+          <b>Aten√ß√£o:</b> s√≥ ser√£o aceitas enquetes com data de in√≠cio a partir de <?=$VinteDias?> <br />
+        &nbsp;&nbsp;&nbsp; At√© <input name="DataFim" id="DataFim" type="text" size="10" maxlength="10" value="<?=(isset($Campos['DataFim']) ? $Campos['DataFim'] : null)?>" readonly="readonly" />
           <input type="button" value=" ... " onclick="javascript: popUpCalendar(this, document.getElementById('DataFim'),'dd/mm/yyyy');" />
-          &agrave;s <input name="HoraFim" id="HoraFim" type="text" size="8" maxlength="5" value="<?=(isset($Campos['HoraFim']) ? $Campos['HoraFim'] : null)?>" /> </font>
+          √†s <input name="HoraFim" id="HoraFim" type="text" size="8" maxlength="5" value="<?=(isset($Campos['HoraFim']) ? $Campos['HoraFim'] : null)?>" /> </font>
     </td>
   </tr>
   <tr bgcolor="white">
@@ -127,7 +127,7 @@ MostraCabecalho("SolicitaÁ„o de Enquete");
   </tr>
     <tr bgcolor="white">
       <td colspan="2">
-        <font size="2" face="Verdana"><b>&nbsp; Questıes da Enquete: </b></font>
+        <font size="2" face="Verdana"><b>&nbsp; Quest√µes da Enquete: </b></font>
       </td>
     </tr>
     <tr bgcolor="#f5f5f5">
@@ -170,7 +170,7 @@ MostraCabecalho("SolicitaÁ„o de Enquete");
     </tr>
     <tr bgcolor="white">
       <td colspan="2">
-        <font size="2" face="Verdana"><b>&nbsp; Observa&ccedil;&otilde;es adicionais que julgar necess&aacute;rias: </b></font>
+        <font size="2" face="Verdana"><b>&nbsp; Observa√ß√µes adicionais que julgar necess√°rias: </b></font>
       </td>
     </tr>
     <tr bgcolor="#f5f5f5">
@@ -220,7 +220,7 @@ function ValidaDataInicial() {
   DataInicio = new Date(DataI[2], DataI[1], DataI[0], HoraI[0], HoraI[1], 0);
 
   if( ( (DataInicio - DataAtual) / (1000 * 60 * 60 * 24) ) < 20) {
-    alert('A enquete sÛ ser· aceita se realizada vinte dias apÛs a data de hoje.');
+    alert('A enquete s√≥ ser√° aceita se realizada vinte dias ap√≥s a data de hoje.');
     return false;
   }
   return true;
@@ -244,12 +244,12 @@ function Valida(Form) {
   DataFim = new Date(DataF[2], DataF[1], DataF[0], HoraF[0], HoraF[1], 0);
 
   if( ( (DataInicio - DataAtual) / (1000 * 60 * 60 * 24) ) < 20) {
-    alert('A enquete sÛ ser· aceita se realizada vinte dias apÛs a data de hoje.');
-    return false; // Naturalmente, esta restriÁ„o pode ser alterada ou removida.
+    alert('A enquete s√≥ ser√° aceita se realizada vinte dias ap√≥s a data de hoje.');
+    return false; // Naturalmente, esta restri√ß√£o pode ser alterada ou removida.
   }
 
   if(DataFim <= DataInicio) {
-    alert('A Data de Fim deve ser posterior ‡ data de InÌcio.');
+    alert('A Data de Fim deve ser posterior √† data de In√≠cio.');
     return false;
   }
 
@@ -260,13 +260,13 @@ function Valida(Form) {
 }
 
 atributos('NomeConcurso', 'Nome da Enquete', texto, true);
-atributos('DataInicio', 'Data de InÌcio', data, true);
+atributos('DataInicio', 'Data de In√≠cio', data, true);
 atributos('DataFim', 'Data de Fim', data, true);
-atributos('HoraInicio', 'Hora de InÌcio', hora, true);
+atributos('HoraInicio', 'Hora de In√≠cio', hora, true);
 atributos('HoraFim', 'Hora de fim', hora, true);
 atributos('RamalContato', 'Ramal', numero, true);
 atributos('EMail', 'E-Mail', email, true);
-atributos('EleicoesConcurso', 'Questıes da Enquete', texto, true);
+atributos('EleicoesConcurso', 'Quest√µes da Enquete', texto, true);
 
 setfuncaovalidacaoadicional(document.Form, 'Valida(document.Form)');
 </script>

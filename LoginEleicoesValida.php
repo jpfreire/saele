@@ -2,19 +2,19 @@
 /*
 Copyright 2011 da UFRGS - Universidade Federal do Rio Grande do Sul
 
-Este arquivo È parte do programa SAELE - Sistema Aberto de EleiÁıes EletrÙnicas.
+Este arquivo √© parte do programa SAELE - Sistema Aberto de Elei√ß√µes Eletr√¥nicas.
 
-O SAELE È um software livre; vocÍ pode redistribuÌ-lo e/ou modific·-lo dentro dos
-termos da LicenÁa P˙blica Geral GNU como publicada pela FundaÁ„o do Software Livre
-(FSF); na vers„o 2 da LicenÁa.
+O SAELE √© um software livre; voc√™ pode redistribu√≠-lo e/ou modific√°-lo dentro dos
+termos da Licen√ßa P√∫blica Geral GNU como publicada pela Funda√ß√£o do Software Livre
+(FSF); na vers√£o 2 da Licen√ßa.
 
-Este programa È distribuÌdo na esperanÁa que possa ser ˙til, mas SEM NENHUMA GARANTIA;
-sem uma garantia implÌcita de ADEQUA«√O a qualquer MERCADO ou APLICA«√O EM PARTICULAR.
-Veja a LicenÁa P˙blica Geral GNU/GPL em portuguÍs para maiores detalhes.
+Este programa √© distribu√≠do na esperan√ßa que possa ser √∫til, mas SEM NENHUMA GARANTIA;
+sem uma garantia impl√≠cita de ADEQUA√á√ÉO a qualquer MERCADO ou APLICA√á√ÉO EM PARTICULAR.
+Veja a Licen√ßa P√∫blica Geral GNU/GPL em portugu√™s para maiores detalhes.
 
-VocÍ deve ter recebido uma cÛpia da LicenÁa P˙blica Geral GNU, sob o tÌtulo "LICENCA.txt",
-junto com este programa, se n„o, acesse o Portal do Software P˙blico Brasileiro no
-endereÁo www.softwarepublico.gov.br ou escreva para a FundaÁ„o do Software Livre(FSF)
+Voc√™ deve ter recebido uma c√≥pia da Licen√ßa P√∫blica Geral GNU, sob o t√≠tulo "LICENCA.txt",
+junto com este programa, se n√£o, acesse o Portal do Software P√∫blico Brasileiro no
+endere√ßo www.softwarepublico.gov.br ou escreva para a Funda√ß√£o do Software Livre(FSF)
 Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
 */
 
@@ -37,8 +37,10 @@ switch($_POST['Destino']) {
 }
 
 if (!AutenticaPessoa($_POST['Usuario'], $_POST['Senha'])) { ?>
-	<html><body>
-		<script> alert('Usu·rio ou senha inv·lidos.'); location.href = '<?=$Origem?>'; </script>
+	<html>
+            <head><meta charset="utf-8"></head>
+            <body>
+		<script> alert('Usu√°rio ou senha inv√°lidos.'); location.href = '<?=$Origem?>'; </script>
 	</body></html>
     <?php
     exit;
@@ -46,16 +48,20 @@ if (!AutenticaPessoa($_POST['Usuario'], $_POST['Senha'])) { ?>
 
 $Pessoa = PessoaEleicao::devolvePessoaPorIdentificador($_POST['Usuario']);
 if(is_null($Pessoa)) { ?>
-	<html><body>
-		<script> alert('Usu·rio ou senha inv·lidos.'); location.href = '<?=$Origem?>'; </script>
+	<html>
+            <head><meta charset="utf-8"></head>
+            <body>
+		<script> alert('Usu√°rio ou senha inv√°lidos.'); location.href = '<?=$Origem?>'; </script>
 	</body></html>
     <?php
     exit;
 }
 
 if($Pessoa->get("pessoaautenticada") != "S") { ?>
-	<html><body>
-		<script> alert('Usu·rio n„o validado para o sistema.'); location.href = '<?=$Origem?>'; </script>
+	<html>
+            <head><meta charset="utf-8"></head>
+            <body>
+		<script> alert('Usu√°rio n√£o validado para o sistema.'); location.href = '<?=$Origem?>'; </script>
 	</body></html>
     <?php
     exit;
@@ -68,7 +74,9 @@ switch($_POST['Destino']) {
           $Controlador->registraConcursoVotacao(new ConcursoEleitoral($_POST['CodConcurso']));
       }
       catch(ControladorException $e) { ?>
-          <html><body>
+          <html>
+              <head><meta charset="utf-8"></head>
+              <body>
             <script> alert('<?=$e->getMessage()?>'); location.href = '<?=$Origem?>'; </script>
           </body></html>
           <?php
@@ -84,8 +92,10 @@ switch($_POST['Destino']) {
         }
         else {
             session_destroy(); ?>
-            <html><body>
-              <script> alert('AplicaÁ„o n„o disponÌvel.'); location.href = 'LoginAdm.php'; </script>
+            <html>
+                <head><meta charset="utf-8"></head>
+                <body>
+              <script> alert('Aplica√ß√£o n√£o dispon√≠vel.'); location.href = 'LoginAdm.php'; </script>
             </body></html>
             <?php
         }
@@ -97,8 +107,10 @@ switch($_POST['Destino']) {
         }
         else {
             session_destroy(); ?>
-            <html><body>
-              <script> alert('AplicaÁ„o n„o disponÌvel.'); location.href = 'LoginSol.php'; </script>
+            <html>
+                <head><meta charset="utf-8"></head>
+                <body>
+              <script> alert('Aplica√ß√£o n√£o dispon√≠vel.'); location.href = 'LoginSol.php'; </script>
             </body></html>
             <?php
         }
@@ -110,8 +122,10 @@ switch($_POST['Destino']) {
         }
         else {
             session_destroy(); ?>
-            <html><body>
-              <script> alert('AplicaÁ„o n„o disponÌvel.'); location.href = 'LoginSol.php?Enquete'; </script>
+            <html>
+                <head><meta charset="utf-8"></head>
+                <body>
+              <script> alert('Aplica√ß√£o n√£o dispon√≠vel.'); location.href = 'LoginSol.php?Enquete'; </script>
             </body></html>
             <?php
         }

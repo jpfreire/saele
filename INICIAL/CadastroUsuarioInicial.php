@@ -2,30 +2,30 @@
 /*
 Copyright 2011 da UFRGS - Universidade Federal do Rio Grande do Sul
 
-Este arquivo È parte do programa SAELE - Sistema Aberto de EleiÁıes EletrÙnicas.
+Este arquivo √© parte do programa SAELE - Sistema Aberto de Elei√ß√µes Eletr√¥nicas.
 
-O SAELE È um software livre; vocÍ pode redistribuÌ-lo e/ou modific·-lo dentro dos
-termos da LicenÁa P˙blica Geral GNU como publicada pela FundaÁ„o do Software Livre
-(FSF); na vers„o 2 da LicenÁa.
+O SAELE √© um software livre; voc√™ pode redistribu√≠-lo e/ou modific√°-lo dentro dos
+termos da Licen√ßa P√∫blica Geral GNU como publicada pela Funda√ß√£o do Software Livre
+(FSF); na vers√£o 2 da Licen√ßa.
 
-Este programa È distribuÌdo na esperanÁa que possa ser ˙til, mas SEM NENHUMA GARANTIA;
-sem uma garantia implÌcita de ADEQUA«√O a qualquer MERCADO ou APLICA«√O EM PARTICULAR.
-Veja a LicenÁa P˙blica Geral GNU/GPL em portuguÍs para maiores detalhes.
+Este programa √© distribu√≠do na esperan√ßa que possa ser √∫til, mas SEM NENHUMA GARANTIA;
+sem uma garantia impl√≠cita de ADEQUA√á√ÉO a qualquer MERCADO ou APLICA√á√ÉO EM PARTICULAR.
+Veja a Licen√ßa P√∫blica Geral GNU/GPL em portugu√™s para maiores detalhes.
 
-VocÍ deve ter recebido uma cÛpia da LicenÁa P˙blica Geral GNU, sob o tÌtulo "LICENCA.txt",
-junto com este programa, se n„o, acesse o Portal do Software P˙blico Brasileiro no
-endereÁo www.softwarepublico.gov.br ou escreva para a FundaÁ„o do Software Livre(FSF)
+Voc√™ deve ter recebido uma c√≥pia da Licen√ßa P√∫blica Geral GNU, sob o t√≠tulo "LICENCA.txt",
+junto com este programa, se n√£o, acesse o Portal do Software P√∫blico Brasileiro no
+endere√ßo www.softwarepublico.gov.br ou escreva para a Funda√ß√£o do Software Livre(FSF)
 Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
 */
 
 require_once("../CABECALHO.PHP");
-MostraCabecalho("Cadastro de Usu·rio Inicial");
+MostraCabecalho("Cadastro de Usu√°rio Inicial");
 
 function RealizaCadastro($Form) {
     $Pessoa = new PessoaEleicao();
 
     if(trim($Form['identificacaousuario']) == "")
-        return "Preencha o cÛdigo do usu·rio.";
+        return "Preencha o c√≥digo do usu√°rio.";
     if(trim($Form['nomepessoa']) == "")
         return "Preencha o nome da pessoa.";
     if(trim($Form['nrregistrogeral']) == "")
@@ -48,7 +48,7 @@ function RealizaCadastro($Form) {
             $Pessoa->set("pessoaautenticada", "S");
         }
         else
-            return "Os dados da pessoa n„o foram homologados. Resposta: ".$Resposta;
+            return "Os dados da pessoa n√£o foram homologados. Resposta: ".$Resposta;
 
         $Pessoa->set("gerentesistema", "S");
         $Pessoa->set("solicitante", "N");
@@ -57,24 +57,24 @@ function RealizaCadastro($Form) {
         return NULL;
     }
     catch(EntidadeValorInvalidoException $e) {
-        return "Valor inv·lido: ".$e->getMessage();
+        return "Valor inv√°lido: ".$e->getMessage();
     }
 }
 
 $Consulta = new Consulta("select * from eleicoes.pessoaeleicao");
 if($Consulta->executa(true)) {
-    echo "O cadastro inicial j· foi realizado. Acesso negado.";
+    echo "O cadastro inicial j√° foi realizado. Acesso negado.";
     exit;
 }
 if(isset($_POST['Cadastra'])) {
     $Retorno = RealizaCadastro($_POST);
     if(is_null($Retorno)) { ?>
-        <h1>Cadastro do Usu·rio Inicial</h1>
+        <h1>Cadastro do Usu√°rio Inicial</h1>
 
         <p>
-            O seu cadastro foi concluÌdo com sucesso. Agora vocÍ pode acessar
-            o sistema com seu identificador de usu·rio e senha. Recomenda-se
-            que este arquivo seja excluÌdo.
+            O seu cadastro foi conclu√≠do com sucesso. Agora voc√™ pode acessar
+            o sistema com seu identificador de usu√°rio e senha. Recomenda-se
+            que este arquivo seja exclu√≠do.
         </p>
         <?php
         exit;
@@ -99,13 +99,13 @@ else {
 }
 
 ?>
-<h1>Cadastro do Usu·rio Inicial</h1>
+<h1>Cadastro do Usu√°rio Inicial</h1>
 
 <form id="EdicaoPessoa" name="EdicaoPessoa" method="POST">
 <input type="hidden" name="Cadastra" value="S" />
 <table align="center" width="50%" cellspacing="0" cellpadding="2">
     <tr class="Linha1">
-        <td>CÛdigo do usu·rio:</td>
+        <td>C√≥digo do usu√°rio:</td>
         <td><input type="text" size="20" name="identificacaousuario" value="<?=$IdentificacaoUsuario?>" /></td>
     </tr>
     <tr class="Linha2">

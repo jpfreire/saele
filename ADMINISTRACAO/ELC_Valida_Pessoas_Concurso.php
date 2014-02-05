@@ -2,19 +2,19 @@
 /*
 Copyright 2011 da UFRGS - Universidade Federal do Rio Grande do Sul
 
-Este arquivo È parte do programa SAELE - Sistema Aberto de EleiÁıes EletrÙnicas.
+Este arquivo √© parte do programa SAELE - Sistema Aberto de Elei√ß√µes Eletr√¥nicas.
 
-O SAELE È um software livre; vocÍ pode redistribuÌ-lo e/ou modific·-lo dentro dos
-termos da LicenÁa P˙blica Geral GNU como publicada pela FundaÁ„o do Software Livre
-(FSF); na vers„o 2 da LicenÁa.
+O SAELE √© um software livre; voc√™ pode redistribu√≠-lo e/ou modific√°-lo dentro dos
+termos da Licen√ßa P√∫blica Geral GNU como publicada pela Funda√ß√£o do Software Livre
+(FSF); na vers√£o 2 da Licen√ßa.
 
-Este programa È distribuÌdo na esperanÁa que possa ser ˙til, mas SEM NENHUMA GARANTIA;
-sem uma garantia implÌcita de ADEQUA«√O a qualquer MERCADO ou APLICA«√O EM PARTICULAR.
-Veja a LicenÁa P˙blica Geral GNU/GPL em portuguÍs para maiores detalhes.
+Este programa √© distribu√≠do na esperan√ßa que possa ser √∫til, mas SEM NENHUMA GARANTIA;
+sem uma garantia impl√≠cita de ADEQUA√á√ÉO a qualquer MERCADO ou APLICA√á√ÉO EM PARTICULAR.
+Veja a Licen√ßa P√∫blica Geral GNU/GPL em portugu√™s para maiores detalhes.
 
-VocÍ deve ter recebido uma cÛpia da LicenÁa P˙blica Geral GNU, sob o tÌtulo "LICENCA.txt",
-junto com este programa, se n„o, acesse o Portal do Software P˙blico Brasileiro no
-endereÁo www.softwarepublico.gov.br ou escreva para a FundaÁ„o do Software Livre(FSF)
+Voc√™ deve ter recebido uma c√≥pia da Licen√ßa P√∫blica Geral GNU, sob o t√≠tulo "LICENCA.txt",
+junto com este programa, se n√£o, acesse o Portal do Software P√∫blico Brasileiro no
+endere√ßo www.softwarepublico.gov.br ou escreva para a Funda√ß√£o do Software Livre(FSF)
 Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
 */
 
@@ -25,9 +25,9 @@ $Controlador = Controlador::instancia();
 $Pessoa = $Controlador->recuperaPessoaLogada();
 
 if(!$Pessoa->eGerenteSistema()) {
-  echo "<html><body>\n";
+  echo "<html><head><meta charset=\"utf-8\"></head><body>\n";
   echo "<div align=\"center\">\n";
-  echo "<br><font size=\"2\" face=\"verdana\">Erro! O usu&aacute;rio n&atilde;o tem permiss&atilde;o para acessar esta p&aacute;gina.<br><br>\n";
+  echo "<br><font size=\"2\" face=\"verdana\">Erro! O usu√°rio n√£o tem permiss√£o para acessar esta p√°gina.<br><br>\n";
   echo "<a href=\"javascript: history.back();\">Voltar</a></font>\n";
   echo "</div>";
   echo "</body></html>";
@@ -39,7 +39,7 @@ $Concurso = new ConcursoEleitoral($_GET['CodConcurso']);
 $Eleicoes = $Concurso->devolveEleicoes();
 
 foreach($Eleicoes as $CodEleicao => $Eleicao) {
-    $MSG .= "<b>Descri&ccedil;&atilde;o: ".$Eleicao->get("descricao")."</b><br /><br />";
+    $MSG .= "<b>Descri√ß√£o: ".$Eleicao->get("descricao")."</b><br /><br />";
     $erro = false;
 
     $Pessoas = $Eleicao->devolvePessoasNaoHomologadas();
@@ -51,10 +51,10 @@ foreach($Eleicoes as $CodEleicao => $Eleicao) {
         }
         else {
             $erro = true;
-            $MSG .= "A pessoa ".$Pessoa->get("nomepessoa")>" n„o foi homologada. Resposta: ".$Retorno."<br />";
+            $MSG .= "A pessoa ".$Pessoa->get("nomepessoa")>" n√£o foi homologada. Resposta: ".$Retorno."<br />";
         }
     }
-    if(!$erro) $MSG .= "Usu&aacute;rios validados sem erros.<br />";
+    if(!$erro) $MSG .= "Usu√°rios validados sem erros.<br />";
     $MSG .= "<br />";
 }
 if(isset($_GET['Final'])) {
@@ -62,7 +62,7 @@ if(isset($_GET['Final'])) {
     $Concurso->salva();
 }
 
-MostraCabecalho("ValidaÁ„o de Concurso Eleitoral");
+MostraCabecalho("Valida√ß√£o de Concurso Eleitoral");
 ?>
 <div align="center">
 <br />

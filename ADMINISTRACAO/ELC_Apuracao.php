@@ -2,22 +2,22 @@
 /*
 Copyright 2011 da UFRGS - Universidade Federal do Rio Grande do Sul
 
-Este arquivo È parte do programa SAELE - Sistema Aberto de EleiÁıes EletrÙnicas.
+Este arquivo √© parte do programa SAELE - Sistema Aberto de Elei√ß√µes Eletr√¥nicas.
 
-O SAELE È um software livre; vocÍ pode redistribuÌ-lo e/ou modific·-lo dentro dos
-termos da LicenÁa P˙blica Geral GNU como publicada pela FundaÁ„o do Software Livre
-(FSF); na vers„o 2 da LicenÁa.
+O SAELE √© um software livre; voc√™ pode redistribu√≠-lo e/ou modific√°-lo dentro dos
+termos da Licen√ßa P√∫blica Geral GNU como publicada pela Funda√ß√£o do Software Livre
+(FSF); na vers√£o 2 da Licen√ßa.
 
-Este programa È distribuÌdo na esperanÁa que possa ser ˙til, mas SEM NENHUMA GARANTIA;
-sem uma garantia implÌcita de ADEQUA«√O a qualquer MERCADO ou APLICA«√O EM PARTICULAR.
-Veja a LicenÁa P˙blica Geral GNU/GPL em portuguÍs para maiores detalhes.
+Este programa √© distribu√≠do na esperan√ßa que possa ser √∫til, mas SEM NENHUMA GARANTIA;
+sem uma garantia impl√≠cita de ADEQUA√á√ÉO a qualquer MERCADO ou APLICA√á√ÉO EM PARTICULAR.
+Veja a Licen√ßa P√∫blica Geral GNU/GPL em portugu√™s para maiores detalhes.
 
-VocÍ deve ter recebido uma cÛpia da LicenÁa P˙blica Geral GNU, sob o tÌtulo "LICENCA.txt",
-junto com este programa, se n„o, acesse o Portal do Software P˙blico Brasileiro no
-endereÁo www.softwarepublico.gov.br ou escreva para a FundaÁ„o do Software Livre(FSF)
+Voc√™ deve ter recebido uma c√≥pia da Licen√ßa P√∫blica Geral GNU, sob o t√≠tulo "LICENCA.txt",
+junto com este programa, se n√£o, acesse o Portal do Software P√∫blico Brasileiro no
+endere√ßo www.softwarepublico.gov.br ou escreva para a Funda√ß√£o do Software Livre(FSF)
 Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
 */
-                       // P·gina para apuraÁ„o dos votos de determinada EleiÁ„o
+                       // P√°gina para apura√ß√£o dos votos de determinada Elei√ß√£o
 require_once('../CABECALHO.PHP');
 
 $Controlador = Controlador::instancia();
@@ -31,7 +31,7 @@ if(isset($_POST['CodConcurso']) && isset($_POST['CodEleicao'])) {
         $Eleicao->realizaZeresima();
     }
     catch(EleicaoException $e) {
-        MostraCabecalho("ApuraÁ„o da EleiÁ„o"); ?>
+        MostraCabecalho("Apura√ß√£o da Elei√ß√£o"); ?>
         <div class="Erro">
             <p><strong>Erro:</strong> <?=$e->getMessage()?>.</p>
 
@@ -51,7 +51,7 @@ else {
 
     if(!$Pessoa->eGerenteSistema() && ($Comissao == false)) { ?>
         <div class="Erro">
-            <p><strong>Erro:</strong> Permiss„o negada.</p>
+            <p><strong>Erro:</strong> Permiss√£o negada.</p>
 
             <p><a href="ELC_Cadastro_Concursos.php">Voltar</a></p>
         </div>
@@ -64,7 +64,7 @@ else {
      || (($Concurso->estadoConcurso() == CONCURSO_NAOINICIADO)
          && !$Pessoa->eGerenteSistema() && ($Comissao != COMISSAO_GERENTE))) { ?>
         <div class="Erro">
-            <p><strong>Erro:</strong> Esta eleiÁ„o est· indisponÌvel para visualizaÁ„o dos votos.</p>
+            <p><strong>Erro:</strong> Esta elei√ß√£o est√° indispon√≠vel para visualiza√ß√£o dos votos.</p>
 
             <p><a href="ELC_Cadastro_Concursos.php">Voltar</a></p>
         </div>
@@ -75,7 +75,7 @@ else {
     }
     if($Concurso->estadoConcurso() == CONCURSO_ENCERRADO && ($Concurso->get("situacaoconcurso") != SITUACAOCONCURSO_APURADO)) { ?>
         <div class="Erro">
-            <p><strong>Erro:</strong> A contagem de votos ainda n„o foi efetuada.</p>
+            <p><strong>Erro:</strong> A contagem de votos ainda n√£o foi efetuada.</p>
 
             <p><a href="ELC_Cadastro_Concursos.php">Voltar</a></p>
         </div>
@@ -86,7 +86,7 @@ else {
     }
 }
 
-MostraCabecalho("ApuraÁ„o da EleiÁ„o");
+MostraCabecalho("Apura√ß√£o da Elei√ß√£o");
 ?>
 
 <script language="javascript">
@@ -259,7 +259,7 @@ elseif($Concurso->estadoConcurso() == CONCURSO_ENCERRADO) {
     <table width="85%" border="0" cellspacing="0" cellpadding="0" class="tabela" align="center">
         <tr>
             <td>
-            Contagem dos votos realizada em <?=$Contagem->get("dataoperacao", data)?>, &agrave;s <?=$Contagem->get("dataoperacao", hora)?>.
+            Contagem dos votos realizada em <?=$Contagem->get("dataoperacao", data)?>, √†s <?=$Contagem->get("dataoperacao", hora)?>.
             </td>
         </tr>
         <?php
@@ -267,7 +267,7 @@ elseif($Concurso->estadoConcurso() == CONCURSO_ENCERRADO) {
         foreach($Recontagens as $Recontagem) { ?>
         <tr>
             <td>
-            Recontagem dos votos realizada em <?=$Recontagem->get("dataoperacao", data)?>, &agrave;s <?=$Recontagem->get("dataoperacao", hora)?>.
+            Recontagem dos votos realizada em <?=$Recontagem->get("dataoperacao", data)?>, √†s <?=$Recontagem->get("dataoperacao", hora)?>.
             </td>
         </tr>
         <?php
@@ -289,8 +289,8 @@ if (($Concurso->get("indbarradoporip") == 'S') && ($Concurso->estadoConcurso() =
     <br /><br />
 <?php } ?>
 
-<a href="ELC_Relatorio_Votos.php?CodConcurso=<?=$Eleicao->get("codconcurso")?>&amp;CodEleicao=<?=$Eleicao->get("codeleicao")?>&ord=nr">Relat&oacute;rio de Votos (por n&uacute;mero de <?=$Concurso->retornaString(STR_CHAPA)?>)</a><br />
-<a href="ELC_Relatorio_Votos.php?CodConcurso=<?=$Eleicao->get("codconcurso")?>&amp;CodEleicao=<?=$Eleicao->get("codeleicao")?>&ord=votos">Relat&oacute;rio de Votos (por ordem de coloca&ccedil;&atilde;o)</a>
+<a href="ELC_Relatorio_Votos.php?CodConcurso=<?=$Eleicao->get("codconcurso")?>&amp;CodEleicao=<?=$Eleicao->get("codeleicao")?>&ord=nr">Relat√≥rio de Votos (por n√∫mero de <?=$Concurso->retornaString(STR_CHAPA)?>)</a><br />
+<a href="ELC_Relatorio_Votos.php?CodConcurso=<?=$Eleicao->get("codconcurso")?>&amp;CodEleicao=<?=$Eleicao->get("codeleicao")?>&ord=votos">Relat√≥rio de Votos (por ordem de coloca√ß√£o)</a>
 
 <br /><br />
 <?php

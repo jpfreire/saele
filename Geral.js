@@ -9,7 +9,7 @@ function CentralClass(NomeDeExibicao,TipoInformacao,Obrigatorio) {
 
 for (i=0;i<document.forms.length;i++) {
   if (document.forms[i].onsubmit) {
-    alert('ERRO INTERNO: Utilize a funcao \'setfuncaovalidacaoadicional(Formulario,NomeFuncao)\' para adicionar validações ao form.');
+    alert('ERRO INTERNO: Utilize a funcao \'setfuncaovalidacaoadicional(Formulario,NomeFuncao)\' para adicionar validaÃ§Ãµes ao form.');
   }
   document.forms[i].onsubmit=function () {return Validacao(this);}
 }//SETA TODOS FORMS PARA A FUNCAO DE VALIDACAO
@@ -303,80 +303,80 @@ function CEPKeyPress(Evento,Campo) {
 
 function NumeroBlur(Campo) {
   if (!ValidaNumero(Campo.value)) {
-    alert('O número digitado é inválido')
+    alert('O nÃºmero digitado Ã© invÃ¡lido')
   }  
 }
 
 function NumeroNegBlur(Campo) {
   if (!ValidaNumeroNeg(Campo.value)) {
-    alert('O número digitado é inválido')
+    alert('O nÃºmero digitado Ã© invÃ¡lido')
   }  
 }
 
 function InteiroBlur(Campo) {
   if (!ValidaInteiro(Campo.value)) {
-    alert('O número digitado é inválido')
+    alert('O nÃºmero digitado Ã© invÃ¡lido')
   }  
 }
 
 function InteiroNegBlur(Campo) {
   if (!ValidaInteiroNeg(Campo.value)) {
-    alert('O número digitado é inválido')
+    alert('O nÃºmero digitado Ã© invÃ¡lido')
   }  
 }
 
 function DataBlur(Campo) {
   if (!ValidaData(Campo.value)) {
-    alert('A data digitada é inválida');
+    alert('A data digitada Ã© invÃ¡lida');
   } 
   return true; 
 }
 
 function HoraBlur(Campo) {
   if (!ValidaHora(Campo.value)) {
-    alert('A hora digitada é inválida');
+    alert('A hora digitada Ã© invÃ¡lida');
   }
   return true;
 }
 
 function MoedaBlur(Campo) {
   if (!ValidaMoeda(Campo.value)) {
-    alert('O valor digitado é inválido')
+    alert('O valor digitado Ã© invÃ¡lido')
   }  
   return true;
 }
 
 function EMailBlur(Campo) {
   if (!ValidaEMail(Campo.value)) {
-    alert('O EMail digitado é inválido.');
+    alert('O EMail digitado Ã© invÃ¡lido.');
   }
   return true;
 }
 
 function CEPBlur(Campo) {
   if (!ValidaCEP(Campo.value)) {
-    alert('O CEP digitado é inválido.');
+    alert('O CEP digitado Ã© invÃ¡lido.');
   }
   return true;
 }
 
 function IPBlur(Campo) {
   if (!ValidaIP(Campo.value)) {
-    alert('O IP digitado é inválido');
+    alert('O IP digitado Ã© invÃ¡lido');
   }
   return true;
 }
 
 function ArquivoBlur(Campo) {
   if (!ValidaArquivo(Campo.value)) {
-    alert('O caminho do arquivo digitado é inválido');
+    alert('O caminho do arquivo digitado Ã© invÃ¡lido');
   }
   return true;
 }
 
 function URLBlur(Campo) {
   if (!ValidaURL(Campo.value)) {
-    alert('A URL digitada é inválida');
+    alert('A URL digitada Ã© invÃ¡lida');
   }
   return true;
 }
@@ -778,7 +778,7 @@ function Validacao(Formulario) {
         }
 
 
-  // TESTA SE O OBJETO É DE CHECAR E ADAPTA A FUNCAO DE VALIDACAO
+  // TESTA SE O OBJETO Ã‰ DE CHECAR E ADAPTA A FUNCAO DE VALIDACAO
         if ((obj(NomeObj)[0].type=='checkbox')||(obj(NomeObj)[0].type=='radio')) {
           for (j=0;j<obj(NomeObj).length;j++) {
             if (obj(NomeObj)[j].checked) {
@@ -831,7 +831,7 @@ function Validacao(Formulario) {
           break;
         }
         if ( (ValorObj!='')&&(!FuncaoTemporaria(ValorObj)) ) {
-          alert('O campo '+NomeDeExibicao+' está inválido.');
+          alert('O campo '+NomeDeExibicao+' estÃ¡ invÃ¡lido.');
           return false;
         }
         if ((Obrigatorio)&&(ValorObj=='')) {
@@ -842,7 +842,7 @@ function Validacao(Formulario) {
     }
     return true;
 //  } catch(E) {
-//    alert('Erro interno, comunique o analista responsável: '+E.message);
+//    alert('Erro interno, comunique o analista responsÃ¡vel: '+E.message);
 //    return false;
 //  }
 }
@@ -854,25 +854,25 @@ function Validacao(Formulario) {
 if (navigator.userAgent.toUpperCase().indexOf('MSIE')!=-1) {
   var Versao=navigator.userAgent.split(';')[1].split(' ')[2].trim().split('.')[0];
   if (Versao<6) { // IE 6.0.2900
-    alert('A versão do seu internet explorer está defasada.\nTalvez a página não seja exibida corretamente.')
+    alert('A versÃ£o do seu internet explorer estÃ¡ defasada.\nTalvez a pÃ¡gina nÃ£o seja exibida corretamente.')
   }
 } else {
   if (navigator.userAgent.toUpperCase().indexOf('NETSCAPE')!=-1) {
     var Versao=navigator.userAgent.split('/')[navigator.userAgent.split('/').length-1].split(' ')[0].trim().split('.')[0];
     if (Versao<8) { // NETSCAPE 8.0.1
-      alert('A versão do seu netscape está defasada.\nTalvez a página não seja exibida corretamente.')
+      alert('A versÃ£o do seu netscape estÃ¡ defasada.\nTalvez a pÃ¡gina nÃ£o seja exibida corretamente.')
     }
   } else {
     if (navigator.userAgent.toUpperCase().indexOf('FIREFOX')!=-1) {
       var Versao=navigator.userAgent.split('/')[navigator.userAgent.split('/').length-1].split(' ')[0].trim().split('.')[0];
       if (Versao<1) { // FIREFOX 1.0.4
-        alert('A versão do seu firefox está defasada.\nTalvez a página não seja exibida corretamente.')
+        alert('A versÃ£o do seu firefox estÃ¡ defasada.\nTalvez a pÃ¡gina nÃ£o seja exibida corretamente.')
       }
     } else {
       if (navigator.userAgent.toUpperCase().indexOf('OPERA')!=-1) {
         var Versao=navigator.userAgent.split('/')[navigator.userAgent.split('/').length-1].split(' ')[0].trim().split('.')[0];
         if (Versao<7) { // OPERA 7.54
-          alert('A versão do seu opera está defasada.\nTalvez a página não seja exibida corretamente.')
+          alert('A versÃ£o do seu opera estÃ¡ defasada.\nTalvez a pÃ¡gina nÃ£o seja exibida corretamente.')
         }
       }
     }

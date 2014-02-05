@@ -2,19 +2,19 @@
 /*
 Copyright 2011 da UFRGS - Universidade Federal do Rio Grande do Sul
 
-Este arquivo é parte do programa SAELE - Sistema Aberto de Eleições Eletrônicas.
+Este arquivo Ã© parte do programa SAELE - Sistema Aberto de EleiÃ§Ãµes EletrÃ´nicas.
 
-O SAELE é um software livre; você pode redistribuí-lo e/ou modificá-lo dentro dos
-termos da Licença Pública Geral GNU como publicada pela Fundação do Software Livre
-(FSF); na versão 2 da Licença.
+O SAELE Ã© um software livre; vocÃª pode redistribuÃ­-lo e/ou modificÃ¡-lo dentro dos
+termos da LicenÃ§a PÃºblica Geral GNU como publicada pela FundaÃ§Ã£o do Software Livre
+(FSF); na versÃ£o 2 da LicenÃ§a.
 
-Este programa é distribuído na esperança que possa ser útil, mas SEM NENHUMA GARANTIA;
-sem uma garantia implícita de ADEQUAÇÃO a qualquer MERCADO ou APLICAÇÃO EM PARTICULAR.
-Veja a Licença Pública Geral GNU/GPL em português para maiores detalhes.
+Este programa Ã© distribuÃ­do na esperanÃ§a que possa ser Ãºtil, mas SEM NENHUMA GARANTIA;
+sem uma garantia implÃ­cita de ADEQUAÃ‡ÃƒO a qualquer MERCADO ou APLICAÃ‡ÃƒO EM PARTICULAR.
+Veja a LicenÃ§a PÃºblica Geral GNU/GPL em portuguÃªs para maiores detalhes.
 
-Você deve ter recebido uma cópia da Licença Pública Geral GNU, sob o título "LICENCA.txt",
-junto com este programa, se não, acesse o Portal do Software Público Brasileiro no
-endereço www.softwarepublico.gov.br ou escreva para a Fundação do Software Livre(FSF)
+VocÃª deve ter recebido uma cÃ³pia da LicenÃ§a PÃºblica Geral GNU, sob o tÃ­tulo "LICENCA.txt",
+junto com este programa, se nÃ£o, acesse o Portal do Software PÃºblico Brasileiro no
+endereÃ§o www.softwarepublico.gov.br ou escreva para a FundaÃ§Ã£o do Software Livre(FSF)
 Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
 */
 
@@ -53,14 +53,14 @@ class DB {
   }
 
   private function conecta($nomebanco) {
-    $host = ''; // ENDEREÇO DO BANCO DE DADOS
-    $user = ''; // USUÁRIOl
-    $pass = ''; // SENHA
+    $host = 'localhost'; // ENDEREÃ‡O DO BANCO DE DADOS
+    $user = 'eleicoes'; // USUÃRIOl
+    $pass = 'eleicoes'; // SENHA
 
     $ConnString = "host=".$host." port=5432 dbname=".$nomebanco." user=".$user." password=".$pass;
     $this->conexao = pg_connect($ConnString);
     if(!$this->conexao)
-      throw new Exception('Não foi possível conectar ao banco de dados', 1);
+      throw new Exception('NÃ£o foi possÃ­vel conectar ao banco de dados', 1);
 
     return true;
   }
@@ -210,7 +210,7 @@ class Consulta {
         $VetorParametrosUsr = array_map("trim", explode(",", $NomeParametros));
 
     preg_match_all('/:([a-zA-Z0-9_]+)\[([a-zA-Z]+)\]/', $this->sql, $VetorParametros);
-    foreach($VetorParametros[0] as $Indice => $Parametro) { // PERCORRE TODOS OS PARÂMETROS DEFINIDOS NA CONSULTA
+    foreach($VetorParametros[0] as $Indice => $Parametro) { // PERCORRE TODOS OS PARÃ‚METROS DEFINIDOS NA CONSULTA
         $NomeParametro = $VetorParametros[1][$Indice];
         $TipoParametro = $VetorParametros[2][$Indice];
 
@@ -302,7 +302,7 @@ class Consulta {
                         $NovoValorParametro = self::formataValidaCEP($ValorParametro);
                     break;
                     default:
-                        throw new DBPHPException("Tipo de parâmetro inválido: ".$TipoParametro, TIPO_PARAMETRO_INVALIDO);
+                        throw new DBPHPException("Tipo de parÃ¢metro invÃ¡lido: ".$TipoParametro, TIPO_PARAMETRO_INVALIDO);
                 }
                 if($NovoValorParametro === false) {
                   $NovoValorParametro = 'null';
@@ -321,6 +321,7 @@ class Consulta {
 
   function executa($irprimeiralinha = false) {
       $retorno = $this->db->executaQuery($this->sql);
+      
       if($retorno === false)
           throw new SQLException("Erro na consulta", $this->sql, pg_last_error(), 0);
 
@@ -338,7 +339,15 @@ class Consulta {
   }
 
   function proximo() {
-    $this->campo = @pg_fetch_array($this->recordset, is_null($this->linhaatual) ? 0 : $this->linhaatual + 1);
+      
+      if(is_null($this->linhaatual) || strlen(trim($this->linhaatual)) == 0){
+          $prox_linha = 0;
+      } else {
+          $prox_linha = $this->linhaatual + 1;
+      }
+      
+    $this->campo = @pg_fetch_array($this->recordset, $prox_linha);
+    
     if($this->campo === false) {
         $this->bof = false;
         $this->eof = true;
@@ -426,7 +435,7 @@ class Consulta {
         return preg_replace('/^([0-9]{3})([0-9]{3})([0-9]{3})([0-9]{2})$/','\1.\2.\3-\4', str_pad($resultado, 11, "0", STR_PAD_LEFT));
       case expressaoregular:
         if ((trim($expressaoregular) == "") || (trim($substituicao) == "")) {
-          throw new DBPHPException("Parâmetros insuficientes para o método campo", 0);
+          throw new DBPHPException("ParÃ¢metros insuficientes para o mÃ©todo campo", 0);
         }
         return preg_replace($expressaoregular,$substituicao,$resultado);
       default:
@@ -460,9 +469,13 @@ class Consulta {
                           "88888888888",
                           "99999999999",
                           "00000000000");
-      if(preg_match('/^(\d\d\d)\.(\d\d\d)\.(\d\d\d)-(\d\d)$/', $CPF) == 0)
+      if(preg_match('/^\d{1,11}$/', $CPF) != 0)
+        $CPFNum = str_pad($CPF, 11, '0', STR_PAD_LEFT);
+      elseif(preg_match('/^(\d\d\d)\.(\d\d\d)\.(\d\d\d)-(\d\d)$/', $CPF) != 0)
+        $CPFNum = preg_replace('/^(\d\d\d)\.(\d\d\d)\.(\d\d\d)-(\d\d)$/', '$1$2$3$4', $CPF);
+      else
         return false;
-      $CPFNum = preg_replace('/^(\d\d\d)\.(\d\d\d)\.(\d\d\d)-(\d\d)$/', '$1$2$3$4', $CPF);
+        
       if(in_array($CPFNum, $Invalidos))
         return false;
 
@@ -563,11 +576,11 @@ class Consulta {
   }
 
   public static function formataNumero($numero) {
-      $regexpnumero = '/^([+-]{0,1}[0-9]{0,})[,]{0,1}([0-9]{0,})/';
+      $regexpnumero = '/^([+-]?[0-9]*)[,]?([0-9]*)/';
       preg_match($regexpnumero,$numero,$resultado);
 
       if (isset($resultado[1])) {
-        if (isset($resultado[2])) {
+        if (isset($resultado[2]) && strlen(trim($resultado[2]))>0 ) {
           return $resultado[1].'.'.$resultado[2];
         } else {
           return $resultado[1];
@@ -625,7 +638,7 @@ class SQLException extends Exception {
   }
 
   public function __toString() {
-      return "Erro de SQL; Mensagem retornada: ".$this->MensagemErro.", consulta executada: ".$this->SQL." ".$this->MensagemErro.", traço: ".$this->getTraceAsString();
+      return "Erro de SQL; Mensagem retornada: ".$this->MensagemErro.", consulta executada: ".$this->SQL." ".$this->MensagemErro.", traÃ§o: ".$this->getTraceAsString();
   }
 }
 

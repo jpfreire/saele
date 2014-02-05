@@ -2,26 +2,26 @@
 /*
 Copyright 2011 da UFRGS - Universidade Federal do Rio Grande do Sul
 
-Este arquivo é parte do programa SAELE - Sistema Aberto de Eleições Eletrônicas.
+Este arquivo Ã© parte do programa SAELE - Sistema Aberto de EleiÃ§Ãµes EletrÃ´nicas.
 
-O SAELE é um software livre; você pode redistribuí-lo e/ou modificá-lo dentro dos
-termos da Licença Pública Geral GNU como publicada pela Fundação do Software Livre
-(FSF); na versão 2 da Licença.
+O SAELE Ã© um software livre; vocÃª pode redistribuÃ­-lo e/ou modificÃ¡-lo dentro dos
+termos da LicenÃ§a PÃºblica Geral GNU como publicada pela FundaÃ§Ã£o do Software Livre
+(FSF); na versÃ£o 2 da LicenÃ§a.
 
-Este programa é distribuído na esperança que possa ser útil, mas SEM NENHUMA GARANTIA;
-sem uma garantia implícita de ADEQUAÇÃO a qualquer MERCADO ou APLICAÇÃO EM PARTICULAR.
-Veja a Licença Pública Geral GNU/GPL em português para maiores detalhes.
+Este programa Ã© distribuÃ­do na esperanÃ§a que possa ser Ãºtil, mas SEM NENHUMA GARANTIA;
+sem uma garantia implÃ­cita de ADEQUAÃ‡ÃƒO a qualquer MERCADO ou APLICAÃ‡ÃƒO EM PARTICULAR.
+Veja a LicenÃ§a PÃºblica Geral GNU/GPL em portuguÃªs para maiores detalhes.
 
-Você deve ter recebido uma cópia da Licença Pública Geral GNU, sob o título "LICENCA.txt",
-junto com este programa, se não, acesse o Portal do Software Público Brasileiro no
-endereço www.softwarepublico.gov.br ou escreva para a Fundação do Software Livre(FSF)
+VocÃª deve ter recebido uma cÃ³pia da LicenÃ§a PÃºblica Geral GNU, sob o tÃ­tulo "LICENCA.txt",
+junto com este programa, se nÃ£o, acesse o Portal do Software PÃºblico Brasileiro no
+endereÃ§o www.softwarepublico.gov.br ou escreva para a FundaÃ§Ã£o do Software Livre(FSF)
 Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
 */
 
 /**
  * A classe Voto representa cada voto dado individualmente por um eleitor em
- * uma eleição. É importante notar que esta classe NÃO extende a classe Entidade,
- * e serve apenas para registrar um voto dado, não para recuperar um voto individual
+ * uma eleiÃ§Ã£o. Ã‰ importante notar que esta classe NÃƒO extende a classe Entidade,
+ * e serve apenas para registrar um voto dado, nÃ£o para recuperar um voto individual
  * e buscar seu valor.
  */
 class Voto {
@@ -39,7 +39,7 @@ class Voto {
  */
     public function __construct(ConcursoEleitoral $Concurso, Eleicao $Eleicao) {
         if($Eleicao->get("codconcurso") != $Concurso->getChave())
-            throw new VotoException("Eleição inválida", 0);
+            throw new VotoException("EleiÃ§Ã£o invÃ¡lida", 0);
         $this->Concurso = $Concurso;
         $this->Eleicao = $Eleicao;
     }
@@ -53,7 +53,7 @@ class Voto {
         && ($Chapa->get("codeleicao") == $this->Eleicao->getChave())) {
             $this->Voto = $Chapa;
         }
-        else throw new VotoException("Chapa inválida para eleição atual", 0);
+        else throw new VotoException("Chapa invÃ¡lida para eleiÃ§Ã£o atual", 0);
     }
 /**
  * Define o voto como branco.
@@ -127,7 +127,7 @@ values
             $Insere->setParametros("VotoNulo", null);
             $Insere->setParametros("CodChapa", $this->Voto->getChave());
         }
-        else throw new VotoException("Voto inválido: ".$this->Voto, 0);
+        else throw new VotoException("Voto invÃ¡lido: ".$this->Voto, 0);
 
         if($this->Urna instanceof UrnaVirtual) {
             $Insere->setParametros("CodUrna", $this->Urna->getChave());

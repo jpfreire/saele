@@ -2,30 +2,30 @@
 /*
 Copyright 2011 da UFRGS - Universidade Federal do Rio Grande do Sul
 
-Este arquivo È parte do programa SAELE - Sistema Aberto de EleiÁıes EletrÙnicas.
+Este arquivo √© parte do programa SAELE - Sistema Aberto de Elei√ß√µes Eletr√¥nicas.
 
-O SAELE È um software livre; vocÍ pode redistribuÌ-lo e/ou modific·-lo dentro dos
-termos da LicenÁa P˙blica Geral GNU como publicada pela FundaÁ„o do Software Livre
-(FSF); na vers„o 2 da LicenÁa.
+O SAELE √© um software livre; voc√™ pode redistribu√≠-lo e/ou modific√°-lo dentro dos
+termos da Licen√ßa P√∫blica Geral GNU como publicada pela Funda√ß√£o do Software Livre
+(FSF); na vers√£o 2 da Licen√ßa.
 
-Este programa È distribuÌdo na esperanÁa que possa ser ˙til, mas SEM NENHUMA GARANTIA;
-sem uma garantia implÌcita de ADEQUA«√O a qualquer MERCADO ou APLICA«√O EM PARTICULAR.
-Veja a LicenÁa P˙blica Geral GNU/GPL em portuguÍs para maiores detalhes.
+Este programa √© distribu√≠do na esperan√ßa que possa ser √∫til, mas SEM NENHUMA GARANTIA;
+sem uma garantia impl√≠cita de ADEQUA√á√ÉO a qualquer MERCADO ou APLICA√á√ÉO EM PARTICULAR.
+Veja a Licen√ßa P√∫blica Geral GNU/GPL em portugu√™s para maiores detalhes.
 
-VocÍ deve ter recebido uma cÛpia da LicenÁa P˙blica Geral GNU, sob o tÌtulo "LICENCA.txt",
-junto com este programa, se n„o, acesse o Portal do Software P˙blico Brasileiro no
-endereÁo www.softwarepublico.gov.br ou escreva para a FundaÁ„o do Software Livre(FSF)
+Voc√™ deve ter recebido uma c√≥pia da Licen√ßa P√∫blica Geral GNU, sob o t√≠tulo "LICENCA.txt",
+junto com este programa, se n√£o, acesse o Portal do Software P√∫blico Brasileiro no
+endere√ßo www.softwarepublico.gov.br ou escreva para a Funda√ß√£o do Software Livre(FSF)
 Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
 */
-                       // GeraÁ„o de Concurso Eleitoral a partir de SolicitaÁ„o - GRAVA«√O DOS DADOS
+                       // Gera√ß√£o de Concurso Eleitoral a partir de Solicita√ß√£o - GRAVA√á√ÉO DOS DADOS
 require_once('../CABECALHO.PHP');
 require_once('../Funcoes_Pessoa.php');
 
 $Pessoa = Controlador::instancia()->recuperaPessoaLogada();
 if(!$Pessoa->eGerenteSistema()) {
-    echo "<html><body>\n";
+    echo "<html><head><meta charset=\"utf-8\"></head><body>\n";
     echo "<div align=\"center\">\n";
-    echo "<br><font size=\"2\" face=\"verdana\">Erro! O usu&aacute;rio n&atilde;o tem permiss&atilde;o para acessar esta p&aacute;gina.<br><br>\n";
+    echo "<br><font size=\"2\" face=\"verdana\">Erro! O usu√°rio n√£o tem permiss√£o para acessar esta p√°gina.<br><br>\n";
     echo "<a href=\"javascript: history.back();\">Voltar</a></font>\n";
     echo "</div>";
     echo "</body></html>";
@@ -35,9 +35,9 @@ if(!$Pessoa->eGerenteSistema()) {
 $NrSeqSolicitacaoConcurso = $_POST['NrSeqSolicitacaoConcurso'];
 $Solicitacao = new SolicitacaoConcurso($NrSeqSolicitacaoConcurso);
 if(!$Solicitacao->valido())  { ?>
-    <html><body>
+    <html><head><meta charset="utf-8"></head><body>
         <div align="center">
-        <font size="2" face="verdana">Erro! SolicitaÁ„o inv·lida.<br /><br />
+        <font size="2" face="verdana">Erro! Solicita√ß√£o inv√°lida.<br /><br />
         <a href="javascript: history.back();">Voltar</a></font>
         </div>
     </body></html>
@@ -56,7 +56,7 @@ $PessoaSolicitacao = new PessoaEleicao($Solicitacao->get("usuariosolicitacao"));
 $db = db::instancia();
 $db->iniciaTransacao();
 
-if(!is_null($Solicitacao->get("codconcurso"))) { // ATUALIZA CONCURSO J¡ GERADO
+if(!is_null($Solicitacao->get("codconcurso"))) { // ATUALIZA CONCURSO J√Å GERADO
     $Valores['CodConcurso'] = $Solicitacao->get("codconcurso");
     $Concurso = new ConcursoEleitoral($Valores['CodConcurso']);
     $Concurso->set("descricao", $Valores['DescConcurso']);
@@ -77,8 +77,8 @@ else { // GERA CONCURSO
     $GerouConcurso = $Concurso->salva();
     $Valores['CodConcurso'] = $Concurso->getChave();
 
-	foreach($Valores['Eleicao'] as $NomeEleicao) {
-		if(trim($NomeEleicao) != "") {
+    foreach($Valores['Eleicao'] as $NomeEleicao) {
+        if(trim($NomeEleicao) != "") {
             $Eleicao = $Concurso->geraEleicao();
             $Eleicao->set("descricao", $NomeEleicao);
             $Eleicao->set("nrpossibilidades", 1);
@@ -86,8 +86,8 @@ else { // GERA CONCURSO
             $Eleicao->salva();
 
             $Eleicao->cadastraMembroComissao($PessoaSolicitacao);
-		}
-	}
+        }
+    }
 }
 
 if(is_null($Concurso->get("situacaoconcurso")) && isset($Valores['Importar']) && ($Valores['Importar'] == "S")) {
@@ -98,7 +98,7 @@ if(is_null($Concurso->get("situacaoconcurso")) && isset($Valores['Importar']) &&
 	foreach($Eleicoes as $CodEleicao => $Eleicao) {
         $Lista = file('../ARQUIVO/arq_'.$NrSeqSolicitacaoConcurso.'_'.$CodEleicao.'.txt');
 		if($Lista === false) {
-            $MSG .= "N„o foi possÌvel abrir o arquivo da eleiÁ„o ".$CodEleicao.". Certifique-se de que o arquivo 'arq_".$NrSeqSolicitacaoConcurso."_".$CodEleicao.".txt' encontra-se no diretÛrio ARQUIVO.<br />";
+            $MSG .= "N√£o foi poss√≠vel abrir o arquivo da elei√ß√£o ".$CodEleicao.". Certifique-se de que o arquivo 'arq_".$NrSeqSolicitacaoConcurso."_".$CodEleicao.".txt' encontra-se no diret√≥rio ARQUIVO.<br />";
 		}
 		else {
             foreach($Lista as $Linha) {
@@ -114,7 +114,7 @@ if(is_null($Concurso->get("situacaoconcurso")) && isset($Valores['Importar']) &&
                 $Pessoa = new PessoaEleicao($Valores['CodPessoaEleicao']);
                 if(!is_null(PessoaEleicao::devolvePessoaPorIdentificador($Valores['IdentificacaoUsuario']))) {
                     if($Pessoa->get("nomepessoa") != $Valores['NomePessoa']) {
-                        $MSG .= "O participante ".$Valores['NomePessoa'].", de cÛdigo ".$Valores['CodPessoaEleicao'].", n„o foi incluÌda pois o cÛdigo j· est· sendo utilizado por ".$Pessoa->get("nomepessoa").".<br />";
+                        $MSG .= "O participante ".$Valores['NomePessoa'].", de c√≥digo ".$Valores['CodPessoaEleicao'].", n√£o foi inclu√≠da pois o c√≥digo j√° est√° sendo utilizado por ".$Pessoa->get("nomepessoa").".<br />";
                         $Insere = false;
                     }
                     else $Insere = true;
@@ -144,33 +144,33 @@ if(is_null($Concurso->get("situacaoconcurso")) && isset($Valores['Importar']) &&
                 }
                 else {
                     $erro = true;
-                    $MSG .= "A pessoa ".$Pessoa->get("nomepessoa")>" n„o foi homologada. Resposta: ".$Retorno."<br />";
+                    $MSG .= "A pessoa ".$Pessoa->get("nomepessoa")>" n√£o foi homologada. Resposta: ".$Retorno."<br />";
                 }
 			}
 		}
 	}
 }
 
-if($Valores['Finalizar'] == "S") { // FINALIZA SOLICITA«√O
+if($Valores['Finalizar'] == "S") { // FINALIZA SOLICITA√á√ÉO
     $Solicitacao->set("dataatendimento", null, "now()");
     $Solicitacao->set("codconcurso", $Concurso);
     $Solicitacao->salva();
     
     // E-MAIL PARA ADMINISTRADORES
-	// CONFORME O CASO, PODE-SE ADQUIRIR O DESTINAT¡RIO DA MENSAGEM DO BANCO DE DADOS, OU PODE SER UM ENDERE«O FIXO
+	// CONFORME O CASO, PODE-SE ADQUIRIR O DESTINAT√ÅRIO DA MENSAGEM DO BANCO DE DADOS, OU PODE SER UM ENDERE√áO FIXO
     $Destinatario = "";
     $Gerentes = new Iterador("PessoaEleicao", "where email is not null and gerentesistema = 'S'");
     foreach($Gerentes as $Gerente)
       $Destinatario .= $Gerente->get("email").",";
     $Destinatario = rtrim($Destinatario, ",");
 		
-    $Titulo = "GeraÁ„o de Concurso Eleitoral";
-    $Header = "From: EleiÁıes\r\n"
+    $Titulo = "Gera√ß√£o de Concurso Eleitoral";
+    $Header = "From: Elei√ß√µes\r\n"
              ."MIME-Version: 1.0\r\n"
-             ."Content-Type: text/html; charset=iso-8859-1\r\n"
+             ."Content-Type: text/html; charset=UTF-8\r\n"
              ."Content-Transfer-Encoding: 8bit\r\n";
     $Mensagem = "<p>O Concurso Eleitoral <b>".$Concurso->getChave()." - ".$Concurso->get("descricao")."</b> foi gerado.</p>"
-               ."<p>Elei&ccedil;&otilde;es geradas:</p>";
+               ."<p>Elei√ß√µes geradas:</p>";
     $StrEleicoes = NULL;
     $Eleicoes = $Concurso->devolveEleicoes();
     foreach($Eleicoes as $CodEleicao => $Eleicao)
@@ -180,7 +180,7 @@ if($Valores['Finalizar'] == "S") { // FINALIZA SOLICITA«√O
     mail($Destinatario, $Titulo, $Mensagem, $Header);
 
     // E-MAIL PARA SOLICITANTE
-		// O C”DIGO ABAIXO … USADO PARA ANEXAR UM ARQUIVO DE IMAGEM AO E-MAIL, A SER USADO NO LINK PARA AS ELEI«’ES
+		// O C√ìDIGO ABAIXO √â USADO PARA ANEXAR UM ARQUIVO DE IMAGEM AO E-MAIL, A SER USADO NO LINK PARA AS ELEI√á√ïES
 /*    $NomeArq = "";
     $Arquivo = fopen($NomeArq, "rb");
     $Conteudo = stream_get_contents($Arquivo);
@@ -189,20 +189,20 @@ if($Valores['Finalizar'] == "S") { // FINALIZA SOLICITA«√O
 
     $Destinatario = $Solicitacao->get("emailcontato");
     $Separador = md5(time());
-    $Header = "From: EleiÁıes\r\n"
+    $Header = "From: Elei√ß√µes\r\n"
              ."MIME-Version: 1.0\r\n"
-             ."Content-Type: text/html; charset=iso-8859-1\r\n"
+             ."Content-Type: text/html; charset=UTF-8\r\n"
              ."Content-Transfer-Encoding: 8bit\r\n";
 
-    $Mensagem = "<p>Seu Concurso Eleitoral foi gerado com as seguintes caracter&iacute;sticas:</p>"
-               ."<p>Elei&ccedil;&otilde;es geradas:</p>".$StrEleicoes
-               ."<p>O link para acesso &eacute; <a href=\"http://alguma.coisa.com\">http://alguma.coisa.com</a></p>"
-               ."<p>O &iacute;cone para a elei&ccedil;&atilde;o segue em anexo.</p>\r\n";
+    $Mensagem = "<p>Seu Concurso Eleitoral foi gerado com as seguintes caracter√≠sticas:</p>"
+               ."<p>Elei√ß√µes geradas:</p>".$StrEleicoes
+               ."<p>O link para acesso √© <a href=\"http://alguma.coisa.com\">http://alguma.coisa.com</a></p>"
+               ."<p>O √≠cone para a elei√ß√£o segue em anexo.</p>\r\n";
     mail($Destinatario, $Titulo, $Mensagem, $Header);
 
-    $MSG .= "SolicitaÁao finalizada com sucesso.";
+    $MSG .= "Solicita√ßao finalizada com sucesso.";
 }
-else { // N√O FINALIZA
+else { // N√ÉO FINALIZA
     $Solicitacao->set("dataatendimento", null);
     $Solicitacao->set("codconcurso", $Concurso);
     $Solicitacao->salva();
@@ -210,7 +210,7 @@ else { // N√O FINALIZA
 }
 
 $db->encerraTransacao();
-MostraCabecalho("Solicita&ccedil;&atilde;o de Concursos Eleitorais");
+MostraCabecalho("Solicita√ß√£o de Concursos Eleitorais");
 ?>
     <div align="center">
     <br />

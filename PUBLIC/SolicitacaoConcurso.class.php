@@ -2,19 +2,19 @@
 /*
 Copyright 2011 da UFRGS - Universidade Federal do Rio Grande do Sul
 
-Este arquivo é parte do programa SAELE - Sistema Aberto de Eleições Eletrônicas.
+Este arquivo Ã© parte do programa SAELE - Sistema Aberto de EleiÃ§Ãµes EletrÃ´nicas.
 
-O SAELE é um software livre; você pode redistribuí-lo e/ou modificá-lo dentro dos
-termos da Licença Pública Geral GNU como publicada pela Fundação do Software Livre
-(FSF); na versão 2 da Licença.
+O SAELE Ã© um software livre; vocÃª pode redistribuÃ­-lo e/ou modificÃ¡-lo dentro dos
+termos da LicenÃ§a PÃºblica Geral GNU como publicada pela FundaÃ§Ã£o do Software Livre
+(FSF); na versÃ£o 2 da LicenÃ§a.
 
-Este programa é distribuído na esperança que possa ser útil, mas SEM NENHUMA GARANTIA;
-sem uma garantia implícita de ADEQUAÇÃO a qualquer MERCADO ou APLICAÇÃO EM PARTICULAR.
-Veja a Licença Pública Geral GNU/GPL em português para maiores detalhes.
+Este programa Ã© distribuÃ­do na esperanÃ§a que possa ser Ãºtil, mas SEM NENHUMA GARANTIA;
+sem uma garantia implÃ­cita de ADEQUAÃ‡ÃƒO a qualquer MERCADO ou APLICAÃ‡ÃƒO EM PARTICULAR.
+Veja a LicenÃ§a PÃºblica Geral GNU/GPL em portuguÃªs para maiores detalhes.
 
-Você deve ter recebido uma cópia da Licença Pública Geral GNU, sob o título "LICENCA.txt",
-junto com este programa, se não, acesse o Portal do Software Público Brasileiro no
-endereço www.softwarepublico.gov.br ou escreva para a Fundação do Software Livre(FSF)
+VocÃª deve ter recebido uma cÃ³pia da LicenÃ§a PÃºblica Geral GNU, sob o tÃ­tulo "LICENCA.txt",
+junto com este programa, se nÃ£o, acesse o Portal do Software PÃºblico Brasileiro no
+endereÃ§o www.softwarepublico.gov.br ou escreva para a FundaÃ§Ã£o do Software Livre(FSF)
 Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
 */
 
@@ -23,26 +23,26 @@ final class SolicitacaoConcurso extends Entidade {
     static private $Strings = array(
         'E' => array(
             STR_CONCURSOELEITORAL   => "Concurso Eleitoral",
-            STR_ELEICAO             => "Eleição",
+            STR_ELEICAO             => "EleiÃ§Ã£o",
             STR_CHAPA               => "Chapa",
             STR_GERENTE             => "Gerente",
             STR_ELEITOR             => "Eleitor",
             STR_CONCURSOSELEITORAIS => "Concursos Eleitorais",
-            STR_ELEICOES            => "Eleições",
+            STR_ELEICOES            => "EleiÃ§Ãµes",
             STR_CHAPAS              => "Chapas",
             STR_GERENTES            => "Gerentes",
             STR_ELEITORES           => "Eleitores",
         ),
         'Q' => array(
             STR_CONCURSOELEITORAL   => "Enquete",
-            STR_ELEICAO             => "Questão",
+            STR_ELEICAO             => "QuestÃ£o",
             STR_CHAPA               => "Resposta",
-            STR_GERENTE             => "Responsável",
+            STR_GERENTE             => "ResponsÃ¡vel",
             STR_ELEITOR             => "Participante",
             STR_CONCURSOSELEITORAIS => "Enquetes",
-            STR_ELEICOES            => "Questões",
+            STR_ELEICOES            => "QuestÃµes",
             STR_CHAPAS              => "Respostas",
-            STR_GERENTES            => "Responsáveis",
+            STR_GERENTES            => "ResponsÃ¡veis",
             STR_ELEITORES           => "Participantes",
         )
     );
@@ -53,21 +53,21 @@ final class SolicitacaoConcurso extends Entidade {
     );
     protected $VetorCampos = array(
         "nomeconcurso"          => array(Nome => "Nome do Concurso", Tipo => texto, Tamanho => 120, Obrigatorio => true),
-        "datainicioconcurso"    => array(Nome => "Data de Início", Tipo => datahora, Obrigatorio => true),
+        "datainicioconcurso"    => array(Nome => "Data de InÃ­cio", Tipo => datahora, Obrigatorio => true),
         "datafimconcurso"       => array(Nome => "Data de Fim", Tipo => datahora, Obrigatorio => true),
         "nomepessoacontato"     => array(Nome => "Pessoa para Contato", Tipo => texto, Tamanho => 72, Obrigatorio => false),
         "ramalcontato"          => array(Nome => "Ramal para Contato", Tipo => texto, Tamanho => 5, Obrigatorio => false),
         "emailcontato"          => array(Nome => "E-Mail para Contato", Tipo => texto, Tamanho => 50, Obrigatorio => false),
-        "comissaoeleitoral"     => array(Nome => "Comissão Eleitoral", Tipo => texto, Tamanho => 255, Obrigatorio => false),
+        "comissaoeleitoral"     => array(Nome => "ComissÃ£o Eleitoral", Tipo => texto, Tamanho => 255, Obrigatorio => false),
         "gerentesconcurso"      => array(Nome => "Gerentes do Concurso", Tipo => texto, Tamanho => 255, Obrigatorio => false),
         "indbarradoporip"       => array(Nome => "Barrado por IP", Tipo => texto, Tamanho => 1, Obrigatorio => true, Valores => array("S", "E", "N")),
         "perfileleitores"       => array(Nome => "Perfil dos Eleitores", Tipo => texto, Tamanho => 1, Obrigatorio => true),
-        "datasolicitacao"       => array(Nome => "Data de Solicitação", Tipo => datahora, Obrigatorio => false),
-        "usuariosolicitacao"    => array(Nome => "Usuário de Solicitação", Tipo => numero, Tamanho => 6, Obrigatorio => true, Classe => "PessoaEleicao"),
+        "datasolicitacao"       => array(Nome => "Data de SolicitaÃ§Ã£o", Tipo => datahora, Obrigatorio => false),
+        "usuariosolicitacao"    => array(Nome => "UsuÃ¡rio de SolicitaÃ§Ã£o", Tipo => numero, Tamanho => 6, Obrigatorio => true, Classe => "PessoaEleicao"),
         "dataatendimento"       => array(Nome => "Data de Atendimento", Tipo => datahora, Obrigatorio => false),
-        "codconcurso"           => array(Nome => "Código do Concurso", Tipo => numero, Tamanho => 4, Obrigatorio => false, Classe => "ConcursoEleitoral"),
-        "codorgaoescopo"        => array(Nome => "Órgão de Escopo", Tipo => numero, Tamanho => 5, Obrigatorio => false),
-        "observacao"            => array(Nome => "Observação", Tipo => texto, Obrigatorio => false),
+        "codconcurso"           => array(Nome => "CÃ³digo do Concurso", Tipo => numero, Tamanho => 4, Obrigatorio => false, Classe => "ConcursoEleitoral"),
+        "codorgaoescopo"        => array(Nome => "Ã“rgÃ£o de Escopo", Tipo => numero, Tamanho => 5, Obrigatorio => false),
+        "observacao"            => array(Nome => "ObservaÃ§Ã£o", Tipo => texto, Obrigatorio => false),
         "modalidadeconcurso"    => array(Nome => "Modalidade do Concurso", Tipo => texto, Tamanho => 1, Obrigatorio => true, Valores => array("E", "Q"))
     );
 

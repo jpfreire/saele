@@ -2,28 +2,28 @@
 /*
 Copyright 2011 da UFRGS - Universidade Federal do Rio Grande do Sul
 
-Este arquivo é parte do programa SAELE - Sistema Aberto de Eleições Eletrônicas.
+Este arquivo Ã© parte do programa SAELE - Sistema Aberto de EleiÃ§Ãµes EletrÃ´nicas.
 
-O SAELE é um software livre; você pode redistribuí-lo e/ou modificá-lo dentro dos
-termos da Licença Pública Geral GNU como publicada pela Fundação do Software Livre
-(FSF); na versão 2 da Licença.
+O SAELE Ã© um software livre; vocÃª pode redistribuÃ­-lo e/ou modificÃ¡-lo dentro dos
+termos da LicenÃ§a PÃºblica Geral GNU como publicada pela FundaÃ§Ã£o do Software Livre
+(FSF); na versÃ£o 2 da LicenÃ§a.
 
-Este programa é distribuído na esperança que possa ser útil, mas SEM NENHUMA GARANTIA;
-sem uma garantia implícita de ADEQUAÇÃO a qualquer MERCADO ou APLICAÇÃO EM PARTICULAR.
-Veja a Licença Pública Geral GNU/GPL em português para maiores detalhes.
+Este programa Ã© distribuÃ­do na esperanÃ§a que possa ser Ãºtil, mas SEM NENHUMA GARANTIA;
+sem uma garantia implÃ­cita de ADEQUAÃ‡ÃƒO a qualquer MERCADO ou APLICAÃ‡ÃƒO EM PARTICULAR.
+Veja a LicenÃ§a PÃºblica Geral GNU/GPL em portuguÃªs para maiores detalhes.
 
-Você deve ter recebido uma cópia da Licença Pública Geral GNU, sob o título "LICENCA.txt",
-junto com este programa, se não, acesse o Portal do Software Público Brasileiro no
-endereço www.softwarepublico.gov.br ou escreva para a Fundação do Software Livre(FSF)
+VocÃª deve ter recebido uma cÃ³pia da LicenÃ§a PÃºblica Geral GNU, sob o tÃ­tulo "LICENCA.txt",
+junto com este programa, se nÃ£o, acesse o Portal do Software PÃºblico Brasileiro no
+endereÃ§o www.softwarepublico.gov.br ou escreva para a FundaÃ§Ã£o do Software Livre(FSF)
 Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
 */
 
-define("DESCRICAO_ZERESIMA", "Zerésima");
+define("DESCRICAO_ZERESIMA", "ZerÃ©sima");
 define("DESCRICAO_CONTAGEM", "Contagem de votos");
 define("DESCRICAO_RECONTAGEM", "Recontagem de votos");
 define("DESCRICAO_FINALIZACAO", "Concurso Eleitoral finalizado");
-define("DESCRICAO_ACESSOVOTACAO", "Acesso à área de votação");
-define("DESCRICAO_INICIOVOTO", "Consistência OK, início da operação de voto");
+define("DESCRICAO_ACESSOVOTACAO", "Acesso Ã  Ã¡rea de votaÃ§Ã£o");
+define("DESCRICAO_INICIOVOTO", "ConsistÃªncia OK, inÃ­cio da operaÃ§Ã£o de voto");
 define("DESCRICAO_VOTOEFETUADO", "Voto efetuado com sucesso");
 define("DESCRICAO_EMAILS", "E-Mails enviados");
 
@@ -34,11 +34,11 @@ class LogOperacao extends Entidade {
       "nrseqlogoperacao"    => array(Tipo => numero, Tamanho => 8, Foreign => false)
     );
     protected $VetorCampos = array(
-      "codeleicao"          => array(Nome => "Eleição", Tipo => numero, Tamanho => 4, Obrigatorio => false, Classe => "Eleicao"),
+      "codeleicao"          => array(Nome => "EleiÃ§Ã£o", Tipo => numero, Tamanho => 4, Obrigatorio => false, Classe => "Eleicao"),
       "codpessoaeleicao"    => array(Nome => "Pessoa", Tipo => numero, Tamanho => 8, Obrigatorio => false, Classe => "PessoaEleicao"),
-      "dataoperacao"        => array(Nome => "Data de Operação", Tipo => datahora, Obrigatorio => true),
+      "dataoperacao"        => array(Nome => "Data de OperaÃ§Ã£o", Tipo => datahora, Obrigatorio => true),
       "ip"                  => array(Nome => "IP", Tipo => texto, Tamanho => 15, Obrigatorio => true),
-      "descricao"           => array(Nome => "Descrição", Tipo => texto, Tamanho => 120, Obrigatorio => true)
+      "descricao"           => array(Nome => "DescriÃ§Ã£o", Tipo => texto, Tamanho => 120, Obrigatorio => true)
     );
 
     public static function getNumLogsPorDescricao($Descricao, ConcursoEleitoral $Concurso, Eleicao $Eleicao=null) {

@@ -2,19 +2,19 @@
 /*
 Copyright 2011 da UFRGS - Universidade Federal do Rio Grande do Sul
 
-Este arquivo È parte do programa SAELE - Sistema Aberto de EleiÁıes EletrÙnicas.
+Este arquivo √© parte do programa SAELE - Sistema Aberto de Elei√ß√µes Eletr√¥nicas.
 
-O SAELE È um software livre; vocÍ pode redistribuÌ-lo e/ou modific·-lo dentro dos
-termos da LicenÁa P˙blica Geral GNU como publicada pela FundaÁ„o do Software Livre
-(FSF); na vers„o 2 da LicenÁa.
+O SAELE √© um software livre; voc√™ pode redistribu√≠-lo e/ou modific√°-lo dentro dos
+termos da Licen√ßa P√∫blica Geral GNU como publicada pela Funda√ß√£o do Software Livre
+(FSF); na vers√£o 2 da Licen√ßa.
 
-Este programa È distribuÌdo na esperanÁa que possa ser ˙til, mas SEM NENHUMA GARANTIA;
-sem uma garantia implÌcita de ADEQUA«√O a qualquer MERCADO ou APLICA«√O EM PARTICULAR.
-Veja a LicenÁa P˙blica Geral GNU/GPL em portuguÍs para maiores detalhes.
+Este programa √© distribu√≠do na esperan√ßa que possa ser √∫til, mas SEM NENHUMA GARANTIA;
+sem uma garantia impl√≠cita de ADEQUA√á√ÉO a qualquer MERCADO ou APLICA√á√ÉO EM PARTICULAR.
+Veja a Licen√ßa P√∫blica Geral GNU/GPL em portugu√™s para maiores detalhes.
 
-VocÍ deve ter recebido uma cÛpia da LicenÁa P˙blica Geral GNU, sob o tÌtulo "LICENCA.txt",
-junto com este programa, se n„o, acesse o Portal do Software P˙blico Brasileiro no
-endereÁo www.softwarepublico.gov.br ou escreva para a FundaÁ„o do Software Livre(FSF)
+Voc√™ deve ter recebido uma c√≥pia da Licen√ßa P√∫blica Geral GNU, sob o t√≠tulo "LICENCA.txt",
+junto com este programa, se n√£o, acesse o Portal do Software P√∫blico Brasileiro no
+endere√ßo www.softwarepublico.gov.br ou escreva para a Funda√ß√£o do Software Livre(FSF)
 Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
 */
 
@@ -41,8 +41,8 @@ define("EXCECAO_CHAVEINVALIDA", 11);
 define("EXCECAO_OBJETOINVALIDO", 12);
 
 /**
- *      - Classe abstrata para uma inst‚ncia de uma entidade do banco de dados com *um* ˙nico
- *  registro como chave prim·ria.
+ *      - Classe abstrata para uma inst√¢ncia de uma entidade do banco de dados com *um* √∫nico
+ *  registro como chave prim√°ria.
  */
 abstract class Entidade {
     private $NomeChave = null;
@@ -60,28 +60,28 @@ abstract class Entidade {
     /**
      *      - Construtor da classe.
      * @param $NomeChave
-     *      - Nome da coluna principal da chave prim·ria.
-     *      - Detectada automaticamente no momento da instanciaÁ„o do mÈtodo. Utilizado mais para enxugar o cÛdigo.
+     *      - Nome da coluna principal da chave prim√°ria.
+     *      - Detectada automaticamente no momento da instancia√ß√£o do m√©todo. Utilizado mais para enxugar o c√≥digo.
      * @param $Chave
-     *      - Chave prim·ria do registro carregado.
+     *      - Chave prim√°ria do registro carregado.
      *      - Quando $Chave===NULL subentende-se que estamos trabalhando com um novo registro.
      * @param $Autoincremento
      *      - Coluna IDENTITY da tabela, caso exista.
-     *      - A coluna È declarada na classe final. O nome da coluna È guardado neste atributo para referÍncia futura.
+     *      - A coluna √© declarada na classe final. O nome da coluna √© guardado neste atributo para refer√™ncia futura.
      * @param $VetorDadosChaves
-     *      - Vetor com o conte˙do das colunas da chave prim·ria.
+     *      - Vetor com o conte√∫do das colunas da chave prim√°ria.
      * @param $VetorDados
-     *      - Vetor com o conte˙do das colunas que n„o fazem parte da chave prim·ria.
+     *      - Vetor com o conte√∫do das colunas que n√£o fazem parte da chave prim√°ria.
      * @param $Valido
-     *      - Valor booleano que sinaliza se o objeto È v·lido.
-     *      - Detectado no momento da instanciaÁ„o.
+     *      - Valor booleano que sinaliza se o objeto √© v√°lido.
+     *      - Detectado no momento da instancia√ß√£o.
      */
     function __construct() {
         if( func_num_args() > 0 && func_get_arg(0) == "dummy" ) {
             $this->Dummy = true;
             $this->Valido = false;
         }
-        // Quando a classe recebe uma CONSULTA como ˙nico argumento, todos os dados do objeto ser„o carregados daquela consulta. Isto È utilizado principalmente com a classe Iterador
+        // Quando a classe recebe uma CONSULTA como √∫nico argumento, todos os dados do objeto ser√£o carregados daquela consulta. Isto √© utilizado principalmente com a classe Iterador
         elseif( func_num_args() > 0 && func_get_arg(0) instanceof Consulta ) {
             $Consulta = func_get_arg(0);
             foreach($this->VetorChaves as $Nome => $Array) {
@@ -121,11 +121,11 @@ abstract class Entidade {
             $this->Valido = true;
         }
         else {
-            // Quando o argumento È um vetor
+            // Quando o argumento √© um vetor
             if( (func_num_args() == 1) && (is_array(func_get_arg(0))) ) {
               $Chaves = func_get_arg(0);
             }
-            // Quando s„o m˙ltiplos argumentos
+            // Quando s√£o m√∫ltiplos argumentos
             else {
               $Chaves = array();
               $Args = func_get_args();
@@ -150,7 +150,7 @@ abstract class Entidade {
             foreach($this->VetorChaves as $Nome => $Array) {
                 if(isset($Array['Foreign']) && ($Array['Foreign'] == true) && !isset($this->ClasseGeneralizacao)) {
                     if(!isset($Chaves[$Nome]) || is_null($Chaves[$Nome]))
-                        throw new EntidadeChaveNaoPreenchidaException($Nome, EXCECAO_CHAVENAOPREENCHIDA); // Todas as colunas da chave prim·ria que s„o chaves estrangeiras DEVEM ser preenchidas!
+                        throw new EntidadeChaveNaoPreenchidaException($Nome, EXCECAO_CHAVENAOPREENCHIDA); // Todas as colunas da chave prim√°ria que s√£o chaves estrangeiras DEVEM ser preenchidas!
                     if(is_object($Chaves[$Nome]) && !( $Chaves[$Nome]->EInstanciaGeneralizada($this->VetorChaves[$Nome]['Classe'])))
                         throw new EntidadeChaveInvalidaException($Nome, EXCECAO_CHAVEINVALIDA); // A chave, se for um objeto, deve ser um objeto da classe definida
                     $this->VetorDadosChaves[$Nome] = $Chaves[$Nome];
@@ -160,7 +160,7 @@ abstract class Entidade {
                         $this->NomeChave = $this->Autoincremento = $Nome;
                     }
 
-                    // Poder· haver uma coluna "identificadora" na chave prim·ria, isto È, que n„o È uma chave estrangeira. Se esse valor for nulo, o objeto representa um novo registro
+                    // Poder√° haver uma coluna "identificadora" na chave prim√°ria, isto √©, que n√£o √© uma chave estrangeira. Se esse valor for nulo, o objeto representa um novo registro
                     if(!isset($Chaves[$Nome]))
                         $this->Chave = $this->VetorDadosChaves[$Nome] = null;
                     else
@@ -172,7 +172,7 @@ abstract class Entidade {
             
             if(!is_null($this->NomeChave) && is_null($this->Chave)) {
                 // A tabela possui uma coluna identificadora (auto-incrementada),
-                // e trata-se de um OBJETO NOVO e V¡LIDO.
+                // e trata-se de um OBJETO NOVO e V√ÅLIDO.
                 foreach($this->VetorCampos as $Nome => $Array) {
                     if(isset($Array['Default'])) {
                         $this->VetorDados[$Nome]['Valor'] = $Array['Default'];
@@ -198,7 +198,7 @@ abstract class Entidade {
                 $Consulta = new Consulta($SQL);
                 $Consulta->setparametros(todos, $Campos);
                 if($Consulta->executa(true)) {
-                    // Existe registro -- descarrega os dados e marca objeto como N√O NOVO e V¡LIDO
+                    // Existe registro -- descarrega os dados e marca objeto como N√ÉO NOVO e V√ÅLIDO
                     foreach($this->VetorCampos as $Nome => $Array) {
                         if($Array['Tipo'] == "data" && trim($Consulta->campo($Nome)) == ""){
                             $this->VetorDados[$Nome]['Valor'] = "";
@@ -225,8 +225,8 @@ abstract class Entidade {
                     $this->Valido = true;
                 }
                 elseif(is_null($this->NomeChave)) {
-                    // N√O existe registro, porÈm n„o h· coluna identificadora;
-                    // Marca objeto como NOVO e V¡LIDO
+                    // N√ÉO existe registro, por√©m n√£o h√° coluna identificadora;
+                    // Marca objeto como NOVO e V√ÅLIDO
                     foreach($this->VetorCampos as $Nome => $Array) {
                         if(isset($Array['Default'])) {
                             $this->VetorDados[$Nome]['Valor'] = $Array['Default'];
@@ -243,14 +243,14 @@ abstract class Entidade {
                     $this->Novo = true;
                     $this->Valido = true;
                 }
-                // N√O existe registro e existe coluna identificadora;
-                // O objeto È INV¡LIDO, pois referencia um registro que n„o existe
+                // N√ÉO existe registro e existe coluna identificadora;
+                // O objeto √© INV√ÅLIDO, pois referencia um registro que n√£o existe
                 else $this->Valido = false;
             }
         }
     }
 
-    // MÈtodos auxiliares para criaÁ„o de iteradores //
+    // M√©todos auxiliares para cria√ß√£o de iteradores //
     function devolveNomeTabela() {
         return $this->NomeTabela;
     }
@@ -295,7 +295,7 @@ abstract class Entidade {
           if(is_object($this->VetorDadosChaves[$NomeChave]))
             $Campos[$NomeChave] = $this->VetorDadosChaves[$NomeChave]->GetChave();
           else
-            $Campos[$NomeChave] = $this->VetorDadosChaves[$NomeChave]; // Dever· ser alterado quando permitirmos que objetos sejam passados como chave
+            $Campos[$NomeChave] = $this->VetorDadosChaves[$NomeChave]; // Dever√° ser alterado quando permitirmos que objetos sejam passados como chave
         }
         return implode(" AND ", $Criterios);
     }
@@ -306,8 +306,8 @@ abstract class Entidade {
     }
 
 /**
- * Verifica se o objeto instanciado È v·lido, ou seja,
- * se ele n„o representa um registro inexistente.
+ * Verifica se o objeto instanciado √© v√°lido, ou seja,
+ * se ele n√£o representa um registro inexistente.
  * @return boolean
  */
     function valido() {
@@ -315,7 +315,7 @@ abstract class Entidade {
     }
 
 /**
- * Verifica se o objeto instanciado È novo, ou seja,
+ * Verifica se o objeto instanciado √© novo, ou seja,
  * representa um novo registro.
  * @return boolean
  */
@@ -329,7 +329,7 @@ abstract class Entidade {
  */
     function getChave() {
         if(!$this->Valido)
-            throw new Exception("Objeto inv·lido", EXCECAO_OBJETOINVALIDO);
+            throw new Exception("Objeto inv√°lido", EXCECAO_OBJETOINVALIDO);
         if(is_null($this->NomeChave))
             return false;
         else return $this->Chave;
@@ -339,13 +339,13 @@ abstract class Entidade {
  * Altera o valor de um campo do objeto.
  * @param string $NomeCampo O Nome da coluna a ser alterada
  * @param mixed $Valor O valor desejado
- * @param string $Mascara M·scara para o valor
+ * @param string $Mascara M√°scara para o valor
  * @return boolean
  */
     function set($NomeCampo, $Valor, $Mascara=NULL) {
         $NomeCampo = strtolower($NomeCampo);
         if(!$this->Valido)
-            throw new Exception("Objeto inv·lido", EXCECAO_OBJETOINVALIDO);
+            throw new Exception("Objeto inv√°lido", EXCECAO_OBJETOINVALIDO);
 
         if(isset($this->VetorCampos[$NomeCampo])) {
             $Campo = $this->VetorCampos[$NomeCampo];
@@ -354,12 +354,12 @@ abstract class Entidade {
                 return true;
             }
             if($Campo['Obrigatorio'] && (is_null($Valor) || (!is_object($Valor) && trim($Valor) == "")) && (is_null($Mascara) || (trim($Mascara) == "")))
-                throw new Exception($Campo['Nome'], EXCECAO_CAMPONAOPREENCHIDO); // CAMPO OBRIGAT”RIO N√O PREENCHIDO
+                throw new Exception($Campo['Nome'], EXCECAO_CAMPONAOPREENCHIDO); // CAMPO OBRIGAT√ìRIO N√ÉO PREENCHIDO
           
             if(isset($Campo['Classe']) && !is_null($Campo['Classe']) && is_object($Valor) && ($Valor->EInstanciaGeneralizada($Campo['Classe'])))
                 $this->VetorDados[$NomeCampo]['NovoValor'] = $Valor->GetChave();
             else {
-                if(isset($Campo['Classe']) && !is_null($Campo['Classe']) && !Consulta::validaDado($Valor, $Campo['Tipo']))
+                if(isset($Campo['Tipo']) && !is_null($Campo['Tipo']) && !Consulta::validaDado($Valor, $Campo['Tipo']))
                     throw new EntidadeValorInvalidoException($Campo['Nome']);
 
                 if(trim($Valor) != "")
@@ -377,13 +377,13 @@ abstract class Entidade {
             $this->ObjetoGeneralizacao->Set($NomeCampo, $Valor, $Mascara);
         }
         else {
-            trigger_error("Campo inv·lido:".$NomeCampo, E_USER_WARNING);
+            trigger_error("Campo inv√°lido:".$NomeCampo, E_USER_WARNING);
             return false;
         }
     }
 
 /**
- * Devolve o conte˙do de um campo do objeto.
+ * Devolve o conte√∫do de um campo do objeto.
  * @param string $NomeCampo O nome da coluna
  * @param string $Tipo O tipo de dado ao qual se deseja formatar
  * @return mixed
@@ -391,7 +391,7 @@ abstract class Entidade {
     function get($NomeCampo, $Tipo=NULL) {
         $NomeCampo = strtolower($NomeCampo);
         if(!$this->Valido)
-            throw new Exception("Objeto inv·lido", EXCECAO_OBJETOINVALIDO);
+            throw new Exception("Objeto inv√°lido", EXCECAO_OBJETOINVALIDO);
 
         if(isset($this->VetorChaves[$NomeCampo])) {
           return $this->VetorDadosChaves[$NomeCampo];
@@ -409,19 +409,19 @@ abstract class Entidade {
           return $this->ObjetoGeneralizacao->Get($NomeCampo, $Tipo);
         }
         else {
-            throw new Exception("Campo inv·lido:".$NomeCampo, 0);
+            throw new Exception("Campo inv√°lido:".$NomeCampo, 0);
         }
     }
 
     function getObj($NomeClasse) {
         if(isset($this->ClassesAnexadas[$NomeClasse]))
             return new $NomeClasse($this->Consulta);
-        else throw new Exception("Classe inv·lida", 0);
+        else throw new Exception("Classe inv√°lida", 0);
     }
     
     function getAll() {
       if(!$this->Valido)
-          throw new Exception("Objeto inv·lido", EXCECAO_OBJETOINVALIDO);
+          throw new Exception("Objeto inv√°lido", EXCECAO_OBJETOINVALIDO);
 
       $VetorRetorno = array();
       foreach($this->VetorDadosChaves as $Nome => $Array)
@@ -437,7 +437,7 @@ abstract class Entidade {
     function getValorAntigo($NomeCampo) {
         $NomeCampo = strtolower($NomeCampo);
         if(!$this->Valido)
-            throw new Exception("Objeto inv·lido", EXCECAO_OBJETOINVALIDO);
+            throw new Exception("Objeto inv√°lido", EXCECAO_OBJETOINVALIDO);
 
         if(isset($this->VetorChaves[$NomeCampo])) {
           return $this->VetorDadosChaves[$NomeCampo]['Valor'];
@@ -449,7 +449,7 @@ abstract class Entidade {
           return $this->ObjetoGeneralizacao->GetValorAntigo($NomeCampo);
         }
         else {
-          trigger_error("Campo inv·lido.", E_USER_WARNING);
+          trigger_error("Campo inv√°lido.", E_USER_WARNING);
           return false;
         }
     }
@@ -461,7 +461,7 @@ abstract class Entidade {
 
     function salva() {
         if(!$this->Valido)
-            throw new Exception("Objeto inv·lido", EXCECAO_OBJETOINVALIDO);
+            throw new Exception("Objeto inv√°lido", EXCECAO_OBJETOINVALIDO);
 
         $db = DB::instancia();
         $temTransacao = $db->transacaoIniciada();
@@ -490,9 +490,9 @@ abstract class Entidade {
                         if(isset($DadosChave['Foreign']) && ($DadosChave['Foreign'] == true)) {
                             $Consulta->addsql(" AND ".$NomeChave." = :".$NomeChave."[".$DadosChave['Tipo']."]");
                             if(is_object($this->VetorDadosChaves[$NomeChave]))
-                                $Consulta->setparametros($NomeChave, $this->VetorDadosChaves[$NomeChave]->GetChave()); // Dever· ser alterado quando permitirmos que objetos sejam passados como chave
+                                $Consulta->setparametros($NomeChave, $this->VetorDadosChaves[$NomeChave]->GetChave()); // Dever√° ser alterado quando permitirmos que objetos sejam passados como chave
                             else
-                                $Consulta->setparametros($NomeChave, $this->VetorDadosChaves[$NomeChave]); // Dever· ser alterado quando permitirmos que objetos sejam passados como chave
+                                $Consulta->setparametros($NomeChave, $this->VetorDadosChaves[$NomeChave]); // Dever√° ser alterado quando permitirmos que objetos sejam passados como chave
                         }
                     }
                     $Consulta->executa(true);
@@ -507,7 +507,7 @@ abstract class Entidade {
               if(is_object($this->VetorDadosChaves[$NomeChave]))
                   $Dados[$NomeChave] = $this->VetorDadosChaves[$NomeChave]->GetChave();
               else
-                  $Dados[$NomeChave] = $this->VetorDadosChaves[$NomeChave]; // Dever· ser alterado quando permitirmos que objetos sejam passados como chave
+                  $Dados[$NomeChave] = $this->VetorDadosChaves[$NomeChave]; // Dever√° ser alterado quando permitirmos que objetos sejam passados como chave
           }
           foreach($this->VetorCampos as $NomeCampo => $VetorCampo) {
               $ListaColunas[] = $NomeCampo;
@@ -547,7 +547,7 @@ abstract class Entidade {
               if(is_object($this->VetorDadosChaves[$NomeChave]))
                 $Dados[$NomeChave] = $this->VetorDadosChaves[$NomeChave]->GetChave();
               else
-                $Dados[$NomeChave] = $this->VetorDadosChaves[$NomeChave]; // Dever· ser alterado quando permitirmos que objetos sejam passados como chave
+                $Dados[$NomeChave] = $this->VetorDadosChaves[$NomeChave]; // Dever√° ser alterado quando permitirmos que objetos sejam passados como chave
             } */
             $SQL = " UPDATE ".$this->NomeTabela." TAB SET ".implode(",", $ListaParametros)." WHERE ".$this->devolveClausulaWhere($Dados);
             $Atualiza = new Consulta($SQL);
@@ -569,7 +569,7 @@ abstract class Entidade {
 
     function desfaz() {
         if(!$this->Valido)
-            throw new Exception("Objeto inv·lido", EXCECAO_OBJETOINVALIDO);
+            throw new Exception("Objeto inv√°lido", EXCECAO_OBJETOINVALIDO);
 
         foreach($this->VetorDados as $Indice => $Array)  {
             $this->VetorDados[$Indice]['NovoValor'] = $this->VetorDados[$Indice]['Valor'];
@@ -579,11 +579,11 @@ abstract class Entidade {
     }
 
     /*
-     *      - Verifica todos os dados de uma entidade para ter certeza que ela n„o est· modificada
+     *      - Verifica todos os dados de uma entidade para ter certeza que ela n√£o est√° modificada
      */
     function verificarMudanca(){
         if(!$this->Valido)
-            throw new Exception("Objeto inv·lido", EXCECAO_OBJETOINVALIDO);
+            throw new Exception("Objeto inv√°lido", EXCECAO_OBJETOINVALIDO);
 
         $retorno = true;
         foreach($this->VetorDados as $Indice=>$Array){
@@ -600,7 +600,7 @@ abstract class Entidade {
 
     function exclui() {
         if(!$this->Valido)
-            throw new Exception("Objeto inv·lido", EXCECAO_OBJETOINVALIDO);
+            throw new Exception("Objeto inv√°lido", EXCECAO_OBJETOINVALIDO);
 
         $Campos = array();
         $SQL = " DELETE FROM ".$this->NomeTabela." TAB WHERE ".$this->devolveClausulaWhere($Campos);
@@ -612,7 +612,7 @@ abstract class Entidade {
             $this->Valido = FALSE;
             return TRUE;
         }
-        else throw new Exception("Erro de exclus„o", EXCECAO_ERROEXCLUSAO);
+        else throw new Exception("Erro de exclus√£o", EXCECAO_ERROEXCLUSAO);
     }
 
     private function eInstanciaGeneralizada($Classe) {

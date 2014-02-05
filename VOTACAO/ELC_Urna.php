@@ -2,22 +2,22 @@
 /*
 Copyright 2011 da UFRGS - Universidade Federal do Rio Grande do Sul
 
-Este arquivo é parte do programa SAELE - Sistema Aberto de Eleições Eletrônicas.
+Este arquivo Ã© parte do programa SAELE - Sistema Aberto de EleiÃ§Ãµes EletrÃ´nicas.
 
-O SAELE é um software livre; você pode redistribuí-lo e/ou modificá-lo dentro dos
-termos da Licença Pública Geral GNU como publicada pela Fundação do Software Livre
-(FSF); na versão 2 da Licença.
+O SAELE Ã© um software livre; vocÃª pode redistribuÃ­-lo e/ou modificÃ¡-lo dentro dos
+termos da LicenÃ§a PÃºblica Geral GNU como publicada pela FundaÃ§Ã£o do Software Livre
+(FSF); na versÃ£o 2 da LicenÃ§a.
 
-Este programa é distribuído na esperança que possa ser útil, mas SEM NENHUMA GARANTIA;
-sem uma garantia implícita de ADEQUAÇÃO a qualquer MERCADO ou APLICAÇÃO EM PARTICULAR.
-Veja a Licença Pública Geral GNU/GPL em português para maiores detalhes.
+Este programa Ã© distribuÃ­do na esperanÃ§a que possa ser Ãºtil, mas SEM NENHUMA GARANTIA;
+sem uma garantia implÃ­cita de ADEQUAÃ‡ÃƒO a qualquer MERCADO ou APLICAÃ‡ÃƒO EM PARTICULAR.
+Veja a LicenÃ§a PÃºblica Geral GNU/GPL em portuguÃªs para maiores detalhes.
 
-Você deve ter recebido uma cópia da Licença Pública Geral GNU, sob o título "LICENCA.txt",
-junto com este programa, se não, acesse o Portal do Software Público Brasileiro no
-endereço www.softwarepublico.gov.br ou escreva para a Fundação do Software Livre(FSF)
+VocÃª deve ter recebido uma cÃ³pia da LicenÃ§a PÃºblica Geral GNU, sob o tÃ­tulo "LICENCA.txt",
+junto com este programa, se nÃ£o, acesse o Portal do Software PÃºblico Brasileiro no
+endereÃ§o www.softwarepublico.gov.br ou escreva para a FundaÃ§Ã£o do Software Livre(FSF)
 Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
 */
-                       // Página para votação
+                       // PÃ¡gina para votaÃ§Ã£o
 require_once('../CABECALHO.PHP');
 
 $Controlador = Controlador::instancia();
@@ -29,9 +29,9 @@ require("Votacao_Common.php");
 
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Urna de Votação</title>
-<link rel="stylesheet" title="Eleições" href="../ELEICAO.CSS">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Urna de VotaÃ§Ã£o</title>
+<link rel="stylesheet" title="EleiÃ§Ãµes" href="../ELEICAO.CSS">
 </head>
 
 <body>
@@ -83,18 +83,18 @@ $NrDigitos = $Eleicao->get("nrdigitoschapa");
       </table>
       <table width="100%" border="1" cellspacing="0" cellpadding="0">
         <tr>
-          <td width="65%" valign="top"> <!-- Tela de votação -->
+          <td width="65%" valign="top"> <!-- Tela de votaÃ§Ã£o -->
             <table width="100%" border="0" cellspacing="2" cellpadding="0">
               <tr>
                 <td align="center" valign="top" width="35%">
                   <?php if($NrVotos > 1) { ?>
-                  <font size="2" face="verdana">Voto nº 1:</font><br />
+                  <font size="2" face="verdana">Voto nÂº 1:</font><br />
                   <?php } else echo "<br />";?>
-                  <input type="text" name="campoCedula" id="campoCedula" size="1" maxlength="<?=$NrDigitos?>" class="CampoCedula" value="" onKeyPress="javascript: return(ValidaTeclado(event));" onKeyUp="javascript: xajax_VerificaVoto(xajax.getFormValues('FormCedula'));" />
+                  <input type="text" name="campoCedula" id="campoCedula" size="<?=($NrDigitos > 3 ? 3 : 1)?>" maxlength="<?=$NrDigitos?>" class="CampoCedula" value="" onKeyPress="javascript: return(ValidaTeclado(event));" onKeyUp="javascript: xajax_VerificaVoto(xajax.getFormValues('FormCedula'));" />
                   <br /> <br />
                   <div id="Lotacao" style="height: 150px; font-size: 10pt; font-family: verdana; visibility: hidden;">
                     <div id="CabecalhoLotacao" style="text-align: center; font-weight: bold;">
-                      Lotação:
+                      LotaÃ§Ã£o:
                     </div>
                     <div id="ItensLotacao" style="text-align: left;">
                     </div>
@@ -106,13 +106,13 @@ $NrDigitos = $Eleicao->get("nrdigitoschapa");
                     <?php
                     $Chapas = $Eleicao->devolveChapas();
                     foreach($Chapas as $CodChapa => $Chapa) {
-                        $NomeArqChapa = "../FOTOS/CHAPA_".$Concurso->getChave()."_".$Eleicao->getChave()."_".$Chapa->getChave().".JPG";
+                        $NomeArqChapa = "../FOTOS/CHAPA_".$Concurso->getChave()."_".$Eleicao->getChave()."_".$Chapa->get('NrChapa').".JPG";
                         if(file_exists($NomeArqChapa))
                             echo '<img height="150" name="Imagem" id="FotoChapa'.$CodChapa.'" src="'.$NomeArqChapa.'" style="display: none;">';
                         $Candidatos = $Chapa->devolveCandidatos();
                         $c = 1;
                         foreach($Candidatos as $Candidato) {
-                            $NomeArqCand = "../FOTOS/CAND_".$Concurso->getChave()."_".$Eleicao->getChave()."_".$Chapa->getChave()."_".$Candidato->get("codpessoaeleicao").".JPG";
+                            $NomeArqCand = "../FOTOS/CAND_".$Concurso->getChave()."_".$Eleicao->getChave()."_".$Chapa->get('NrChapa')."_".$Candidato->get("codpessoaeleicao").".JPG";
                             if(file_exists($NomeArqCand)) {
                                 echo '<img height="150" name="Imagem" id="FotoCandidato'.$CodChapa.'_'.$c.'" src="'.$NomeArqCand.'" style="display: none;">';
                                 $c++;
@@ -137,7 +137,7 @@ $NrDigitos = $Eleicao->get("nrdigitoschapa");
               </tr>
             </table>
           </td>
-          <td width="35%" bgcolor="#d3d3d3"> <!-- Teclado eletrônico -->
+          <td width="35%" bgcolor="#d3d3d3"> <!-- Teclado eletrÃ´nico -->
             <table width="100%" border="0" cellspacing="0" cellpadding="5">
               <tr>
                 <td align="center" colspan="3">
@@ -203,7 +203,7 @@ $NrDigitos = $Eleicao->get("nrdigitoschapa");
 					  <div id="BotaoVotoAnterior">PRIMEIRO VOTO</div>
           </td>
           <td class="Navegacao" width="50%">
-					  <div id="BotaoVotoPosterior"><input type="button" name="botao" value="PR&Oacute;XIMO VOTO &gt;&gt; (ENTER)" onClick="javascript: xajax_Acao(xajax.getFormValues('FormCedula'), 'P');" /></div>
+					  <div id="BotaoVotoPosterior"><input type="button" name="botao" value="PRÃ“XIMO VOTO &gt;&gt; (ENTER)" onClick="javascript: xajax_Acao(xajax.getFormValues('FormCedula'), 'P');" /></div>
           </td>
         </tr>
         <?php } ?>
@@ -211,7 +211,7 @@ $NrDigitos = $Eleicao->get("nrdigitoschapa");
     </td>
   </tr>
   <?php if ($NrVotos > 1) {
-    $Str1 = "ENCERRAR VOTA&Ccedil;&Atilde;O";
+    $Str1 = "ENCERRAR VOTAÃ‡ÃƒO";
     $Str2 = "todos os votos";
       ?>
       <tr>
@@ -219,10 +219,10 @@ $NrDigitos = $Eleicao->get("nrdigitoschapa");
           <table border="0" width="97%" cellspacing="0" cellpadding="0" align="center">
             <tr>
               <td colspan="2" align="center">
-                          <input type="button" style="background-color: #ffb5a5; width: 2.4em;" name="botao[1]" id="botao_voto_1" value=" " onClick="javascript: xajax_Acao(xajax.getFormValues('FormCedula'), 1);" />
+                          <input type="button" style="background-color: #ffb5a5; width: <?=($NrDigitos > 3 ? '5' : '2.4')?>em;" name="botao[1]" id="botao_voto_1" value=" " onClick="javascript: xajax_Acao(xajax.getFormValues('FormCedula'), 1);" />
                 <?php
                 for ($i = 2; $i <= $NrVotos; $i++)
-                  echo ' - <input type="button" style="background-color: #ffffe5; width: 2.4em;" name="botao['.$i.']" id="botao_voto_'.$i.'" value=" " onclick="javascript: xajax_Acao(xajax.getFormValues(\'FormCedula\'), '.$i.');" />';
+                  echo ' - <input type="button" style="background-color: #ffffe5; width: '.($NrDigitos > 3 ? '5' : '2.4').'em;" name="botao['.$i.']" id="botao_voto_'.$i.'" value=" " onclick="javascript: xajax_Acao(xajax.getFormValues(\'FormCedula\'), '.$i.');" />';
                 ?>
               </td>
             </tr>
@@ -350,7 +350,7 @@ function EntraNumero(num) {
     if(tecla == 13) xajax_Acao(xajax.getFormValues('FormCedula'), 'P');
     if(tecla == 27) xajax_Acao(xajax.getFormValues('FormCedula'), 'A');
     if((tecla < 48 || tecla > 57) && tecla != 8 && tecla != 98 && tecla != 66 && tecla != 110 && tecla != 78) return false;
-    if(el.value.length == 2 || el.value == 'N' || el.value == 'B' || (tecla == 48 && el.value.length == 0) || ((tecla == 98 || tecla == 66 || tecla == 110 || tecla == 78) && el.value.length > 0)) return false;
+    if(el.value.length == 5 || el.value == 'N' || el.value == 'B' || (tecla == 48 && el.value.length == 0) || ((tecla == 98 || tecla == 66 || tecla == 110 || tecla == 78) && el.value.length > 0)) return false;
     if(tecla == 98) {
       el.value = "B";
       return false;
@@ -376,7 +376,7 @@ function EntraNumero(num) {
       if(el.value == 'N') nulo++;
     }
     if(branco > 0 || nulo > 0) {
-      msg = 'Atenção! Você estará dando ';
+      msg = 'AtenÃ§Ã£o! VocÃª estarÃ¡ dando ';
       if(branco > 0 && nulo == 0) msg += branco + ' voto(s) em branco. ';
       if(branco == 0 && nulo > 0) msg += nulo + ' voto(s) nulo(s). ';
       if(branco > 0 && nulo > 0)  msg += branco + ' voto(s) em branco e ' + nulo + ' voto(s) nulo(s). ';
@@ -401,7 +401,7 @@ function EntraNumero(num) {
 				document.getElementById('VotoAtual').value = NovoVoto;
 				if(NovoVoto == 1)
 				  document.getElementById('BotaoVotoAnterior').innerHTML = 'PRIMEIRO VOTO';
-				document.getElementById('BotaoVotoPosterior').innerHTML = '<input type="button" name="botao" value="PR&Oacute;XIMO VOTO &gt;&gt; (ENTER)" onclick="javascript: Acao(\'P\');" />';
+				document.getElementById('BotaoVotoPosterior').innerHTML = '<input type="button" name="botao" value="PRÃ“XIMO VOTO &gt;&gt; (ENTER)" onclick="javascript: Acao(\'P\');" />';
 				xajax_VerificaVoto(xajax.getFormValues('FormCedula'));
 			}
 			if(acao == 'P' && VotoAtual < NrVotos) {
@@ -430,7 +430,7 @@ function EntraNumero(num) {
 				if(NovoVoto == NrVotos)
 				  document.getElementById('BotaoVotoPosterior').innerHTML = '&Uacute;LTIMO VOTO';
 				else
-				  document.getElementById('BotaoVotoPosterior').innerHTML = '<input type="button" name="botao" value="PR&Oacute;XIMO VOTO &gt;&gt; (ENTER)" onclick="javascript: Acao(\'P\');" />';
+				  document.getElementById('BotaoVotoPosterior').innerHTML = '<input type="button" name="botao" value="PRÃ“XIMO VOTO &gt;&gt; (ENTER)" onclick="javascript: Acao(\'P\');" />';
 				xajax_VerificaVoto(xajax.getFormValues('FormCedula'));
 			}
 		}
@@ -439,14 +439,14 @@ function EntraNumero(num) {
   function Valida(form) {
     voto = document.getElementById('campoCedula').value;
     if((isNaN(voto) || voto.length < <?=$NrDigitos?>) && voto != 'B' && voto != 'N' && voto != '') {
-      alert('Voto inválido.');
+      alert('Voto invÃ¡lido.');
       return false;
     }
     VotoAtual = document.getElementById('VotoAtual').value;
     if(voto != 'B' && voto != 'N' && voto != '') {
       for(i = 1; el = document.getElementsByName('cedula['+i+']')[0]; i++) {
         if(el.value == voto && i != VotoAtual) {
-          alert('Atenção! Votos não podem ser repetidos.');
+          alert('AtenÃ§Ã£o! Votos nÃ£o podem ser repetidos.');
           return false;
         }
       }

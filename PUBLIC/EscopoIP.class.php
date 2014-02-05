@@ -2,24 +2,24 @@
 /*
 Copyright 2011 da UFRGS - Universidade Federal do Rio Grande do Sul
 
-Este arquivo È parte do programa SAELE - Sistema Aberto de EleiÁıes EletrÙnicas.
+Este arquivo √© parte do programa SAELE - Sistema Aberto de Elei√ß√µes Eletr√¥nicas.
 
-O SAELE È um software livre; vocÍ pode redistribuÌ-lo e/ou modific·-lo dentro dos
-termos da LicenÁa P˙blica Geral GNU como publicada pela FundaÁ„o do Software Livre
-(FSF); na vers„o 2 da LicenÁa.
+O SAELE √© um software livre; voc√™ pode redistribu√≠-lo e/ou modific√°-lo dentro dos
+termos da Licen√ßa P√∫blica Geral GNU como publicada pela Funda√ß√£o do Software Livre
+(FSF); na vers√£o 2 da Licen√ßa.
 
-Este programa È distribuÌdo na esperanÁa que possa ser ˙til, mas SEM NENHUMA GARANTIA;
-sem uma garantia implÌcita de ADEQUA«√O a qualquer MERCADO ou APLICA«√O EM PARTICULAR.
-Veja a LicenÁa P˙blica Geral GNU/GPL em portuguÍs para maiores detalhes.
+Este programa √© distribu√≠do na esperan√ßa que possa ser √∫til, mas SEM NENHUMA GARANTIA;
+sem uma garantia impl√≠cita de ADEQUA√á√ÉO a qualquer MERCADO ou APLICA√á√ÉO EM PARTICULAR.
+Veja a Licen√ßa P√∫blica Geral GNU/GPL em portugu√™s para maiores detalhes.
 
-VocÍ deve ter recebido uma cÛpia da LicenÁa P˙blica Geral GNU, sob o tÌtulo "LICENCA.txt",
-junto com este programa, se n„o, acesse o Portal do Software P˙blico Brasileiro no
-endereÁo www.softwarepublico.gov.br ou escreva para a FundaÁ„o do Software Livre(FSF)
+Voc√™ deve ter recebido uma c√≥pia da Licen√ßa P√∫blica Geral GNU, sob o t√≠tulo "LICENCA.txt",
+junto com este programa, se n√£o, acesse o Portal do Software P√∫blico Brasileiro no
+endere√ßo www.softwarepublico.gov.br ou escreva para a Funda√ß√£o do Software Livre(FSF)
 Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
 */
 
 /**
- * Esta classe representa um escopo de endereÁos IP, determinado por um
+ * Esta classe representa um escopo de endere√ßos IP, determinado por um
  * prefixo. Esse prefixo pode conter 1, 2 ou 3 octetos.
  */
 class EscopoIP extends Entidade {
@@ -30,7 +30,7 @@ class EscopoIP extends Entidade {
       "nrseqdominio"=> array(Tipo => "numero", Tamanho => 4, Foreign => false)
     );
     protected $VetorCampos = array(
-      "descricao"   => array(Nome => "DescriÁ„o", Tipo => texto, Tamanho => 120, Obrigatorio => true),
+      "descricao"   => array(Nome => "Descri√ß√£o", Tipo => texto, Tamanho => 120, Obrigatorio => true),
       "prefixoip"   => array(Nome => "Prefixo IP", Tipo => texto, Tamanho => 15, Obrigatorio => true),
       "indativa"    => array(Nome => "Ativa", Tipo => texto, Tamanho => 1, Obrigatorio => true, Valores => array("S", "N"))
     );
@@ -59,7 +59,7 @@ class EscopoIP extends Entidade {
 
     public function set($Campo, $Valor, $Mascara=null) {
         if(!$this->EdicaoIP && ($Campo == "prefixoip"))
-            throw new Exception("Utilize o mÈtodo definePartesIP()", 0);
+            throw new Exception("Utilize o m√©todo definePartesIP()", 0);
         else return parent::set($Campo, $Valor, $Mascara);
     }
 
@@ -93,7 +93,7 @@ class EscopoIP extends Entidade {
 
     public function exclui() {
         if($this->Concurso->estadoConcurso() != CONCURSO_NAOINICIADO)
-            throw new UrnaVirtualException("O Concurso Eleitoral j· iniciou", 0);
+            throw new UrnaVirtualException("O Concurso Eleitoral j√° iniciou", 0);
         parent::exclui();
     }
 }

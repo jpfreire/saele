@@ -9,12 +9,12 @@
     var showToday = 1       // 0 - don't show; 1 - show
     var imgDir = "images/"          // directory for images ... e.g. var imgDir="/img/"
 
-    var gotoString = "Ir para o m&ecirc;s atual"
-    var todayString = "Hoje &eacute;"
+    var gotoString = "Ir para o mês atual"
+    var todayString = "Hoje é"
     var weekString = "Sem"
-    var scrollLeftMessage = "Clique para visualizar o m&ecirc;s anterior. Segure o bot&atilde;o para voltar automaticamente."
-    var scrollRightMessage = "Clique para visualizar o m&ecirc;s seguinte. Segure o bot&atilde;o para prosseguir automaticamente."
-    var selectMonthMessage = "Clique para selecionar um m&ecirc;s."
+    var scrollLeftMessage = "Clique para visualizar o mês anterior. Segure o botão para voltar automaticamente."
+    var scrollRightMessage = "Clique para visualizar o mês seguinte. Segure o botão para prosseguir automaticamente."
+    var selectMonthMessage = "Clique para selecionar um mês."
     var selectYearMessage = "Clique para selecionar um ano."
     var selectDateMessage = "Clique para selecionar a data [date]." // do not replace [date], it will be replaced by date.
 
@@ -118,7 +118,7 @@
             img[i] = new Image
             img[i].src = imgDir + imgsrc[i]
         }
-        document.write ("<div onclick='bShow=true' id='calendar'    style='z-index:+999;position:absolute;visibility:hidden;'><table    width="+((showWeekNumber==1)?250:220)+" style='font-family:arial;font-size:11px;border-width:1;border-style:solid;border-color:#a0a0a0;font-family:arial; font-size:11px}' bgcolor='#ffffff'><tr bgcolor='#0000aa'><td><table width='"+((showWeekNumber==1)?248:218)+"'><tr><td style='padding:2px;font-family:arial; font-size:11px;'><font color='#ffffff'><B><span id='caption'></span></B></font></td><td align=right><a href='javascript:hideCalendar()'><IMG SRC='"+imgDir+"close.gif' WIDTH='15' HEIGHT='13' BORDER='0' ALT='Fechar o Calend&aacute;rio'></a></td></tr></table></td></tr><tr><td style='padding:5px' bgcolor=#ffffff><span id='content'></span></td></tr>")
+        document.write ("<div onclick='bShow=true' id='calendar'    style='z-index:+999;position:absolute;visibility:hidden;'><table    width="+((showWeekNumber==1)?250:220)+" style='font-family:arial;font-size:11px;border-width:1;border-style:solid;border-color:#a0a0a0;font-family:arial; font-size:11px}' bgcolor='#ffffff'><tr bgcolor='#0000aa'><td><table width='"+((showWeekNumber==1)?248:218)+"'><tr><td style='padding:2px;font-family:arial; font-size:11px;'><font color='#ffffff'><B><span id='caption'></span></B></font></td><td align=right><a href='javascript:hideCalendar()'><IMG SRC='"+imgDir+"close.gif' WIDTH='15' HEIGHT='13' BORDER='0' ALT='Fechar o Calendário'></a></td></tr></table></td></tr><tr><td style='padding:5px' bgcolor=#ffffff><span id='content'></span></td></tr>")
             
         if (showToday==1)
         {
@@ -128,7 +128,7 @@
         document.write ("</table></div><div id='selectMonth' style='z-index:+999;position:absolute;visibility:hidden;'></div><div id='selectYear' style='z-index:+999;position:absolute;visibility:hidden;'></div>");
     }
 
-    var monthName = new Array("Janeiro","Fevereiro","Mar&ccedil;o","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro")
+    var monthName = new Array("Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro")
     var monthName2 = new Array("JAN","FEV","MAR","ABR","MAI","JUN","JUL","AGO","SET","OUT","NOV","DEZ")
     if (startAt==0)
     {

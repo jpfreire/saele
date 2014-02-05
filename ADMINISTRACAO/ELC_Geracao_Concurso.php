@@ -2,29 +2,29 @@
 /*
 Copyright 2011 da UFRGS - Universidade Federal do Rio Grande do Sul
 
-Este arquivo È parte do programa SAELE - Sistema Aberto de EleiÁıes EletrÙnicas.
+Este arquivo √© parte do programa SAELE - Sistema Aberto de Elei√ß√µes Eletr√¥nicas.
 
-O SAELE È um software livre; vocÍ pode redistribuÌ-lo e/ou modific·-lo dentro dos
-termos da LicenÁa P˙blica Geral GNU como publicada pela FundaÁ„o do Software Livre
-(FSF); na vers„o 2 da LicenÁa.
+O SAELE √© um software livre; voc√™ pode redistribu√≠-lo e/ou modific√°-lo dentro dos
+termos da Licen√ßa P√∫blica Geral GNU como publicada pela Funda√ß√£o do Software Livre
+(FSF); na vers√£o 2 da Licen√ßa.
 
-Este programa È distribuÌdo na esperanÁa que possa ser ˙til, mas SEM NENHUMA GARANTIA;
-sem uma garantia implÌcita de ADEQUA«√O a qualquer MERCADO ou APLICA«√O EM PARTICULAR.
-Veja a LicenÁa P˙blica Geral GNU/GPL em portuguÍs para maiores detalhes.
+Este programa √© distribu√≠do na esperan√ßa que possa ser √∫til, mas SEM NENHUMA GARANTIA;
+sem uma garantia impl√≠cita de ADEQUA√á√ÉO a qualquer MERCADO ou APLICA√á√ÉO EM PARTICULAR.
+Veja a Licen√ßa P√∫blica Geral GNU/GPL em portugu√™s para maiores detalhes.
 
-VocÍ deve ter recebido uma cÛpia da LicenÁa P˙blica Geral GNU, sob o tÌtulo "LICENCA.txt",
-junto com este programa, se n„o, acesse o Portal do Software P˙blico Brasileiro no
-endereÁo www.softwarepublico.gov.br ou escreva para a FundaÁ„o do Software Livre(FSF)
+Voc√™ deve ter recebido uma c√≥pia da Licen√ßa P√∫blica Geral GNU, sob o t√≠tulo "LICENCA.txt",
+junto com este programa, se n√£o, acesse o Portal do Software P√∫blico Brasileiro no
+endere√ßo www.softwarepublico.gov.br ou escreva para a Funda√ß√£o do Software Livre(FSF)
 Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
 */
-                       // GeraÁ„o de Concurso Eleitoral a partir de SolicitaÁ„o
+                       // Gera√ß√£o de Concurso Eleitoral a partir de Solicita√ß√£o
 require_once('../CABECALHO.PHP');
 
 $Pessoa = Controlador::instancia()->recuperaPessoaLogada();
 if(!$Pessoa->eGerenteSistema()) {
-    echo "<html><body>\n";
+    echo "<html><head><meta charset=\"utf-8\"></head><body>\n";
     echo "<div align=\"center\">\n";
-    echo "<br><font size=\"2\" face=\"verdana\">Erro! O usu&aacute;rio n&atilde;o tem permiss&atilde;o para acessar esta p&aacute;gina.<br><br>\n";
+    echo "<br><font size=\"2\" face=\"verdana\">Erro! O usu√°rio n√£o tem permiss√£o para acessar esta p√°gina.<br><br>\n";
     echo "<a href=\"javascript: history.back();\">Voltar</a></font>\n";
     echo "</div>";
     echo "</body></html>";
@@ -34,9 +34,9 @@ if(!$Pessoa->eGerenteSistema()) {
 $NrSeqSolicitacaoConcurso = $_REQUEST['NrSeqSolicitacaoConcurso'];
 $Solicitacao = new SolicitacaoConcurso($NrSeqSolicitacaoConcurso);
 if(!$Solicitacao->valido())  { ?>
-    <html><body>
+    <html><head><meta charset="utf-8"></head><body>
         <div align="center">
-        <font size="2" face="verdana">Erro! SolicitaÁ„o inv·lida.<br /><br />
+        <font size="2" face="verdana">Erro! Solicita√ß√£o inv√°lida.<br /><br />
         <a href="javascript: history.back();">Voltar</a></font>
         </div>
     </body></html>
@@ -88,9 +88,9 @@ else {
     $HabilitaContagem = "S";
 }
 if($ModalidadeConcurso == "C")
-  MostraCabecalho("SolicitaÁ„o de Concursos Eleitorais");
+  MostraCabecalho("Solicita√ß√£o de Concursos Eleitorais");
 else
-  MostraCabecalho("SolicitaÁ„o de Enquetes");
+  MostraCabecalho("Solicita√ß√£o de Enquetes");
 ?>
 <script language="javascript" src="../CODE/popcalendar.js"></script>
 
@@ -98,11 +98,11 @@ else
         addHoliday(25,12,0,"Natal")
 		addHoliday(1,1,0,"Ano Novo")
 		monthName = new
-		Array("Janeiro","Fevereiro","MarÁo","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro")
+		Array("Janeiro","Fevereiro","Mar√ßo","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro")
 		showToday = 0
 		dayName = new Array ("Dom","Seg","Ter","Qua","Qui","Sex","Sab")
-		gotoString = "Vai para o mÍs atual"
-		todayString = "Hoje È"
+		gotoString = "Vai para o m√™s atual"
+		todayString = "Hoje √©"
 		weekString = "DS"
 		imgDir = "../imagens/"
 </script>
@@ -130,13 +130,13 @@ else
 <table width="95%" border="0" cellspacing="0" cellpadding="0" align="center">
   <tr bgcolor="white">
     <td align="center" colspan="2">
-        <font size="3" face="verdana"><b>Solicita&ccedil;&atilde;o de <?=$Solicitacao->retornaString(STR_CONCURSOELEITORAL)?></b></font>
+        <font size="3" face="verdana"><b>Solicita√ß√£o de <?=$Solicitacao->retornaString(STR_CONCURSOELEITORAL)?></b></font>
       <hr />
     </td>
   </tr>
   <tr bgcolor="white">
     <td colspan="2">
-      <font size="2" face="verdana">&nbsp; <b>Data da Solicita&ccedil;&atilde;o:</b>
+      <font size="2" face="verdana">&nbsp; <b>Data da Solicita√ß√£o:</b>
       <?=$Solicitacao->get("datasolicitacao", data)?></font>
     </td>
   </tr>
@@ -152,18 +152,18 @@ else
   </td>
   <tr bgcolor="white">
     <td colspan="2">
-      <font size="2" face="verdana">&nbsp; Descri&ccedil;&atilde;o:</font>
+      <font size="2" face="verdana">&nbsp; Descri√ß√£o:</font>
       <input type="text" size="80" maxlength="120" name="DescConcurso" value="<?=$Descricao?>" />
     </td>
   </tr>
   <tr bgcolor="#f5f5f5">
     <td colspan="2">
-      <font size="2" face="verdana">&nbsp; Per&iacute;odo:</font>
+      <font size="2" face="verdana">&nbsp; Per√≠odo:</font>
     </td>
   </tr>
   <tr bgcolor="#f5f5f5">
     <td width="20%">
-      <font size="2" face="verdana">&nbsp;&nbsp;&nbsp; In&iacute;cio:</font>
+      <font size="2" face="verdana">&nbsp;&nbsp;&nbsp; In√≠cio:</font>
     </td>
     <td>
       <input type="text" class="obrigatorio" name="DataInicio" id="DataInicio" size="10" maxlength="10" value="<?=$DataInicio?>" />
@@ -208,14 +208,14 @@ else
     <td>
       <font size="2" face="verdana">
         <input type="radio" name="HabilitaContagem" value="S" <?=($HabilitaContagem == "S" ? 'checked="checked"' : '')?> /> Sim
-        <input type="radio" name="HabilitaContagem" value="N" <?=($HabilitaContagem == "N" ? 'checked="checked"' : '')?> /> N&atilde;o
+        <input type="radio" name="HabilitaContagem" value="N" <?=($HabilitaContagem == "N" ? 'checked="checked"' : '')?> /> N√£o
       </font>
     </td>
   </tr>
   <?php if(!is_null($Solicitacao->get("observacao"))) { ?>
   <tr bgcolor="white">
     <td colspan="2">
-      <font size="2" face="verdana">&nbsp; Observa&ccedil;&otilde;es adicionais:</font>
+      <font size="2" face="verdana">&nbsp; Observa√ß√µes adicionais:</font>
       <input type="text" size="80" maxlength="120" name="Observacao" value="<?=$Solicitacao->get("observacao")?>" />
     </td>
   </tr>
@@ -285,11 +285,11 @@ if(!is_null($Concurso)) {
 	</tr>
 	<tr class="Linha2">
 	  <td colspan="2" style="font-size: 10pt;">
-		  <b>Aten&ccedil;&atilde;o:</b> os arquivos com as listas de participantes devem estar no
-             diret&oacute;rio ARQUIVO, com o nome <b>arq_<?=$NrSeqSolicitacaoConcurso?>_[n˙mero da <?=$Solicitacao->retornaString(STR_ELEICAO)?>].txt</b>,
+		  <b>Aten√ß√£o:</b> os arquivos com as listas de participantes devem estar no
+             diret√≥rio ARQUIVO, com o nome <b>arq_<?=$NrSeqSolicitacaoConcurso?>_[n√∫mero da <?=$Solicitacao->retornaString(STR_ELEICAO)?>].txt</b>,
              com um arquivo para cada <?=$Solicitacao->retornaString(STR_ELEICAO)?>. Cada linha do arquivo
              representa um participante, e os dados devem estar dispostos da seguinte forma:<br />
-			 <b>[cÛdigo];[nome da pessoa];[registro geral];[CPF];[local de trabalho];[e-mail]</b>
+			 <b>[c√≥digo];[nome da pessoa];[registro geral];[CPF];[local de trabalho];[e-mail]</b>
 		</td>
 	</tr>
 </table>
@@ -307,10 +307,10 @@ if(!is_null($Concurso)) {
 
 <script src="../Geral.js"></script>
 <script>
-atributos('DescConcurso', "DescriÁ„o do Concurso", texto, true);
-atributos('DataInicio', "Data de InÌcio", data, true);
+atributos('DescConcurso', "Descri√ß√£o do Concurso", texto, true);
+atributos('DataInicio', "Data de In√≠cio", data, true);
 atributos('DataFim', "Data de Fim", data, true);
-atributos('HoraInicio', "Hora de InÌcio", hora, true);
+atributos('HoraInicio', "Hora de In√≠cio", hora, true);
 atributos('HoraFim', "Hora de Fim", hora, true);
 </script>
 </body></html>

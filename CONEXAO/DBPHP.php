@@ -17,8 +17,10 @@ junto com este programa, se não, acesse o Portal do Software Público Brasileir
 endereço www.softwarepublico.gov.br ou escreva para a Fundação do Software Livre(FSF)
 Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
 */
+require_once('CONSTANTES.php');
 
 define('BANCO_DEFAULT', 'eleicoes');
+
 
 class DB {
   private $debug;
@@ -53,11 +55,11 @@ class DB {
   }
 
   private function conecta($nomebanco) {
-    $host = 'localhost'; // ENDEREÇO DO BANCO DE DADOS
-    $user = 'eleicoes'; // USUÁRIOl
-    $pass = 'eleicoes'; // SENHA
+    //$host = 'localhost'; // ENDEREÇO DO BANCO DE DADOS
+    //$user = 'eleicoes'; // USUÁRIOl
+    //$pass = 'eleicoes'; // SENHA
 
-    $ConnString = "host=".$host." port=5432 dbname=".$nomebanco." user=".$user." password=".$pass;
+    $ConnString = "host=".BD_URL." port=".BD_PORTA." dbname=".$nomebanco." user=".BD_USUARIO." password=".BD_SENHA;
     $this->conexao = pg_connect($ConnString);
     if(!$this->conexao)
       throw new Exception('Não foi possível conectar ao banco de dados', 1);

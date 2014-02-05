@@ -1,5 +1,5 @@
 <?php
-//define(LDAP_OPT_DIAGNOSTIC_MESSAGE, 0x0032);
+
 /*
 Copyright 2011 da UFRGS - Universidade Federal do Rio Grande do Sul
 
@@ -19,6 +19,8 @@ endereço www.softwarepublico.gov.br ou escreva para a Fundação do Software Li
 Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
 */
 
+require_once('CONSTANTES.php');
+
 error_reporting(E_PARSE | E_ERROR);
 
 /**
@@ -34,25 +36,17 @@ function AutenticaPessoa($Usuario, $Senha) {
         return true;
 	#$Usuario = str_pad($Usuario, 8, '0', STR_PAD_LEFT);
         ldap_set_option(NULL, LDAP_OPT_DEBUG_LEVEL, 7);
-	$ldapconn = ldap_connect("ldap://redechesf.local", 389)or die("Não foi possível conectar com a redechesf(LDAP).<br>");
+	$ldapconn = ldap_connect(SERVIDOR_LDAP, PORTA_LDAP)or die("Não foi possível conectar com a redechesf(LDAP).<br>");
         
 	if (!$ldapconn) {
 	//return "Erro ao estabelecer conexão com o LDAP";
-            echo 'Erro ao conectar ldap_connect'.$Usuario .' - '. $Senha.'<br>';
+            echo 'Erro ao conectar ao servidor de domínio<br>';
 	return FALSE;
 	}
-	//ldap_set_option($ldapconn, LDAP_OPT_PROTOCOL_VERSION, 3);
         
-        $retorno = ldap_bind($ldapconn, "$Usuario@redechesf.local", $Senha);
-//        if ($retorno) {
-//            if (ldap_get_option($ldapconn, LDAP_OPT_DIAGNOSTIC_MESSAGE, $extended_error)) {
-//                echo "Error Binding to LDAP: $extended_error <br>";
-//            } else {
-//                echo "Error Binding to LDAP: No additional information is available.<br>";
-//            }
-//        }
-         echo("msg:'".ldap_error($retorno)."'</br>");
-        echo 'retorno do ldap_bind ('.$retorno.')<br>';
+        $retorno = ldap_bind($ldapconn, "$Usuario".SUFIXO_RDN_LOGIN, $Senha);
+         echo("Mensagem de erro do servidor de domínio:'".ldap_error($retorno)."'</br>");
+
 	return $retorno;
 }
 

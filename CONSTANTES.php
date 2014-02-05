@@ -5,12 +5,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+include('bibliotecas/log4php/Logger.php');
 
 $config_array = parse_ini_file("saele.ini");
 
 foreach ($config_array as $configuracao => $valor){
     define(strtoupper($configuracao),$valor);
 }
+
+
+
+Logger::configure('log/log4php.conf.xml');
+$logger = Logger::getRootLogger();
+
+
+$logger->info("My first message.");
+
+echo "<pre>";
+print_r(file_get_contents(CONF_LOG4PHP));
 
 
 
